@@ -1,0 +1,81 @@
+body > div {
+	max-width: 800px;
+	margin: auto;
+	padding: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+	body > div {
+		padding: 8px;
+	}
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	/* From https://css.glass */
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(1.6px);
+	-webkit-backdrop-filter: blur(1.6px);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+
+	padding: 4px 16px;
+	/* margin: 16px auto; */
+}
+
+@media only screen and (max-width: 768px) {
+	header > div {
+		visibility: none;
+	}
+	header {
+		flex-direction: column;
+		max-width: calc(100% - 5px)
+	}
+}
+
+header > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+}
+
+@media only screen and (max-width: 768px) {
+	header > div {
+		display: none;
+	}
+}
+
+
+ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+
+	list-style-type: none;
+	list-style-position: outside;
+	padding: 0;
+}
+
+header > nav > ul > li > a {
+	text-decoration: none;
+}
+
+header > nav > ul > li > [aria-current="page"]:not([aria-current="false"]) {
+	/* what to put here... */
+}
+
+ol {
+	list-style-type: none;
+	padding: 0;
+}
+
+ol > li > a {
+	text-decoration: none;
+}

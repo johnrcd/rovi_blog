@@ -1,0 +1,79 @@
+media:
+  input: "public/_media"
+  output: "/_media"
+content:
+  # posts, like the actual blog posts
+  - name: posts
+    label: Posts
+    type: collection
+    path: "content/posts"
+    format: yaml-frontmatter
+    view:
+      fields: [ title, published, date, author ]
+    fields:
+      - name: title
+        label: Post Title
+        type: string
+
+      - name: description
+        label: Description
+        type: string
+        description: "Optional field. Technically no limit, but recommended to keep below 140 characters."
+
+      - name: is_published
+        label: Published
+        type: boolean
+        default: true
+        description: "[NOT IMPLEMENTED YET] If true, will be published on the website when the next build happens. Set to false for drafts."
+
+      - name: date
+        label: Date
+        type: date
+        description: "Date the post was published. Might be some wonkiness due to timezones since I haven't... dealt with that."
+
+      - name: body
+        label: Body
+        type: rich-text
+
+  # Pages that the user can edit the contents of.
+  - name: pages
+    label: Pages
+    type: collection
+    path: "content/pages"
+    format: yaml-frontmatter
+    view:
+      fields: [ title ]
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+        description: "The name of the page. Pages by default do not render this field, so the main purpose of the field is to generate the URL."
+
+      - name: body
+        label: Body
+        type: rich-text
+
+  # Site settings.
+  - name: site
+    label: Site Settings
+    path: "_data/metadata.json"
+    type: file
+    description: "Site metadata. Generally, you won't need to edit this. Or shouldn't."
+    fields:
+      - name: title
+        label: Title
+        type: string
+
+      - name: short_title
+        label: Short Title
+        type: string
+        description: "Used in the tab of the user's browser for pages in the site (e.g. My Blog Post | 11ty/PagesCMS Template) If you don't want this feature, keep this value the same as the title (or make it to omit the website name from most pages)."
+
+      - name: description
+        label: Description of the website.
+        type: string
+
+      - name: url
+        label: Website URL
+        type: string
+        pattern: ^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[^\s]*)?$

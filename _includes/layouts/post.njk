@@ -1,0 +1,44 @@
+---
+layout: layouts/home.njk
+---
+<h1>{{ title }}</h1>
+
+<p>{{ description }}</p>
+
+<ul class="post-metadata">
+	<li><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></li>
+	{%- for tag in tags | filterTagList %}
+	{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+	<li><a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
+	{%- endfor %}
+</ul>
+
+{{ content | safe }}
+
+{# getPreviousCollectionItem and getNextCollectionItem are prebuilt filters #}
+{# to get the next/previous items in an collection. By default, this passes #}
+{# in the current page.                                                     #}
+
+{# More information:                                                        #}
+{# https://www.11ty.dev/docs/filters/collection-items/                      #}
+
+{%- set previousPost = collections.post | getPreviousCollectionItem %}
+{%- set nextPost = collections.post | getNextCollectionItem %}
+
+{%- if nextPost or previousPost %}
+	<ul>
+		{%- if previousPost %}
+			<li>
+				<div>&larr; Previous</div>
+				<a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
+			</li>
+		{% endif %}
+		{%- if nextPost %}
+			<li>
+				<div>Next &rarr;</div>
+				<a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+			</li>
+			{% endif %}
+	</ul>
+{%- endif %}
+

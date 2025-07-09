@@ -1,0 +1,53 @@
+---
+layout: layouts/_base.njk
+navigationOptions:
+  listElement: "ul"
+  listItemElement: "li"
+  listClass: ""
+  listItemClass: ""
+  listItemHasChildrenClass: ""
+  activeListItemClass: ""
+  anchorClass: ""
+  activeAnchorClass: ""
+  activeKey: eleventyNavigation.key
+  showExcerpt: false
+---
+
+{% set blogpath = metadata.blog_path %}
+{% if metadata.blog_path == "" %}
+	{% set blogpath = "/" %}
+{% endif %}
+
+{% set links = [
+	["home", "/"],
+	["blog", "/posts/"],
+	["about", "/about/"],
+	["contact", "/contact/"]
+] %}
+
+{# no trailing commas for lists in nunjucks #}
+
+<header>
+	<div>{{ metadata.title }}</div>
+	{# https://www.11ty.dev/docs/collections/#use-an-aria-current-attribute-on-the-current-page #}
+	{# https://www.11ty.dev/docs/plugins/navigation/ #}
+	<nav>
+		{% set navPages = collections.all | eleventyNavigation %}
+		<ul>
+			{%- for entry in navPages %}
+				<li>
+					<a
+						href="{{ entry.url }}"
+						{% if entry.url == page.url %}
+							aria-current="page"
+						{% endif %}
+					>
+						{{ entry.title }}
+					</a>
+				</li>
+			{%- endfor %}
+		</ul>
+	</nav>
+</header>
+
+{{ content | safe }}

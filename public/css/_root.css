@@ -1,0 +1,63 @@
+@font-face {
+	font-family: 'Manrope';
+	font-style: normal;
+	font-weight: 200 800;
+	font-display: swap;
+	src: url(https://fonts.gstatic.com/s/manrope/v15/xn7gYHE41ni1AdIRggexSg.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root{
+	--font-normal: "Manrope", "Poppins", "Open Sans", sans-serif;
+	--font-mono: "monospace";
+
+	--color-bg: linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%);
+	--color-bg-accent: rgb(142, 231, 241);
+	--color-text-primary: rgb(240, 240, 240);
+	--color-text-secondary:rgb(132, 166, 167);
+	--color-text-accent: rgb(100, 123, 200);
+	--color-image-monochrome-accent: rgba(200, 0, 250, 0.5);
+
+	/* text highlighting colors */
+	--color-highlight-text:rgb(10, 9, 9);
+	--color-highlight-bg: rgb(122, 255, 252);
+
+	/* --- */
+
+	font-size: 100%;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-variation-settings: "wdth" 100;
+}
+
+
+html {
+	background: var(--color-bg);
+
+	/* https://www.frontend.fyi/tutorials/finally-a-fix-for-100vh-on-mobile */
+	min-height: 100dvh;
+}
+
+* {
+	color: var(--color-text-primary);
+	font-family: var(--font-normal);
+}
+
+h1, h2, h3, h4, h5, h6, p, li, a, input, textarea, div, select, article, main {
+
+}
+
+a:hover {
+	color: var(--color-text-accent);
+}
+
+::selection {
+	color: var(--color-highlight-text);
+	background: var(--color-highlight-bg);
+}

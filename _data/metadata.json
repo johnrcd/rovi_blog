@@ -1,0 +1,12 @@
+{
+	"title": "Eleventy PagesCMS Project Template",
+	"short_title": "11ty/PagesCMS Base",
+	"url": "https://example.com/",
+	"language": "en",
+	"description": "Project Template for a static site built with Eleventy and Paper CMS.",
+	"author": {
+		"name": "Rovi Decena",
+		"email": "johnrcd.ar@gmail.com",
+		"url": "https://rovidecena.com/"
+	}
+}

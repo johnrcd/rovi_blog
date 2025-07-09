@@ -1,0 +1,85 @@
+<!doctype html>
+{# _data/metadata.json is used to provide "global site data"                #}
+{# _data is set up as the global data folder, which means every template in #}
+{# the repository has access to it. In this case, templates can access the  #}
+{# site's metadata through "metadata.variable" #}
+
+{# When you see "foo or metadata.foo", it means that templates can override #}
+{# the value being set. For example, blog posts will override the           #}
+{# description meta tag (along with any other page that sets description    #}
+{# in front matter)                                                         #}
+
+<html lang="{{ metadata.language }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{# Default Title Format #}
+			{# Website Name #}
+			{# Blog | Website Name #}
+			{# Post Title | Website Name #}
+
+			{% if title %}
+				{% if metadata.short_title == "" %}
+					{{ title }}
+				{% else %}
+					{{ title }} | {{ metadata.short_title }}
+				{% endif %}
+			{% else %}
+				{{ metadata.title }}
+			{% endif %}
+
+			{# Alternative Title Format #}
+			{# Website Name #}
+			{# Blog #}
+			{# Post Title #}
+
+			{# {{ metadata.title or title }} #}
+		</title>
+		<meta name="description" content="{{ description or metadata.description }}">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+
+		{# Eleventy has a barebones bundling system that simply just stores the #}
+		{# raw text to be used in parts of your app. In this case, "css" and    #}
+		{# "js" are bundles that store CSS and JavaScript code, respectively.   #}
+
+		{# More advanced bundlers will often minify and do transformations to   #}
+		{# optmize the code, but if you don't care about that, the Eleventy     #}
+		{# bundle plugin should do fine.                                        #}
+
+		{# For optimization purposes, only set the CSS shortcode here. If you   #}
+		{# need page-specific CSS, import it separately. #}
+		{% css %}
+			{# The CSS files below are an example of how you may want to organize #}
+			{# your website styling. Feel free to replace/overhaul this as        #}
+			{# needed.                                                            #}
+
+			{# __reset.css clears the default stylings within browsers.           #}
+			{# Consider using your own reset if this one hasn't been updated.     #}
+			{% include "public/css/__reset.css" %}
+
+			{# _root.css is intended to store CSS variables to be used in other   #}
+			{# styles. Additionally, it applies stylings directly to HTML         #}
+			{# elements in a manner you might expect from minimal CSS framework.  #}
+			{% include "public/css/_root.css" %}
+
+			{# styles.css adds proper formatting to the pages, although it still  #}
+			{# uses HTML elements to limit the complexity of the template code,   #}
+			{# which avoid applying classes to elements.                          #}
+
+			{# Recommended to take this out when building, or use it as reference #}
+			{# if you like the styling.                                           #}
+			{% include "public/css/styles.css" %}
+		{% endcss %}
+
+		<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
+	</head>
+	<body>
+		<div>{{ content | safe }}</div>
+
+		{# You'll see this comment in the actual build file. #}
+		{# Delete it if you don't want that.                 #}
+		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
+	</body>
+</html>

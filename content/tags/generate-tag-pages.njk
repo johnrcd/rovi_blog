@@ -1,0 +1,27 @@
+---js
+// <script>
+const pagination = {
+	data: "collections",
+	size: 1,
+	alias: "tag",
+	filter: ["all", "post", "posts", "page", "pages", "user page"],
+};
+
+const eleventyExcludeFromCollections = true;
+
+const eleventyComputed = {
+	title: "Tagged '{{ tag }}'",
+	permalink: function(data) {
+		return `/tags/${this.slugify(data.tag)}/`;
+	}
+};
+---
+
+{# see 11ty pagination docs for full info on how this works #}
+{# https://www.11ty.dev/docs/pagination/ #}
+<h1>Tagged "{{ tag }}"</h1>
+
+{% set postslist = collections[ tag ] %}
+{% include "postslist.njk" %}
+
+<p>See <a href="/tags/">all tags</a>.</p>
