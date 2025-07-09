@@ -1,9 +1,9 @@
 {
-	"title": "Eleventy PagesCMS Project Template",
-	"short_title": "11ty/PagesCMS Base",
-	"url": "https://example.com/",
+	"title": "rovi_blog",
+	"short_title": "rovi_blog",
+	"url": "https://blog.rovidecena.com/",
 	"language": "en",
-	"description": "Project Template for a static site built with Eleventy and Paper CMS.",
+	"description": "Rovi Decena's blog about stuff he's working on -- normally games, music, or sites.",
 	"author": {
 		"name": "Rovi Decena",
 		"email": "johnrcd.ar@gmail.com",

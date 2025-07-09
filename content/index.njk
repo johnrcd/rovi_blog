@@ -6,24 +6,15 @@ const eleventyNavigation = {
 
 const numberOfLatestPostsToShow = 3;
 ---
-{% set postsCount = collections.post | length %}
-{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
-<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+{% set post_count = collections.post | length %}
+{% set latest_post_count = post_count | min(numberOfLatestPostsToShow) %}
+<h1>Latest {{ latest_post_count }} Post{% if latest_post_count != 1 %}s{% endif %}</h1>
 
-{% set postslist = collections.post | head(-1 * numberOfLatestPostsToShow) %}
-{% set postslistCounter = postsCount %}
-{% include "postslist.njk" %}
+{% set posts_list = collections.post | head(-1 * numberOfLatestPostsToShow) %}
+{% set post_list_counter = post_count %}
+{% include "posts_list.njk" %}
 
-{% set morePosts = postsCount - numberOfLatestPostsToShow %}
-{% if morePosts > 0 %}
-<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
+{% set more_posts = post_count - numberOfLatestPostsToShow %}
+{% if more_posts > 0 %}
+<p>{{ more_posts }} more post{% if more_posts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
 {% endif %}
-
-{# List every content page in the project #}
-{#
-<ul>
-	{%- for entry in collections.all %}
-	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
-	{%- endfor %}
-</ul>
-#}

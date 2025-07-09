@@ -62,9 +62,9 @@ export default async function(eleventyConfig) {
 		},
 		metadata: {
 			language: "en",
-			title: "Eleventy PagesCMS Project Template",
-			subtitle: "Project Template for a static site built with Eleventy and Paper CMS.",
-			base: "https://example.com/",
+			title: "rovi_blog",
+			subtitle: "Rovi Decena's blog about stuff he's working on -- normally games, music, or sites.",
+			base: "https://blog.rovidecena.com/",
 			author: {
 				name: "Rovi Decena",
 				email: "johnrcd.ar@gmail.com",
@@ -98,7 +98,7 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(pluginFilters);
 
 	eleventyConfig.addPlugin(IdAttributePlugin, {
-		// by default we use Eleventy’s built-in `slugify` filter:
+		// by default we use Eleventy's built-in `slugify` filter:
 		// slugify: eleventyConfig.getFilter("slugify"),
 		// selector: "h1,h2,h3,h4,h5,h6", // default
 	});
@@ -123,15 +123,7 @@ export default async function(eleventyConfig) {
 	);
 
 	eleventyConfig.setLibrary("md", markdownLib);
-
-	// Features to make your build faster (when you need them)
-
-	// If your passthrough copy gets heavy and cumbersome, add this line
-	// to emulate the file copy on the dev server. Learn more:
-	// https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
-
-	// eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
-};
+}
 
 export const config = {
 	// Control which files Eleventy will process

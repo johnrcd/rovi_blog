@@ -17,11 +17,9 @@ const eleventyComputed = {
 };
 ---
 
-{# see 11ty pagination docs for full info on how this works #}
-{# https://www.11ty.dev/docs/pagination/ #}
 <h1>Tagged "{{ tag }}"</h1>
 
-{% set postslist = collections[ tag ] %}
-{% include "postslist.njk" %}
+{% set posts_list = collections[ tag ] %}
+{% include "posts_list.njk" %}
 
 <p>See <a href="/tags/">all tags</a>.</p>
