@@ -1,3 +1,9 @@
+{# Generates a list with links to posts.                                    #}
+
+{# The posts that are shown on the list are determined by the variable      #}
+{# "posts_list". When including this nunjucks file, ensure that posts_list  #}
+{# is defined beforehand.                                                   #}
+
 <ol reversed>
 	{%- for post in posts_list | reverse %}
 		<li>

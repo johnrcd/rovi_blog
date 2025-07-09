@@ -1,3 +1,11 @@
+{# Generates a list of all accessable tags used on the website.             #}
+
+{# A few tags are filtered out of this list as they are used by the website #}
+{# for non-blogging purposes.                                               #}
+
+{# Unlike posts_list.njk, this file does not have a way to choose which     #}
+{# tags are displayed.                                                      #}
+
 <ul>
 	{% for tag in collections | getKeys | filterTagList | sortAlphabetically %}
 		{% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
