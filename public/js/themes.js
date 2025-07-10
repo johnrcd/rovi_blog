@@ -35,6 +35,12 @@ const themes = {
 			"width" : "60ch",
 		},
 
+		"header": {
+			"titleOnTop" : true,
+			"boldTitle": true,
+			"padding": "8px",
+		},
+
 		"glass" : {
 			"background" : "rgba(70, 20, 35, 0.18)",
 			"radius" : "16px",
@@ -106,6 +112,30 @@ const setTheme = (theme) => {
 		root.style.setProperty("--panel-shadow"    , themeData.glass.shadow    );
 		root.style.setProperty("--panel-filter"    , themeData.glass.filter    );
 		root.style.setProperty("--panel-border"    , themeData.glass.border    );
+	}
+
+	if (themeData.hasOwnProperty("header")) {
+		if (themeData.header.hasOwnProperty("padding")) {
+			root.style.setProperty("--header-padding", themeData.header.padding);
+		}
+
+		if (themeData.header.hasOwnProperty("titleOnTop")) {
+			const isTitleOnTop = themeData.header.titleOnTop;
+			const flexDirection = isTitleOnTop ? "column" : "row";
+
+			root.style.setProperty("--header-flex-direction", flexDirection);
+
+			const paddingTop = isTitleOnTop ?
+				"var(--header-padding)" :
+				"calc(var(--header-padding) - var(--panel-radius))";
+
+			root.style.setProperty("--header-padding-top", paddingTop);
+		}
+
+		if (themeData.header.hasOwnProperty("boldTitle")) {
+			const fontWeight = themeData.header.boldTitle ? 700 : 400;
+			root.style.setProperty("--header-title-weight", fontWeight);
+		}
 	}
 
 	localStorage.setItem("theme_on_load", theme);

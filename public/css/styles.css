@@ -15,15 +15,16 @@
 
 .header {
 	display: flex;
+	flex-direction: var(--header-flex-direction);
 	align-items: center;
 	justify-content: space-between;
-	padding: 16px 0;
-	padding-top: calc(16px - var(--panel-radius));
+	padding: var(--header-padding) 0;
+	padding-top: var(--header-padding-top);
 	border-bottom: 1px solid var(--color-text);
 }
 	.header__siteTitle {
 		font-size: 2rem;
-		font-weight: 700;
+		font-weight: var(--header-title-weight);
 	}
 
 	.header__ul {
@@ -32,6 +33,8 @@
 		gap: 2rem;
 		list-style-type: none;
 		list-style-position: outside;
+		padding: 0;
+
 	}
 
 	.header__a {
