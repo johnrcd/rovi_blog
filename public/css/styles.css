@@ -1,1 +1,14 @@
-/* todo */
+.panel {
+	background: var(--panel-background);
+	border-radius: var(--panel-radius);
+	padding: var(--panel-radius);
+	box-shadow: var(--panel-shadow);
+	backdrop-filter: var(--panel-filter);
+	-webkit-backdrop-filter: var(--panel-filter);
+	border: var(--panel-border);
+
+	max-width: var(--panel-width);
+	margin: auto;
+	margin-top: var(--panel-spacing);
+	margin-bottom: var(--panel-spacing);
+}

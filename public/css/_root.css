@@ -8,19 +8,58 @@
 }
 
 :root{
+	/* global settings */
 	--font-normal: "Manrope", "Poppins", "Open Sans", sans-serif;
 	--font-mono: "monospace";
 
-	--color-bg: linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%);
-	--color-bg-accent: rgb(142, 231, 241);
-	--color-text-primary: rgb(240, 240, 240);
+	--color-background: linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%);
+	--color-background-accent: rgb(142, 231, 241);
+	--color-text: rgb(240, 240, 240);
 	--color-text-secondary:rgb(132, 166, 167);
 	--color-text-accent: rgb(100, 123, 200);
 	--color-image-monochrome-accent: rgba(200, 0, 250, 0.5);
 
+	/* website structure */
+
+	/* wall */
+		/* panel */
+			/* header */
+			/* content */
+			/* footer */
+
+	/* The "panel" refers to the space where all content of the page sits in.  */
+	/* The outside of the panel is the "wall" (panel sits on wall).            */
+
+	/* When creating styles, the panel and the wall are effectively the same   */
+	/* unless the panel has a maximum width, allowing the wall and panel to be */
+	/* viewed separately.                                                      */
+
+	/* The panel can be as simple as defining a maximum width for the site, or */
+	/* as complex as having a "floating window" effect overtop a static        */
+	/* background (glassmorphism).                                             */
+
+	/* NOTE: the wall will never have any content within it (that isn't in the */
+	/* panel. The only relevant CSS property it has is background (panel is    */
+	/* expected to handle margins and padding).                                */
+
+	/* pages */
+
+	/* Pages that are blog posts and pages that aren't will have different     */
+	/* headers and footers, with blog posts having minimal info to keep people */
+	/* focused on the post, and the other pages having normal stuff.           */
+
+	/* This is a key part of the website that cannot be changed.               */
+
 	/* text highlighting colors */
-	--color-highlight-text:rgb(10, 9, 9);
-	--color-highlight-bg: rgb(122, 255, 252);
+	--highlight-color:rgb(10, 9, 9);
+	--highlight-background: rgb(122, 255, 252);
+
+	/* PANEL SETTINGS */
+	--panel-background: rgba(255, 255, 255, 0.2);
+	--panel-radius: 16px;
+	--panel-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	--panel-filter: blur(5px);
+	--panel-border: 1px solid rgba(255, 255, 255, 0.3);
 
 	/* --- */
 
@@ -38,14 +77,14 @@
 
 
 html {
-	background: var(--color-bg);
+	background: var(--color-background);
 
 	/* https://www.frontend.fyi/tutorials/finally-a-fix-for-100vh-on-mobile */
 	min-height: 100dvh;
 }
 
 * {
-	color: var(--color-text-primary);
+	color: var(--color-text);
 	font-family: var(--font-normal);
 }
 
@@ -53,11 +92,15 @@ h1, h2, h3, h4, h5, h6, p, li, a, input, textarea, div, select, article, main {
 
 }
 
+code {
+	font-family: var(--font-mono);
+}
+
 a:hover {
 	color: var(--color-text-accent);
 }
 
 ::selection {
-	color: var(--color-highlight-text);
-	background: var(--color-highlight-bg);
+	color: var(--highlight-color);
+	background: var(--highlight-background);
 }
