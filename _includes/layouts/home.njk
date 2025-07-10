@@ -27,16 +27,17 @@ navigationOptions:
 
 {# no trailing commas for lists in nunjucks #}
 
-<header>
-	<div>{{ metadata.title }}</div>
+<header class="header">
+	<div class="header__siteTitle">{{ metadata.title }}</div>
 	{# https://www.11ty.dev/docs/collections/#use-an-aria-current-attribute-on-the-current-page #}
 	{# https://www.11ty.dev/docs/plugins/navigation/ #}
-	<nav>
+	<nav class="header__nav">
 		{% set navPages = collections.all | eleventyNavigation %}
-		<ul>
+		<ul class="header__ul">
 			{%- for entry in navPages %}
-				<li>
+				<li class="header__li">
 					<a
+						class="header__a"
 						href="{{ entry.url }}"
 						{% if entry.url == page.url %}
 							aria-current="page"

@@ -53,6 +53,8 @@
 	/* text highlighting colors */
 	--highlight-color:rgb(10, 9, 9);
 	--highlight-background: rgb(122, 255, 252);
+	--highlight-color-secondary: var(--highlight-color);
+	--highlight-color-background: var(--highlight-color-background);
 
 	/* PANEL SETTINGS */
 	--panel-background: rgba(255, 255, 255, 0.2);

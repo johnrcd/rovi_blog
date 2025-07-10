@@ -19,25 +19,27 @@ const themes = {
 		"fontNormal" : '"Poppins", "Open Sans", sans-serif',
 		"fontMono" : "monospace",
 
-		"colorText" : "",
-		"colorTextSecondary" : "",
-		"colorTextAccent" : "",
+		"colorText" : "#EEEEEE",
+		"colorTextSecondary" : "#efce8b",
+		"colorTextAccent" : "#ffaa75",
 		"colorBackground" : "linear-gradient(320deg, rgba(156,85,13,1) 0%, rgba(140,41,71,1) 53%, rgba(75,19,79,1) 100%)",
 		"colorBackgroundAccent" : "",
 
-		"highlightColor" : "",
-		"highlightBackground" : "",
+		"highlightColor" : "#000000",
+		"highlightBackground" : "#ffb647",
+		"highlightColorSecondary" : "#000000",
+		"highlightBackgroundSecondary" : "#ffaa75",
 
 		"panel": {
 			"spacing" : "64px",
-			"width" : "800px",
+			"width" : "60ch",
 		},
 
 		"glass" : {
-			"background" : "rgba(255, 255, 255, 0.1)",
+			"background" : "rgba(70, 20, 35, 0.18)",
 			"radius" : "16px",
-			"shadow" : "0 4px 30px rgba(0, 0, 0, 0.1)",
-			"filter": "blur(8.9px)",
+			"shadow" : "0 4px 16px rgba(0, 0, 0, 0)",
+			"filter": "blur(3.3px)",
 			"border" : "1px solid rgba(255, 255, 255, 0.13)",
 		},
 	}
@@ -77,6 +79,22 @@ const setTheme = (theme) => {
 	root.style.setProperty("--highlight-color",         themeData.highlightColor       );
 	root.style.setProperty("--highlight-background",    themeData.highlightBackground  );
 
+	// complex
+
+	root.style.setProperty(
+		"--highlight-color-secondary",
+		themeData.hasOwnProperty("highlightColorSecondary") ?
+			themeData.highlightColorSecondary :
+			themeData.highlightColor
+	);
+
+	root.style.setProperty(
+		"--highlight-background-secondary",
+		themeData.hasOwnProperty("highlightBackgroundSecondary") ?
+			themeData.highlightBackgroundSecondary :
+			themeData.highlightBackground
+	);
+
 	if (themeData.hasOwnProperty("panel")) {
 		root.style.setProperty("--panel-width"  , themeData.panel.width  );
 		root.style.setProperty("--panel-spacing", themeData.panel.spacing);
@@ -89,5 +107,7 @@ const setTheme = (theme) => {
 		root.style.setProperty("--panel-filter"    , themeData.glass.filter    );
 		root.style.setProperty("--panel-border"    , themeData.glass.border    );
 	}
+
+	localStorage.setItem("theme_on_load", theme);
 };
 

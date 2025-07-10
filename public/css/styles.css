@@ -12,3 +12,64 @@
 	margin-top: var(--panel-spacing);
 	margin-bottom: var(--panel-spacing);
 }
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 0;
+	padding-top: calc(16px - var(--panel-radius));
+	border-bottom: 1px solid var(--color-text);
+}
+	.header__siteTitle {
+		font-size: 2rem;
+		font-weight: 700;
+	}
+
+	.header__ul {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		list-style-type: none;
+		list-style-position: outside;
+	}
+
+	.header__a {
+		text-decoration: none;
+	}
+
+.posts {
+	list-style-type: none;
+	list-style-position: outside;
+	margin: 0;
+	padding: 0;
+
+	--posts-outline-width: 2px; // hacky code but WHATEVER I DONT CARE RAHHH
+}
+	.posts__li {
+		display: flex;
+		justify-content: space-between;
+		gap: calc(var(--posts-outline-width) * 3);
+		line-height: 1.25;
+	}
+	.posts__a {
+		text-decoration: none;
+		color: var(--color-text);
+		flex-grow: 1;
+	}
+	.posts__a:hover {
+		color: var(--highlight-color);
+		background: var(--highlight-background);
+		outline: var(--posts-outline-width) solid var(--highlight-background);
+	}
+	.posts__a:hover +
+	.posts__timestamp {
+		text-decoration: none;
+		color: var(--highlight-color-secondary);
+		background: var(--highlight-background-secondary);
+		outline: var(--posts-outline-width) solid var(--highlight-background-secondary);
+	}
+	.posts__timestamp {
+		flex: none;
+		color: var(--color-text-accent);
+	}

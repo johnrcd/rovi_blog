@@ -4,17 +4,23 @@
 {# "posts_list". When including this nunjucks file, ensure that posts_list  #}
 {# is defined beforehand.                                                   #}
 
-<ol reversed>
+<ol reversed class="posts">
 	{%- for post in posts_list | reverse %}
-		<li>
-			<a href="{{ post.url }}">
+		<li class="posts__li">
+			<a
+				class="posts__a"
+				href="{{ post.url }}"
+			>
 				{% if post.data.title %}
 					{{ post.data.title }} rawr
 				{% else %}
 					Untitled
 				{% endif %}
 			</a>
-			<time datetime="{{ post.date | htmlDateString }}">
+			<time
+				class="posts__timestamp"
+				datetime="{{ post.date | htmlDateString }}"
+			>
 				{{ post.date | readableDate("LLLL yyyy") }}
 			</time>
 		</li>
