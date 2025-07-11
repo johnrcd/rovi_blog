@@ -40,7 +40,7 @@
 			{% include "public/js/themeLoader.js" %}
 		{% endjs %}
 		<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
-		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
+		<script type="module" src="{% getBundleFileUrl "js" %}" defer></script>
 	</head>
 	<body>
 		<div class="wall">

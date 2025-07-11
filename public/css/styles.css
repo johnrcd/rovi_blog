@@ -47,12 +47,17 @@
 	margin: 0;
 	padding: 0;
 
-	--posts-outline-width: 2px; // hacky code but WHATEVER I DONT CARE RAHHH
+	--posts-outline-width: 2px;
+	--column-gap: 2px;
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--posts-outline-width);
 }
 	.posts__li {
 		display: flex;
 		justify-content: space-between;
-		gap: calc(var(--posts-outline-width) * 3);
+		gap: calc(var(--posts-outline-width) * 2 + var(--column-gap));
 		line-height: 1.25;
 	}
 	.posts__a {
@@ -60,13 +65,14 @@
 		color: var(--color-text);
 		flex-grow: 1;
 	}
-	.posts__a:hover {
+	.posts__a:hover,
+	.posts__a:focus {
 		color: var(--highlight-color);
 		background: var(--highlight-background);
 		outline: var(--posts-outline-width) solid var(--highlight-background);
 	}
-	.posts__a:hover +
-	.posts__timestamp {
+	.posts__a:hover + .posts__timestamp,
+	.posts__a:focus + .posts__timestamp {
 		text-decoration: none;
 		color: var(--highlight-color-secondary);
 		background: var(--highlight-background-secondary);
