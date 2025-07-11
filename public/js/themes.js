@@ -1,29 +1,102 @@
 // note: don't put ;'s at the end of the values -- it doesn't apply the css
 const themes = {
 	"TEMPLATE_do_not_use_as_actual_theme": {
-		// BASIC PROPERTIES
-		// these settings have a 1-to-1 relationship with a css variable
-		"fontNormal" : "",    // default font
-		"fontMono" : "", // for code blocks and stuff
+		// NOTE: REMOVE A PROPERTY IF YOU DONT PLAN ON SETTING IT
+		//       "" IS NOT UNUSED
+		//       ONLY (optional) PROPERTIES CAN BE REMOVED
 
-		"colorText" : "blue",
-		"colorTextSecondary" : "red",
-		"colorTextAccent" : "blue",
-		"colorBackground" : "",
-		"colorBackgroundAccent" : "",
+		"fontNormal" : "", // font family
+		"fontMono" : "",   // font family
 
-		"highlightColor" : "",
-		"highlightBackground" : "",
+		"colorText" : "blue",         // color value
+		"colorTextAccent" : "blue",   // color value
+		"colorBackground" : "",       // color value (because gradients, this may be super long)
+
+		// used when you drag click over stuff
+		// should be very high contrast
+		"selectionColor" : "",      // color value
+		"selectionBackground" : "", // color value
+
+		// used for hoverable elements that change background and color
+		"highlightColor" : "",      // color value
+		"highlightBackground" : "", // color value
+
+		// niche colors used for lists with "two parts" -- a primary and secondary
+		// e.g. lists of posts will include the title (primary)
+		//      and date the(secondary)
+
+		"highlightColorSecondary" : "",      // (optional) color value
+		"highlightBackgroundSecondary" : "", // (optional) / color value
+
+		// see information in _root.css for more information on what the panel is
+		"panel": { // (optional)
+			"spacing" : "", // (optional) units (px)
+			"width" : "",   // (optional) units (px, ch)
+		},
+
+		"header": { // (optional)
+			// note: on mobile, title will always be at the top
+			"titleOnTop" : true, // (optional) boolean
+			"boldTitle": true,   // (optional) boolean
+			"padding": "",       // (optional) units (px)
+		},
+
+		// used to greate a glassmorphism effect for the panel
+		// css properties taken from https://css.glass/, as that's where i
+		// generated most of them
+		"glass" : {
+			"background" : "", // color value
+			"radius" : "",     // units (px)
+			"shadow" : "",     // css box-shadow
+			"filter": "",      // css filter
+			"border" : "",     // css border
+		},
 	},
-	"default" : {
+	"midnight" : {
+		"fontNormal" : '"Manrope", "Poppins", "Open Sans", sans-serif',
+		"fontMono" : "monospace",
+
+		"colorText" : "#EEEEEE",
+		"colorTextAccent" : "#85A7A8",
+		"colorBackground" : "linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%)",
+
+		"selectionColor" : "#000000",
+		"selectionBackground" : "rgb(122, 255, 252)",
+
+		"highlightColor" : "inherit",
+		"highlightBackground" : "rgba(68, 107, 106, 0.4)",
+		"highlightColorSecondary" : "inherit",
+		"highlightBackgroundSecondary" : "rgba(68, 107, 106, 0.25)",
+
+		"panel": {
+			"spacing" : "64px",
+			"width" : "60ch",
+		},
+
+		"header": {
+			"titleOnTop" : false,
+			"boldTitle": true,
+			"padding": "8px",
+		},
+
+		"glass" : {
+			"background" : "rgba(70, 20, 35, 0.18)",
+			"radius" : "16px",
+			"shadow" : "0 4px 16px rgba(0, 0, 0, 0)",
+			"filter": "blur(3.3px)",
+			"border" : "1px solid rgba(255, 255, 255, 0.15)",
+		},
+	},
+	"sunset" : {
 		"fontNormal" : '"Poppins", "Open Sans", sans-serif',
 		"fontMono" : "monospace",
 
 		"colorText" : "#EEEEEE",
-		"colorTextSecondary" : "#efce8b",
 		"colorTextAccent" : "#ffaa75",
 		"colorBackground" : "linear-gradient(320deg, rgba(156,85,13,1) 0%, rgba(140,41,71,1) 53%, rgba(75,19,79,1) 100%)",
-		"colorBackgroundAccent" : "",
+
+		"selectionColor" : "#000000",
+		"selectionBackground" : "rgb(122, 255, 252)",
 
 		"highlightColor" : "#000000",
 		"highlightBackground" : "#ffb647",
@@ -36,7 +109,7 @@ const themes = {
 		},
 
 		"header": {
-			"titleOnTop" : true,
+			"titleOnTop" : false,
 			"boldTitle": true,
 			"padding": "8px",
 		},
@@ -46,26 +119,34 @@ const themes = {
 			"radius" : "16px",
 			"shadow" : "0 4px 16px rgba(0, 0, 0, 0)",
 			"filter": "blur(3.3px)",
-			"border" : "1px solid rgba(255, 255, 255, 0.13)",
+			"border" : "1px solid rgba(255, 255, 255, 0.15)",
 		},
 	}
 }
 
 addEventListener("DOMContentLoaded", (event) => {
-	console.log("themeSetter DOMContentLoaded invoked");
+	console.log("Loading theme initializer...");
 	const themeOnLoad = localStorage.getItem("theme_on_load");
 
 	if (themeOnLoad in themes) {
 		setTheme(themeOnLoad);
 	}
 	else {
-		setTheme("default");
+		setTheme("midnight");
+	}
+
+	const collection = document.getElementsByClassName("themes__button");
+
+	for (let i = 0; i < collection.length; i++) {
+		collection[i].addEventListener("click", (event) => {
+			setTheme(collection[i].innerText);
+		});
 	}
 });
 
 const setTheme = (theme) => {
 	if (!(theme in themes)) {
-		throw new Error(`Theme ${theme} not defined in theme library.`);
+		throw new Error(`Theme \"${theme}\" not defined in theme library.`);
 	}
 
 	console.log(`Loading theme: ${theme}`);
@@ -77,10 +158,11 @@ const setTheme = (theme) => {
 	root.style.setProperty("--font-mono",               themeData.fontMono             );
 
 	root.style.setProperty("--color-text",              themeData.colorText            );
-	root.style.setProperty("--color-text-secondary",    themeData.colorTextSecondary   );
 	root.style.setProperty("--color-text-accent",       themeData.colorTextAccent      );
 	root.style.setProperty("--color-background",        themeData.colorBackground      );
-	root.style.setProperty("--color-background-accent", themeData.colorBackgroundAccent);
+
+	root.style.setProperty("--selection-color",         themeData.selectionColor       );
+	root.style.setProperty("--selection-background",    themeData.selectionBackground  );
 
 	root.style.setProperty("--highlight-color",         themeData.highlightColor       );
 	root.style.setProperty("--highlight-background",    themeData.highlightBackground  );

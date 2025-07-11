@@ -82,3 +82,24 @@
 		flex: none;
 		color: var(--color-text-accent);
 	}
+
+.themes {
+
+}
+
+	.themes__button {
+		background: none;
+		border: none;
+	}
+
+	.themes__button:hover,
+	.themes__button:focus {
+		color: var(--highlight-color);
+		background: var(--highlight-background);
+		cursor: pointer;
+	}
+
+	.themes__button:hover::before,
+	.themes__button:focus::before {
+		content: "> ";
+	}

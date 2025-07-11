@@ -15,7 +15,6 @@
 	--color-background: linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%);
 	--color-background-accent: rgb(142, 231, 241);
 	--color-text: rgb(240, 240, 240);
-	--color-text-secondary:rgb(132, 166, 167);
 	--color-text-accent: rgb(100, 123, 200);
 	--color-image-monochrome-accent: rgba(200, 0, 250, 0.5);
 
@@ -55,6 +54,9 @@
 	--highlight-background: rgb(122, 255, 252);
 	--highlight-color-secondary: var(--highlight-color);
 	--highlight-color-background: var(--highlight-color-background);
+
+	--selection-color: #000000;
+	--selection-background: rgb(122, 255, 252);
 
 	/* PANEL SETTINGS */
 	--panel-background: rgba(255, 255, 255, 0.2);
@@ -100,6 +102,16 @@ h1, h2, h3, h4, h5, h6, p, li, a, input, textarea, div, select, article, main {
 
 }
 
+// change later; idk what a good default universal button style is
+button {
+	color: var(--highlight-color);
+	background: var(--highlight-background);
+	border: none;
+	margin: 8px auto;
+	border-radius: 8px;
+	padding: 8px;
+}
+
 code {
 	font-family: var(--font-mono);
 }
@@ -109,6 +121,6 @@ a:hover {
 }
 
 ::selection {
-	color: var(--highlight-color);
-	background: var(--highlight-background);
+	color: var(--selection-color);
+	background: var(--selection-background);
 }
