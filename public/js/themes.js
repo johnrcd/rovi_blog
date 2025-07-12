@@ -1,3 +1,5 @@
+let initialized = false;
+
 // note: don't put ;'s at the end of the values -- it doesn't apply the css
 const themes = {
 	"TEMPLATE_do_not_use_as_actual_theme": {
@@ -264,6 +266,7 @@ const setTheme = (theme) => {
 		}
 	}
 
+	const hasParticles = themeData.hasOwnProperty("particles")
 	const particleOptions = themeData.hasOwnProperty("particles") ?
 		themeData.particles : {
 			selector: '.background',
@@ -279,6 +282,14 @@ const setTheme = (theme) => {
 	Particles.init(particleOptions);
 
 	localStorage.setItem("theme_on_load", theme);
+
+	// reinitializing the particle system causes the particles to move superfast
+	// hotfix is to simply refresh page (spa my ass...)
+	if (hasParticles && initialized) {
+		window.location.reload();
+	}
+
+	initialized = true;
 };
 
 const onPanelUpdated = () => {

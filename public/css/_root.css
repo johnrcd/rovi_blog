@@ -18,6 +18,8 @@
 	--color-text-accent: rgb(100, 123, 200);
 	--color-image-monochrome-accent: rgba(200, 0, 250, 0.5);
 
+	transition: all 0.3s ease;
+
 	/* website structure */
 
 	/* wall */
