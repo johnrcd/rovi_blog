@@ -36,9 +36,9 @@
 			{% include "public/css/styles.css" %}
 		{% endcss %}
 		{% js %}
+			{% include "public/js/spa.js" %}
 			{% include "public/js/particles.js" %}
 			{% include "public/js/themes.js" %}
-			{% include "public/js/themeLoader.js" %}
 		{% endjs %}
 		<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
 		<script type="module" src="{% getBundleFileUrl "js" %}" defer></script>

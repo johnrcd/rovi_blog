@@ -169,6 +169,16 @@ addEventListener("DOMContentLoaded", (event) => {
 		setTheme("midnight");
 	}
 
+	bindThemeButtons();
+});
+
+const bindThemeButtons = () => {
+	// prevent events from stacking onto the same button
+	const old_buttons = document.getElementsByClassName("themes__button");
+	for (let i = 0; i < old_buttons.length; i++) {
+		old_buttons[i].removeEventListener("click", setTheme);
+	}
+
 	const collection = document.getElementsByClassName("themes__button");
 
 	for (let i = 0; i < collection.length; i++) {
@@ -176,7 +186,7 @@ addEventListener("DOMContentLoaded", (event) => {
 			setTheme(collection[i].innerText);
 		});
 	}
-});
+};
 
 const setTheme = (theme) => {
 	if (!(theme in themes)) {
@@ -271,3 +281,13 @@ const setTheme = (theme) => {
 	localStorage.setItem("theme_on_load", theme);
 };
 
+const onPanelUpdated = () => {
+	bindThemeButtons();
+};
+
+const observer = new MutationObserver(onPanelUpdated);
+
+observer.observe(
+	document.getElementsByClassName("panel")[0],
+	{ attributes: true, childList: true, subtree: true }
+);
