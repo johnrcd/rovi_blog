@@ -36,6 +36,7 @@
 			{% include "public/css/styles.css" %}
 		{% endcss %}
 		{% js %}
+			{% include "public/js/particles.js" %}
 			{% include "public/js/themes.js" %}
 			{% include "public/js/themeLoader.js" %}
 		{% endjs %}
@@ -46,5 +47,6 @@
 		<div class="wall">
 			<div class="panel">{{ content | safe }}</div>
 		</div>
+		<canvas class="background"></canvas>
 	</body>
 </html>

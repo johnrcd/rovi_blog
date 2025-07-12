@@ -13,6 +13,16 @@
 	margin-bottom: var(--panel-spacing);
 }
 
+.background {
+	position: fixed;
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: -10;
+}
+
 .header {
 	display: flex;
 	flex-direction: var(--header-flex-direction);
