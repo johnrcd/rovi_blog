@@ -14,6 +14,15 @@ const themes = {
 		"colorTextAccent" : "blue",   // color value
 		"colorBackground" : "",       // color value (because gradients, this may be super long)
 
+		// optional values for code blocks
+		// set these if the default values aren't good
+
+		"colorBackgroundCode" : "",  // (optional) color value, default is "rgba(0, 0, 0, 0)"
+		"colorTextCodeNormal" : "",  // (optional) color value, default copies colorText
+		"colorTextCodeKeyword" : "", // (optional) color value, default copies colorTextAccent
+		"colorTextCodeSymbol" : "",  // (optional) color value, default copies highlightBackground
+		"colorTextCodeComment" : "", // (optional) color value, default copies highlightBackgroundSecondary
+
 		// used when you drag click over stuff
 		// should be very high contrast
 		"selectionColor" : "",      // color value
@@ -28,7 +37,7 @@ const themes = {
 		//      and date the(secondary)
 
 		"highlightColorSecondary" : "",      // (optional) color value
-		"highlightBackgroundSecondary" : "", // (optional) / color value
+		"highlightBackgroundSecondary" : "", // (optional) color value
 
 		// see information in _root.css for more information on what the panel is
 		"panel": { // (optional)
@@ -65,6 +74,10 @@ const themes = {
 		"colorText" : "#EEEEEE",
 		"colorTextAccent" : "#85A7A8",
 		"colorBackground" : "linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%)",
+
+		"colorBackgroundCode" : "rgba(1,2,8,1)",
+		"colorTextCodeSymbol" : "#7bc5b1ff",
+		"colorTextCodeComment" : "rgba(110, 108, 123, 1)",
 
 		"selectionColor" : "#000000",
 		"selectionBackground" : "rgb(122, 255, 252)",
@@ -116,8 +129,12 @@ const themes = {
 		"colorTextAccent" : "#ffaa75",
 		"colorBackground" : "linear-gradient(320deg, rgba(156,85,13,1) 0%, rgba(140,41,71,1) 53%, rgba(75,19,79,1) 100%)",
 
+		"colorBackgroundCode" : "rgba(1, 2, 8, 0.7)",
+		"colorTextCodeSymbol" : "#ffb647",
+		"colorTextCodeComment" : "rgba(167, 102, 37, 1)",
+
 		"selectionColor" : "#000000",
-		"selectionBackground" : "rgb(122, 255, 252)",
+		"selectionBackground" : "#ffaa75",
 
 		"highlightColor" : "#000000",
 		"highlightBackground" : "#ffb647",
@@ -207,13 +224,39 @@ const setTheme = (theme) => {
 	root.style.setProperty("--color-text-accent",       themeData.colorTextAccent      );
 	root.style.setProperty("--color-background",        themeData.colorBackground      );
 
+	root.style.setProperty(
+		"--color-background-code",
+		themeData.hasOwnProperty("colorBackgroundCode") ?
+			themeData.colorBackgroundCode :
+			"rgba(0,0,0,0)"
+	);
+
+	root.style.setProperty(
+		"--color-text-code-normal",
+		themeData.hasOwnProperty("colorTextCodeNormal") ?
+			themeData.colorTextCodeNormal :
+			themeData.colorText
+	);
+
+	root.style.setProperty(
+		"--color-text-code-keyword",
+		themeData.hasOwnProperty("colorTextCodeKeyword") ?
+			themeData.colorTextCodeKeyword :
+			themeData.colorTextAccent
+	);
+
+	root.style.setProperty(
+		"--color-text-code-symbol",
+		themeData.hasOwnProperty("colorTextCodeSymbol") ?
+			themeData.colorTextCodeSymbol :
+			themeData.highlightBackground
+	);
+
 	root.style.setProperty("--selection-color",         themeData.selectionColor       );
 	root.style.setProperty("--selection-background",    themeData.selectionBackground  );
 
 	root.style.setProperty("--highlight-color",         themeData.highlightColor       );
 	root.style.setProperty("--highlight-background",    themeData.highlightBackground  );
-
-	// complex
 
 	root.style.setProperty(
 		"--highlight-color-secondary",
@@ -227,6 +270,13 @@ const setTheme = (theme) => {
 		themeData.hasOwnProperty("highlightBackgroundSecondary") ?
 			themeData.highlightBackgroundSecondary :
 			themeData.highlightBackground
+	);
+
+	root.style.setProperty(
+		"--color-text-code-comment",
+		themeData.hasOwnProperty("colorTextCodeComment") ?
+			themeData.colorTextCodeComment :
+			"var(--highlight-background-secondary)"
 	);
 
 	if (themeData.hasOwnProperty("panel")) {

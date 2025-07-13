@@ -56,16 +56,16 @@ If you want an absolute barebones way of modifying the colour palette of your we
 
 ```css
 :root {
-		/* default: light theme */
-    --color-text: #000; 
-    --color-bg: #EEE;
+	/* default: light theme */
+	--color-text: #000;
+	--color-bg: #EEE;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #EEE; 
-    --color-bg: #000;
-  }
+	:root {
+		--color-text: #EEE;
+		--color-bg: #000;
+	}
 }
 ```
 
@@ -75,21 +75,21 @@ You can implement the ability to swap between colour palettes using some JavaScr
 
 ```jsx
 const themes = {
-    "light": {
-        "colorText"  : "#000",
-        "colorBg"    : "#EEE",
-    },
-    "dark": {
-        "colorText"  : "#EEE",
-        "colorBg"    : "#000",
-    },
+	"light": {
+		"colorText"  : "#000",
+		"colorBg"    : "#EEE",
+	},
+	"dark": {
+		"colorText"  : "#EEE",
+		"colorBg"    : "#000",
+	},
 }
 
 const setTheme = (theme) => {
-    const themeData = themes[theme];
+	const themeData = themes[theme];
 
-    root.style.setProperty("--color-text",  themeData.colorText);
-    root.style.setProperty("--color-bg",    themeData.colorBg  );
+	root.style.setProperty("--color-text",  themeData.colorText);
+	root.style.setProperty("--color-bg",    themeData.colorBg  );
 };
 ```
 
@@ -105,13 +105,13 @@ addEventListener("DOMContentLoaded", (event) => {
 	isDarkMode = prefersDarkMode;
 
 	setTheme(isDarkMode ? "dark" : "light");
-	
+
 	document
 		.getElementById("swap_theme")
-    .addEventListener("click", () => {
-	    isDarkMode = !isDarkMode;
-	    setTheme(isDarkMode ? "dark" : "light");
-	  });
+		.addEventListener("click", () => {
+			isDarkMode = !isDarkMode;
+			setTheme(isDarkMode ? "dark" : "light");
+		});
 });
 ```
 
@@ -152,7 +152,7 @@ const loadPage = async(event) => {
 		anchor.removeEventListener("click", loadPage);
 	});
 
-	panel.innerHTML = 
+	panel.innerHTML =
 		doc
 			.getElementsByClassName("panel")[0]
 			.innerHTML;

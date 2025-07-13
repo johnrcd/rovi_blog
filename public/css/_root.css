@@ -13,6 +13,7 @@
 	--font-mono: "monospace";
 
 	--color-background: linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%);
+	--color-background-code: rgba(1,2,8,1);
 	--color-background-accent: rgb(142, 231, 241);
 	--color-text: rgb(240, 240, 240);
 	--color-text-accent: rgb(100, 123, 200);
@@ -85,6 +86,7 @@
 	font-optical-sizing: auto;
 	font-style: normal;
 	font-variation-settings: "wdth" 100;
+	line-height: 1.5;
 }
 
 
@@ -114,8 +116,18 @@ button {
 	padding: 8px;
 }
 
-code {
+pre {
+	border: 1px solid var(--color-text-accent);
+	padding: 4px 8px;
 	font-family: var(--font-mono);
+	overflow-x: auto;
+}
+
+code,
+code * {
+	tab-size: 2;
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 a:hover {
