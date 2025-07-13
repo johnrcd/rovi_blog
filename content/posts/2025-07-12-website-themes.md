@@ -1,12 +1,10 @@
 ---
 title: deep dive // Website Themes
-description: css variables my beloved
+description: a tutorial on how to unnecessarily complicate a website
+tags: ["webdev", "code", "css", "javascript"]
 is_published: true
 date: 2025-07-12
 ---
-description: enough said
-
-—
 
 Awhile back (at the time of writing this), I switched from Namecheap to Cloudflare for domain registration and hosting. During that move, my old blog went down, and I never ended up getting it up and running again. If you attempt to access it, the only thing that’ll load is my portfolio page, except without any CSS.
 
@@ -192,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 Honestly— making the SPA logic was one of the easier parts of the site. It definitely helped that someone already had a solution I could reference for my own, but creating the theme logic was significantly worse.
 
-## mutations???
+### mutations???
 
 Because pages aren’t actually being loaded, my theme swapper breaks because it only initializes the theme swap buttons on `DOMContentLoaded` . Shouldn’t be a big deal, I’ll just use `popstate` instead…
 
@@ -228,7 +226,7 @@ observer.observe(
 );
 ```
 
-## super fast particles
+### super fast particles
 
 A long standing bug with this whole theme thing was particles moving at a faster speed than set. The only time this didn’t happen was the first initialization when you loaded the page.
 

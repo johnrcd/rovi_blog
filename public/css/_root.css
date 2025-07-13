@@ -146,3 +146,7 @@ a:hover {
 	color: var(--selection-color);
 	background: var(--selection-background);
 }
+
+img {
+	max-width: 100%;
+}
