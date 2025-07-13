@@ -21,7 +21,7 @@ Site themes.
 	</li>
 	<li>
 		<button class="themes__button">
-			terminal
+			molly
 		</button>
 	</li>
 	<li>

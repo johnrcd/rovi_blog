@@ -10,6 +10,8 @@ const themes = {
 		"fontNormal" : "", // font family
 		"fontMono" : "",   // font family
 
+		"zoom" : "", // percentage/number, default 100%
+
 		"colorText" : "blue",         // color value
 		"colorTextAccent" : "blue",   // color value
 		"colorBackground" : "",       // color value (because gradients, this may be super long)
@@ -41,8 +43,12 @@ const themes = {
 
 		// see information in _root.css for more information on what the panel is
 		"panel": { // (optional)
-			"spacing" : "", // (optional) units (px)
-			"width" : "",   // (optional) units (px, ch)
+			"spacing" : "",    // (optional) units (px), default 64px
+			"width" : "",      // (optional) units (px, ch), default 80ch
+			"border": "",      // (optional) css border, default none
+			"background" : "", // (optional) css color, default rgba(0,0,0,0)
+			"padding" : "",    // (optional) units (px, em), default 0
+			"radius" : "",     // (optional) units (px), default 0
 		},
 
 		"header": { // (optional)
@@ -50,17 +56,23 @@ const themes = {
 			"titleOnTop" : true, // (optional) boolean
 			"boldTitle": true,   // (optional) boolean
 			"padding": "",       // (optional) units (px)
+			"background" : "",   // (optional) css color, default rgba(0,0,0,0)
+			"divider" : "",      // (optional) css border, default 1px solid var(--color-text)
 		},
 
 		// used to greate a glassmorphism effect for the panel
-		// css properties taken from https://css.glass/, as that's where i
-		// generated most of them
-		"glass" : {
-			"background" : "", // color value
-			"radius" : "",     // units (px)
-			"shadow" : "",     // css box-shadow
-			"filter": "",      // css filter
-			"border" : "",     // css border
+		// this is separated from the rest of panel because i generate the values
+		// of these properties using https://css.glass/
+
+		// you can use this instead of panel if there's a property that panel
+		// doesn't have, but not recommended since glass has a very specific
+		// intended use case
+		"glass" : { // (optional)
+			"background" : "", // (optional) color value, overrides panel.background
+			"radius" : "",     // (optional) units (px), overrides panel.radius
+			"shadow" : "",     // (optional) css box-shadow, default 0
+			"filter": "",      // (optional) css filter, default none
+			"border" : "",     // (optional) css border, default border
 		},
 
 		// if set, allows for particles
@@ -90,6 +102,7 @@ const themes = {
 		"panel": {
 			"spacing" : "64px",
 			"width" : "60ch",
+			"padding" : "16px",
 		},
 
 		"header": {
@@ -144,6 +157,7 @@ const themes = {
 		"panel": {
 			"spacing" : "64px",
 			"width" : "60ch",
+			"padding" : "16px",
 		},
 
 		"header": {
@@ -174,8 +188,91 @@ const themes = {
 				{ breakpoint: 576,  options: { maxParticles: 25,  }, },
 			],
 		},
-	}
+	},
+	"molly": {
+		"fontNormal" : "Tahoma", // font family
+		"fontMono" : "monospace",   // font family
+
+		"colorText" : "#501b38ff",
+		"colorTextAccent" : "#380712ff",   // color value
+		// https://theplusaddons.com/blog/pastel-gradient-backgrounds-for-elementor/
+		// https://codepen.io/MHLut/pen/JKEjJK?editors=1100
+		// https://codepen.io/JeanQuicheLait/pen/XWdZNwG
+		"colorBackground" :
+			`repeating-linear-gradient(
+				-45deg,
+				transparent,
+				transparent 1em,
+				rgba(235, 127, 245, 0.4) 0,
+				rgba(235, 127, 245, 0.1) 2em,
+				transparent 0,
+				transparent 1em,
+				rgba(235, 127, 245, 0.3) 0,
+				rgba(235, 127, 245, 0.2) 4em,
+				transparent 0,
+				transparent 1em,
+				rgba(192, 235, 250, 0.6) 0,
+				rgba(192, 235, 250, 0.2) 2em
+			), repeating-linear-gradient(
+				45deg,
+				transparent,
+				transparent 1em,
+				rgba(235, 127, 245, 0.4) 0,
+				rgba(235, 127, 245, 0.1) 2em,
+				transparent 0,
+				transparent 1em,
+				rgba(235, 127, 245, 0.3) 0,
+				rgba(235, 127, 245, 0.2) 4em,
+				transparent 0,
+				transparent 1em,
+				rgba(192, 235, 250, 0.4) 0,
+				rgba(192, 235, 250, 0.1)
+				2em
+			), #FFF`,
+		"zoom" : "115%",
+
+		// used when you drag click over stuff
+		// should be very high contrast
+		"selectionColor" : "",      // color value
+		"selectionBackground" : "", // color value
+
+		// used for hoverable elements that change background and color
+		"highlightColor" : "",      // color value
+		"highlightBackground" : "", // color value
+
+		// niche colors used for lists with "two parts" -- a primary and secondary
+		// e.g. lists of posts will include the title (primary)
+		//      and date the(secondary)
+
+		"highlightColorSecondary" : "",      // (optional) color value
+		"highlightBackgroundSecondary" : "", // (optional) color value
+
+		// see information in _root.css for more information on what the panel is
+		"panel": { // (optional)
+			"spacing" : "64px", // (optional) units (px)
+			"width" : "80ch",   // (optional) units (px, ch)
+			"border": "2px solid rgba(213, 67, 120, 1)",
+			"radius": "16px",
+			"background" : "#FFECF8",
+			"padding" : "16px",
+		},
+
+		"header": { // (optional)
+			// note: on mobile, title will always be at the top
+			"titleOnTop" : true, // (optional) boolean
+			"boldTitle": true,   // (optional) boolean
+			"padding": "",       // (optional) units (px)
+			"background" : "#FFD3EF",
+			"divider" : "2px dotted rgba(213, 67, 120, 1)",
+		},
+	},
 }
+
+// --non-photo-blue: #b8ebf4ff;
+// --celadon: #abd8bdff;
+// --night: #121113ff;
+// --cherry-blossom-pink: #fbb1c2ff;
+// --magnolia: #f6f2ffff;
 
 addEventListener("DOMContentLoaded", (event) => {
 	console.log("Loading theme initializer...");
@@ -219,6 +316,13 @@ const setTheme = (theme) => {
 
 	root.style.setProperty("--font-normal",             themeData.fontNormal           );
 	root.style.setProperty("--font-mono",               themeData.fontMono             );
+
+	root.style.setProperty(
+		"--zoom",
+		themeData.hasOwnProperty("zoom") ?
+			themeData.zoom :
+		"100%"
+	);
 
 	root.style.setProperty("--color-text",              themeData.colorText            );
 	root.style.setProperty("--color-text-accent",       themeData.colorTextAccent      );
@@ -279,9 +383,40 @@ const setTheme = (theme) => {
 			"var(--highlight-background-secondary)"
 	);
 
+	root.style.setProperty("--panel-spacing", "   64px"         );
+	root.style.setProperty("--panel-width",      "60ch"         );
+	root.style.setProperty("--panel-border",     "0"            );
+	root.style.setProperty("--panel-background", "rgba(0,0,0,0)");
+	root.style.setProperty("--panel-radius"    , "0"            );
+	root.style.setProperty("--panel-shadow"    , "0"            );
+	root.style.setProperty("--panel-filter"    , "none"         );
+	root.style.setProperty("--panel-border"    , "0"            );
+	root.style.setProperty("--panel-padding"   , "0"            );
+
 	if (themeData.hasOwnProperty("panel")) {
-		root.style.setProperty("--panel-width"  , themeData.panel.width  );
-		root.style.setProperty("--panel-spacing", themeData.panel.spacing);
+		if (themeData.panel.hasOwnProperty("width")) {
+			root.style.setProperty("--panel-width"  , themeData.panel.width);
+		}
+
+		if (themeData.panel.hasOwnProperty("spacing")) {
+			root.style.setProperty("--panel-spacing", themeData.panel.spacing);
+		}
+
+		if (themeData.panel.hasOwnProperty("border")) {
+			root.style.setProperty("--panel-border", themeData.panel.border);
+		}
+
+		if (themeData.panel.hasOwnProperty("background")) {
+			root.style.setProperty("--panel-background", themeData.panel.background);
+		}
+
+		if (themeData.panel.hasOwnProperty("padding")) {
+			root.style.setProperty("--panel-padding", themeData.panel.padding);
+		}
+
+		if (themeData.panel.hasOwnProperty("radius")) {
+			root.style.setProperty("--panel-radius", themeData.panel.radius);
+		}
 	}
 
 	if (themeData.hasOwnProperty("glass")) {
@@ -291,6 +426,9 @@ const setTheme = (theme) => {
 		root.style.setProperty("--panel-filter"    , themeData.glass.filter    );
 		root.style.setProperty("--panel-border"    , themeData.glass.border    );
 	}
+
+	root.style.setProperty("--header-background", "rgba(0,0,0,0)");
+	root.style.setProperty("--header-divider"   , "1px solid var(--color-text)");
 
 	if (themeData.hasOwnProperty("header")) {
 		if (themeData.header.hasOwnProperty("padding")) {
@@ -313,6 +451,14 @@ const setTheme = (theme) => {
 		if (themeData.header.hasOwnProperty("boldTitle")) {
 			const fontWeight = themeData.header.boldTitle ? 700 : 400;
 			root.style.setProperty("--header-title-weight", fontWeight);
+		}
+
+		if (themeData.header.hasOwnProperty("background")) {
+			root.style.setProperty("--header-background", themeData.header.background);
+		}
+
+		if (themeData.header.hasOwnProperty("divider")) {
+			root.style.setProperty("--header-divider", themeData.header.divider);
 		}
 	}
 
