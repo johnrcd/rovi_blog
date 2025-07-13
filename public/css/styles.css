@@ -37,6 +37,12 @@
 	.header__siteTitle {
 		font-size: 2rem;
 		font-weight: var(--header-title-weight);
+		text-decoration: none;
+	}
+
+	.header__siteTitle:hover::before,
+	.header__siteTitle:focus::before {
+		content: "> ";
 	}
 
 	.header__ul {
