@@ -1,5 +1,5 @@
 ---
-title: Website Themes
+title: deep dive // Website Themes
 description: css variables my beloved
 is_published: true
 date: 2025-07-12

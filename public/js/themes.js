@@ -9,6 +9,7 @@ const themes = {
 
 		"fontNormal" : "", // font family
 		"fontMono" : "",   // font family
+		"fontWeight" : "", // (optional) font weight (300, 400), default 400
 
 		"zoom" : "", // percentage/number, default 100%
 
@@ -190,11 +191,12 @@ const themes = {
 		},
 	},
 	"molly": {
-		"fontNormal" : "Tahoma", // font family
+		"fontNormal" : '"MS UI Gothic", "Comic Neue", cursive', // font family
+		"fontWeight" : "600",
 		"fontMono" : "monospace",   // font family
 
 		"colorText" : "#501b38ff",
-		"colorTextAccent" : "#380712ff",   // color value
+		"colorTextAccent" : "#7d4a6dff",   // color value
 		// https://theplusaddons.com/blog/pastel-gradient-backgrounds-for-elementor/
 		// https://codepen.io/MHLut/pen/JKEjJK?editors=1100
 		// https://codepen.io/JeanQuicheLait/pen/XWdZNwG
@@ -314,8 +316,13 @@ const setTheme = (theme) => {
 	const themeData = themes[theme];
 	const root = document.querySelector(':root');
 
-	root.style.setProperty("--font-normal",             themeData.fontNormal           );
-	root.style.setProperty("--font-mono",               themeData.fontMono             );
+	root.style.setProperty("--font-normal", themeData.fontNormal);
+	root.style.setProperty("--font-mono",   themeData.fontMono);
+	root.style.setProperty("--font-weight", 400);
+
+	if (themeData.hasOwnProperty("fontWeight")) {
+		root.style.setProperty("--font-weight", themeData.fontWeight);
+	}
 
 	root.style.setProperty(
 		"--zoom",
@@ -449,7 +456,7 @@ const setTheme = (theme) => {
 		}
 
 		if (themeData.header.hasOwnProperty("boldTitle")) {
-			const fontWeight = themeData.header.boldTitle ? 700 : 400;
+			const fontWeight = themeData.header.boldTitle ? 700 : "var(--font-weight)";
 			root.style.setProperty("--header-title-weight", fontWeight);
 		}
 

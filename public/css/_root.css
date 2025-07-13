@@ -11,6 +11,7 @@
 	/* global settings */
 	--font-normal: "Manrope", "Poppins", "Open Sans", sans-serif;
 	--font-mono: "monospace";
+	--font-weight: 400;
 
 	--color-background: linear-gradient(233deg, rgba(1,2,8,1) 0%, rgba(4,14,24,1) 11%, rgba(5,17,19,1) 33%, rgba(6,16,24,1) 48%, rgba(6,12,20,1) 67%, rgba(6,9,22,1) 87%, rgba(3,9,22,1) 100%);
 	--color-background-code: rgba(1,2,8,1);
@@ -106,6 +107,7 @@ html {
 * {
 	color: var(--color-text);
 	font-family: var(--font-normal);
+	font-weight: var(--font-weight);
 }
 
 h1, h2, h3, h4, h5, h6, p, li, a, input, textarea, div, select, article, main {
