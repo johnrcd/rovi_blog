@@ -11,6 +11,8 @@ const themes = {
 		"fontMono" : "",   // font family
 		"fontWeight" : "", // (optional) font weight (300, 400), default 400
 
+		// DOES NOT WORK:
+		// creates permanent scroll bar
 		"zoom" : "", // percentage/number, default 100%
 
 		"colorText" : "blue",         // color value
@@ -20,11 +22,15 @@ const themes = {
 		// optional values for code blocks
 		// set these if the default values aren't good
 
-		"colorBackgroundCode" : "",  // (optional) color value, default is "rgba(0, 0, 0, 0)"
-		"colorTextCodeNormal" : "",  // (optional) color value, default copies colorText
-		"colorTextCodeKeyword" : "", // (optional) color value, default copies colorTextAccent
-		"colorTextCodeSymbol" : "",  // (optional) color value, default copies highlightBackground
-		"colorTextCodeComment" : "", // (optional) color value, default copies highlightBackgroundSecondary
+		"code" : { // (optional)
+			"colorBackground" : "",  // (optional) color value, default is "rgba(0, 0, 0, 0)"
+			"colorTextNormal" : "",  // (optional) color value, default copies colorText
+			"colorTextKeyword" : "", // (optional) color value, default copies colorTextAccent
+			"colorTextSymbol" : "",  // (optional) color value, default copies highlightBackground
+			"colorTextComment" : "", // (optional) color value, default copies highlightBackgroundSecondary
+			"border" : "",           // (optional) css border, default value 1px solid var(--color-text-accent);
+			"radius" : "",           // (optional) units (px), default 0
+		},
 
 		// used when you drag click over stuff
 		// should be very high contrast
@@ -92,6 +98,12 @@ const themes = {
 		"colorTextCodeSymbol" : "#7bc5b1ff",
 		"colorTextCodeComment" : "rgba(110, 108, 123, 1)",
 
+		"code" : {
+			"colorBackground" : "rgba(1,2,8,1)",
+			"colorTextSymbol" : "#7bc5b1ff",
+			"colorTextComment" : "rgba(110, 108, 123, 1)",
+		},
+
 		"selectionColor" : "#000000",
 		"selectionBackground" : "rgb(122, 255, 252)",
 
@@ -146,6 +158,12 @@ const themes = {
 		"colorBackgroundCode" : "rgba(1, 2, 8, 0.7)",
 		"colorTextCodeSymbol" : "#ffb647",
 		"colorTextCodeComment" : "rgba(167, 102, 37, 1)",
+
+		"code" : { // (optional)
+			"colorBackground" : "rgba(1, 2, 8, 0.7)",
+			"colorTextSymbol" : "#ffb647",
+			"colorTextComment" : "rgba(167, 102, 37, 1)",
+		},
 
 		"selectionColor" : "#000000",
 		"selectionBackground" : "#ffaa75",
@@ -231,23 +249,32 @@ const themes = {
 				rgba(192, 235, 250, 0.1)
 				2em
 			), #FFF`,
-		"zoom" : "115%",
+
+		"code" : {
+			"colorBackground" : "#fddaf1ff",
+			"colorTextNormal" : "",  // (optional) color value, default copies colorText
+			"colorTextKeyword" : "", // (optional) color value, default copies colorTextAccent
+			"colorTextSymbol" : "",  // (optional) color value, default copies highlightBackground
+			"colorTextComment" : "", // (optional) color value, default copies highlightBackgroundSecondary
+			"border": "2px dotted rgba(213, 67, 120, 1)",
+			"radius": "16px",
+		},
 
 		// used when you drag click over stuff
 		// should be very high contrast
-		"selectionColor" : "",      // color value
-		"selectionBackground" : "", // color value
+		"selectionColor" : "#ffffffff",      // color value
+		"selectionBackground" : "rgba(202, 50, 106, 1)", // color value
 
 		// used for hoverable elements that change background and color
-		"highlightColor" : "",      // color value
-		"highlightBackground" : "", // color value
+		"highlightColor" : "#ffffffff",      // color value
+		"highlightBackground" : "rgba(226, 134, 168, 1)", // color value
 
 		// niche colors used for lists with "two parts" -- a primary and secondary
 		// e.g. lists of posts will include the title (primary)
 		//      and date the(secondary)
 
-		"highlightColorSecondary" : "",      // (optional) color value
-		"highlightBackgroundSecondary" : "", // (optional) color value
+		"highlightColorSecondary" : "#ffffffff",      // (optional) color value
+		"highlightBackgroundSecondary" : "rgba(226, 99, 146, 1)", // (optional) color value
 
 		// see information in _root.css for more information on what the panel is
 		"panel": { // (optional)
@@ -335,39 +362,49 @@ const setTheme = (theme) => {
 	root.style.setProperty("--color-text-accent",       themeData.colorTextAccent      );
 	root.style.setProperty("--color-background",        themeData.colorBackground      );
 
-	root.style.setProperty(
-		"--color-background-code",
-		themeData.hasOwnProperty("colorBackgroundCode") ?
-			themeData.colorBackgroundCode :
-			"rgba(0,0,0,0)"
-	);
-
-	root.style.setProperty(
-		"--color-text-code-normal",
-		themeData.hasOwnProperty("colorTextCodeNormal") ?
-			themeData.colorTextCodeNormal :
-			themeData.colorText
-	);
-
-	root.style.setProperty(
-		"--color-text-code-keyword",
-		themeData.hasOwnProperty("colorTextCodeKeyword") ?
-			themeData.colorTextCodeKeyword :
-			themeData.colorTextAccent
-	);
-
-	root.style.setProperty(
-		"--color-text-code-symbol",
-		themeData.hasOwnProperty("colorTextCodeSymbol") ?
-			themeData.colorTextCodeSymbol :
-			themeData.highlightBackground
-	);
-
 	root.style.setProperty("--selection-color",         themeData.selectionColor       );
 	root.style.setProperty("--selection-background",    themeData.selectionBackground  );
 
 	root.style.setProperty("--highlight-color",         themeData.highlightColor       );
 	root.style.setProperty("--highlight-background",    themeData.highlightBackground  );
+
+	root.style.setProperty("--code-color-background",    "rgba(0,0,0,0)"                      );
+	root.style.setProperty("--code-color-text-normal",   "var(--color-text)"                    );
+	root.style.setProperty("--code-color-text-keyword",  "var(--color-text-accent)"             );
+	root.style.setProperty("--code-color-text-symbol",   "var(--highlight-background)"          );
+	root.style.setProperty("--code-color-text-comment",  "var(--highlight-background-secondary)");
+	root.style.setProperty("--code-border",              "1px solid var(--color-text-accent)"   );
+	root.style.setProperty("--code-radius",              "0"                                    );
+
+	if (themeData.hasOwnProperty("code")) {
+		if (themeData.code.hasOwnProperty("colorBackground")) {
+			root.style.setProperty("--code-color-background", themeData.code.colorBackground);
+		}
+
+		if (themeData.code.hasOwnProperty("colorTextNormal")) {
+			root.style.setProperty("--code-color-text-normal", themeData.code.colorTextNormal);
+		}
+
+		if (themeData.code.hasOwnProperty("colorTextKeyword")) {
+			root.style.setProperty("--code-color-text-keyword", themeData.code.colorTextKeyword);
+		}
+
+		if (themeData.code.hasOwnProperty("colorTextSymbol")) {
+			root.style.setProperty("--code-color-text-symbol", themeData.code.colorTextSymbol);
+		}
+
+		if (themeData.code.hasOwnProperty("colorTextComment")) {
+			root.style.setProperty("--code-color-text-comment", themeData.code.colorTextComment);
+		}
+
+		if (themeData.code.hasOwnProperty("border")) {
+			root.style.setProperty("--code-border", themeData.code.border);
+		}
+
+		if (themeData.code.hasOwnProperty("radius")) {
+			root.style.setProperty("--code-radius", themeData.code.radius);
+		}
+	}
 
 	root.style.setProperty(
 		"--highlight-color-secondary",

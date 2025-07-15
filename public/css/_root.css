@@ -20,6 +20,14 @@
 	--color-text-accent: rgb(100, 123, 200);
 	--color-image-monochrome-accent: rgba(200, 0, 250, 0.5);
 
+	--code-color-background: rgba(0,0,0,0);
+	--code-color-text-normal: var(--color-text);
+	--code-color-text-keyword: var(--color-text-accent);
+	--code-color-text-symbol: var(--highlight-background);
+	--code-color-text-comment: var(--highlight-background-secondary);
+	--code-border: 1px solid var(--color-text-accent);
+	--code-radius: 0;
+
 	transition: all 0.3s ease;
 
 	/* website structure */

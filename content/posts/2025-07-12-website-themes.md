@@ -50,7 +50,7 @@ It gets more complex than that, but if you just wanted an easy to understand exp
 
 (Not color.)
 
-If you want an absolute barebones way of modifying the colour palette of your website, you can simply have your CSS check if `prefers-color-scheme` \*\*\*\*is true or false.
+If you want an absolute barebones way of modifying the colour palette of your website, you can simply have your CSS check if `prefers-color-scheme` is true or false.
 
 ```css
 :root {

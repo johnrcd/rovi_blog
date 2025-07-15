@@ -1,10 +1,8 @@
 	code[class*="language-"],
 pre[class*="language-"] {
-	color: white;
 	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	font-size: 1em;
-	font-weight: 400;
 	text-align: left;
 	/* text-shadow: 0 -.1em .2em black; */
 	white-space: pre;
@@ -25,14 +23,15 @@ pre[class*="language-"] {
 
 pre[class*="language-"],
 :not(pre) > code[class*="language-"] {
-	background: var(--color-background-code);
+	background: var(--code-color-background);
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-	// border-radius: .5em;
-	border: 1px solid var(--color-text-accent);
-	box-shadow: 1px 1px .5em black inset;
+	border-radius: var(--code-radius);
+	border: var(--code-border);
+	color: var(--code-color-text-normal);
+	/* box-shadow: 1px 1px .5em black inset; */
 	margin: .5em 0;
 	overflow: auto;
 	padding: 1em;
@@ -51,7 +50,7 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: var(--color-text-code-comment);
+	color: var(--code-color-text-comment);
 }
 
 .token.tag,
@@ -67,7 +66,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.builtin {
-	color: var(--color-text-code-keyword);
+	color: var(--code-color-text-keyword);
 }
 
 .token.attr-name,
@@ -81,7 +80,7 @@ pre[class*="language-"] {
 .style .token.string,
 .token.variable,
 .token.inserted {
-	color: var(--color-text-code-symbol);
+	color: var(--code-color-text-symbol);
 }
 
 .token.atrule {
@@ -90,15 +89,7 @@ pre[class*="language-"] {
 
 .token.regex,
 .token.important {
-	color: var(--color-text-code-keyword);
-}
-
-.token.important,
-.token.bold {
-	font-weight: bold;
-}
-.token.italic {
-	font-style: italic;
+	color: var(--code-color-text-keyword);
 }
 
 .token.entity {
@@ -109,7 +100,7 @@ pre[class*="language-"] {
 .language-markup .token.tag,
 .language-markup .token.attr-name,
 .language-markup .token.punctuation {
-	color: var(--color-text-code-keyword);
+	color: var(--code-color-text-keyword);
 }
 
 /* Make the tokens sit above the line highlight so the colours don't look faded. */
