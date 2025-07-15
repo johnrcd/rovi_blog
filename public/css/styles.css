@@ -71,8 +71,7 @@
 	padding-top: calc(var(--panel-padding) / 2);
 }
 	.content > *:first-child {
-		// calc fixes uneven look that comes from just using panel padding
-		margin-top: calc(var(--panel-padding) - 0.25rem);
+		margin-top: calc(var(--panel-padding) / 2);
 	}
 
 .postPanel {
