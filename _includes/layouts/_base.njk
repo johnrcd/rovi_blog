@@ -46,9 +46,7 @@
 		<script type="module" src="{% getBundleFileUrl "js" %}" defer></script>
 	</head>
 	<body>
-		<div class="wall">
-			<div class="panel">{{ content | safe }}</div>
-		</div>
+		{{ content | safe }}
 		<canvas class="background"></canvas>
 	</body>
 </html>

@@ -1,4 +1,4 @@
-.panel {
+.panel, .postPanel {
 	background: var(--panel-background);
 	border-radius: var(--panel-radius);
 	box-shadow: var(--panel-shadow);
@@ -10,6 +10,8 @@
 	margin: auto;
 	margin-top: var(--panel-spacing);
 	margin-bottom: var(--panel-spacing);
+
+	display: var(--header-display);
 }
 
 .background {
@@ -23,17 +25,20 @@
 }
 
 .header {
-	display: flex;
-	flex-direction: var(--header-flex-direction);
-	align-items: center;
-	justify-content: space-between;
 	padding: calc(var(--panel-padding) / 2) var(--panel-padding);
 	padding-top: var(--panel-padding);
-	border-bottom: var(--header-divider);
+	border-bottom: var(--header-divider-bottom);
+	border-right: var(--header-divider-right);
 	background: var(--header-background);
-	border-radius: var(--panel-radius) var(--panel-radius) 0 0;
-
+	border-radius: var(--header-border-radius-1) var(--header-border-radius-2) var(--header-border-radius-3) var(--header-border-radius-4);
 }
+
+	.header__content {
+		display: flex;
+		flex-direction: var(--header-flex-direction);
+		align-items: center;
+		justify-content: var(--header-justify-content);
+	}
 	.header__siteTitle {
 		font-size: 2rem;
 		font-weight: var(--header-title-weight);
@@ -42,13 +47,15 @@
 
 	.header__siteTitle:hover::before,
 	.header__siteTitle:focus::before {
-		content: "> ";
+		content: var(--header-title-hover-before-content);
 	}
 
 	.header__ul {
 		display: flex;
+		flex-direction: var(--header-menu-flex-direction);
 		align-items: center;
-		gap: 2rem;
+		justify-content: var(--header-menu-justify-content);
+		gap: var(--header-menu-gap);
 		list-style-type: none;
 		list-style-position: outside;
 		padding: 0;
@@ -64,8 +71,13 @@
 	padding-top: calc(var(--panel-padding) / 2);
 }
 	.content > *:first-child {
-		margin-top: 0.5rem;
+		// calc fixes uneven look that comes from just using panel padding
+		margin-top: calc(var(--panel-padding) - 0.25rem);
 	}
+
+.postPanel {
+	display: block;
+}
 
 .posts {
 	list-style-type: none;
@@ -78,16 +90,18 @@
 
 	display: flex;
 	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
 	gap: var(--posts-outline-width);
 }
 	.posts__li {
 		display: flex;
 		justify-content: space-between;
 		gap: calc(var(--posts-outline-width) * 2 + var(--column-gap));
-		line-height: 1.25;
 	}
 	.posts__a {
 		text-decoration: none;
+		display: block;
 		color: var(--color-text);
 		flex-grow: 1;
 	}
@@ -110,7 +124,6 @@
 	}
 
 .themes {
-
 }
 
 	.themes__button {

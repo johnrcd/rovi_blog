@@ -1,5 +1,17 @@
 let anchors = [];
 
+(function(history){
+    var pushState = history.pushState;
+    history.pushState = function(state) {
+        if (typeof history.onpushstate == "function") {
+            history.onpushstate({state: state});
+        }
+        // ... whatever else you want to do
+        // maybe call onhashchange e.handler
+        return pushState.apply(history, arguments);
+    };
+})(window.history);
+
 /**
  * Retrieves the content from a page and reaplces the content of the current
  * page with it.
@@ -19,14 +31,14 @@ const loadPage = async(event) => {
 
 	const doc = new DOMParser().parseFromString(text, "text/html");
 
-	const panel = document.getElementsByClassName("panel")[0];
+	const panel = document.getElementById("content");
 
 	// manually detach events to avoid memory error
 	anchors.forEach(anchor => {
 		anchor.removeEventListener("click", loadPage);
 	});
 
-	panel.innerHTML = doc.getElementsByClassName("panel")[0].innerHTML;
+	panel.innerHTML = doc.getElementById("content").innerHTML;
 
 	history.pushState({}, "", url);
 

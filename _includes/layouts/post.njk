@@ -2,68 +2,67 @@
 layout: layouts/_base.njk
 ---
 
-<header class="postHeader">
-	<h1 class="postHeader__title">{{ title }}</h1>
-	<p class="postHeader__description">{{ description }}</p>
-	<p>posted <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
+<div class="wall">
+	<div id="content">
+		<div class="postPanel">
+			<header class="postHeader">
+				<h1 class="postHeader__title">{{ title }}</h1>
+				<p class="postHeader__description">{{ description }}</p>
+				<p>posted <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
 
-	{# <ul class="postHeader__tags">
-		{%- for tag in tags | filterTagList %}
-		{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-		<li><a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
-		{%- endfor %}
-	</ul> #}
+				{# <ul class="postHeader__tags">
+					{%- for tag in tags | filterTagList %}
+					{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+					<li><a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
+					{%- endfor %}
+				</ul> #}
 
-	<ul class="postHeader__options">
-		<a class="postHeader__option" href="{{ site.url }}{{ site.baseurl }}/">go to home page</a>
-		<a class="postHeader__option" href="{{ site.url }}{{ site.baseurl }}/">go to posts</a>
-	</ul>
-</header>
+				<ul class="postHeader__options">
+					<a class="postHeader__option" href="{{ site.url }}{{ site.baseurl }}/">go to home page</a>
+					<a class="postHeader__option" href="{{ site.url }}{{ site.baseurl }}/">go to posts</a>
+				</ul>
+			</header>
 
-<main class="postContent">
-	{{ content | safe }}
-</main>
+			<main class="postContent">
+				{{ content | safe }}
+			</main>
 
-<footer class="postFooter">
-	<button class="postFooter__centerLink" onclick="topFunction()">scroll to top</button>
-	<a class="postFooter__centerLink" href="/">back to home page</a>
-	{# getPreviousCollectionItem and getNextCollectionItem are prebuilt filters #}
-	{# to get the next/previous items in an collection. By default, this passes #}
-	{# in the current page.                                                     #}
+			<footer class="postFooter">
+				<button class="postFooter__centerLink" onclick="topFunction()">scroll to top</button>
+				<a class="postFooter__centerLink" href="/">back to home page</a>
+				{# getPreviousCollectionItem and getNextCollectionItem are prebuilt filters #}
+				{# to get the next/previous items in an collection. By default, this passes #}
+				{# in the current page.                                                     #}
 
-	{# More information:                                                        #}
-	{# https://www.11ty.dev/docs/filters/collection-items/                      #}
+				{# More information:                                                        #}
+				{# https://www.11ty.dev/docs/filters/collection-items/                      #}
 
-	{%- set previousPost = collections.post | getPreviousCollectionItem %}
-	{%- set nextPost = collections.post | getNextCollectionItem %}
+				{%- set previousPost = collections.post | getPreviousCollectionItem %}
+				{%- set nextPost = collections.post | getNextCollectionItem %}
 
-	{%- if nextPost or previousPost %}
-		<ul class="postFooter__pageSwapper">
-			{%- if previousPost %}
-				<li class="postFooter__previous">
-					<div>&larr; Previous</div>
-					<a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
-				</li>
-			{% else %}
-				<li class="postFooter__previous">
-				</li>
-			{% endif %}
-			{%- if nextPost %}
-				<li class="postFooter__next">
-					<div>Next &rarr;</div>
-					<a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
-				</li>
-			{% else %}
-				<li class="postFooter__next">
-				</li>
-			{% endif %}
-		</ul>
-	{%- endif %}
-</footer>
-
-<script>
-	function topFunction() {
-		document.body.scrollTop = 0; // For Safari
-		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-	}
-</script>
+				{%- if nextPost or previousPost %}
+					<ul class="postFooter__pageSwapper">
+						{%- if previousPost %}
+							<li class="postFooter__previous">
+								<div>&larr; Previous</div>
+								<a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
+							</li>
+						{% else %}
+							<li class="postFooter__previous">
+							</li>
+						{% endif %}
+						{%- if nextPost %}
+							<li class="postFooter__next">
+								<div>Next &rarr;</div>
+								<a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+							</li>
+						{% else %}
+							<li class="postFooter__next">
+							</li>
+						{% endif %}
+					</ul>
+				{%- endif %}
+			</footer>
+		</div>
+	</div>
+</div>

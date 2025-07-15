@@ -60,11 +60,12 @@ const themes = {
 
 		"header": { // (optional)
 			// note: on mobile, title will always be at the top
-			"titleOnTop" : true, // (optional) boolean
-			"boldTitle": true,   // (optional) boolean
-			"padding": "",       // (optional) units (px)
-			"background" : "",   // (optional) css color, default rgba(0,0,0,0)
-			"divider" : "",      // (optional) css border, default 1px solid var(--color-text)
+			"titleOnTop" : false, // (optional) boolean, default false
+			"boldTitle": true,    // (optional) boolean, default true
+			"isVertical" : false, // (optional) boolean, default false
+			"padding": "",        // (optional) units (px), default 0
+			"background" : "",    // (optional) css color, default rgba(0,0,0,0)
+			"divider" : "",       // (optional) css border, default 1px solid var(--color-text)
 		},
 
 		// used to greate a glassmorphism effect for the panel
@@ -290,7 +291,7 @@ const themes = {
 			// note: on mobile, title will always be at the top
 			"titleOnTop" : true, // (optional) boolean
 			"boldTitle": true,   // (optional) boolean
-			"padding": "",       // (optional) units (px)
+			"isVertical": true,
 			"background" : "#FFD3EF",
 			"divider" : "2px dotted rgba(213, 67, 120, 1)",
 		},
@@ -471,14 +472,25 @@ const setTheme = (theme) => {
 		root.style.setProperty("--panel-border"    , themeData.glass.border    );
 	}
 
-	root.style.setProperty("--header-background", "rgba(0,0,0,0)");
-	root.style.setProperty("--header-divider"   , "1px solid var(--color-text)");
+	root.style.setProperty("--header-display",                    "block"                      );
+	root.style.setProperty("--header-padding",                    "0"                          );
+	root.style.setProperty("--header-background",                 "rgba(0,0,0,0)"            );
+	root.style.setProperty("--header-divider"   ,                 "1px solid var(--color-text)");
+	root.style.setProperty("--header-menu-flex-direction",        "row"                        );
+	root.style.setProperty("--header-menu-gap",                   "2rem"                       );
+	root.style.setProperty("--header-menu-justify-content",       "space-between"              );
+	root.style.setProperty("--header-justify-content",            "space-between"              );
+	root.style.setProperty("--header-title-hover-before-content", "> "                         );
+
+	root.style.setProperty("--header-border-radius-1", "var(--panel-radius)");
+	root.style.setProperty("--header-border-radius-2", "var(--panel-radius)");
+	root.style.setProperty("--header-border-radius-3", "0"                  );
+	root.style.setProperty("--header-border-radius-4", "0"                  );
+
+	root.style.setProperty("--header-divider-bottom", "var(--header-divider)");
+	root.style.setProperty("--header-divider-right" , "none"                 );
 
 	if (themeData.hasOwnProperty("header")) {
-		if (themeData.header.hasOwnProperty("padding")) {
-			root.style.setProperty("--header-padding", themeData.header.padding);
-		}
-
 		if (themeData.header.hasOwnProperty("titleOnTop")) {
 			const isTitleOnTop = themeData.header.titleOnTop;
 			const flexDirection = isTitleOnTop ? "column" : "row";
@@ -495,6 +507,56 @@ const setTheme = (theme) => {
 		if (themeData.header.hasOwnProperty("boldTitle")) {
 			const fontWeight = themeData.header.boldTitle ? 700 : "var(--font-weight)";
 			root.style.setProperty("--header-title-weight", fontWeight);
+		}
+
+		if (themeData.header.hasOwnProperty("isVertical")) {
+			if (themeData.header.isVertical) { // ruh roh
+				root.style.setProperty("--header-display", "flex");
+			}
+
+			// please.
+			// who convinced me to have a website that could cleanly swap between a
+			// top nav bar and a side nav bar.
+
+			// do not do this to yourself.
+
+			root.style.setProperty(
+				"--header-menu-flex-direction",
+				themeData.header.isVertical ? "column" : "row"
+			);
+
+			root.style.setProperty(
+				"--header-menu-gap",
+				themeData.header.isVertical ? "0.25rem" : "2rem"
+			);
+
+			root.style.setProperty(
+				"--header-menu-justify-content",
+				themeData.header.isVertical ? "start" : "space-between"
+			);
+
+			root.style.setProperty(
+				"--header-justify-content",
+				themeData.header.isVertical ? "start" : "space-between"
+			);
+
+			root.style.setProperty(
+				"--header-title-hover-before-content",
+				themeData.header.isVertical ? "" : "> "
+			);
+
+			/* top-left | top-right | bottom-right | bottom-left */
+			root.style.setProperty("--header-border-radius-1", themeData.header.isVertical ? "var(--panel-radius)" : "var(--panel-radius)");
+			root.style.setProperty("--header-border-radius-2", themeData.header.isVertical ? "0"                   : "var(--panel-radius)");
+			root.style.setProperty("--header-border-radius-3", themeData.header.isVertical ? "0"                   : "0"                  );
+			root.style.setProperty("--header-border-radius-4", themeData.header.isVertical ? "var(--panel-radius)" : "0"                  );
+
+			root.style.setProperty("--header-divider-bottom", themeData.header.isVertical ? "none" : "var(--header-divider)");
+			root.style.setProperty("--header-divider-right" , themeData.header.isVertical ? "var(--header-divider)" : "none");
+		}
+
+		if (themeData.header.hasOwnProperty("padding")) {
+			root.style.setProperty("--header-padding", themeData.header.padding);
 		}
 
 		if (themeData.header.hasOwnProperty("background")) {
@@ -539,6 +601,6 @@ const onPanelUpdated = () => {
 const observer = new MutationObserver(onPanelUpdated);
 
 observer.observe(
-	document.getElementsByClassName("panel")[0],
+	document.getElementById("content"),
 	{ attributes: true, childList: true, subtree: true }
 );

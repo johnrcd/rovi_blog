@@ -25,32 +25,37 @@ navigationOptions:
 	["themes", "/themes/"]
 ] %}
 
-{# no trailing commas for lists in nunjucks #}
-
-<header class="header">
-	<a href="/" class="header__siteTitle">{{ metadata.title }}</a>
-	{# https://www.11ty.dev/docs/collections/#use-an-aria-current-attribute-on-the-current-page #}
-	{# https://www.11ty.dev/docs/plugins/navigation/ #}
-	<nav class="header__nav">
-		{% set navPages = collections.all | eleventyNavigation %}
-		<ul class="header__ul">
-			{%- for entry in navPages %}
-				<li class="header__li">
-					<a
-						class="header__a"
-						href="{{ entry.url }}"
-						{% if entry.url == page.url %}
-							aria-current="page"
-						{% endif %}
-					>
-						{{ entry.title }}
-					</a>
-				</li>
-			{%- endfor %}
-		</ul>
-	</nav>
-</header>
-
-<main class="content">
-	{{ content | safe }}
-</main>
+<div class="wall">
+	<div id="content">
+		<div class="panel">
+			<header class="header">
+				<div class="header__content">
+					<a href="/" class="header__siteTitle">{{ metadata.title }}</a>
+					{# https://www.11ty.dev/docs/collections/#use-an-aria-current-attribute-on-the-current-page #}
+					{# https://www.11ty.dev/docs/plugins/navigation/ #}
+					<nav class="header__nav">
+						{% set navPages = collections.all | eleventyNavigation %}
+						<ul class="header__ul">
+							{%- for entry in navPages %}
+								<li class="header__li">
+									<a
+										class="header__a"
+										href="{{ entry.url }}"
+										{% if entry.url == page.url %}
+											aria-current="page"
+										{% endif %}
+									>
+										{{ entry.title }}
+									</a>
+								</li>
+							{%- endfor %}
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<main class="content">
+				{{ content | safe }}
+			</main>
+		</div>
+	</div>
+</div>
