@@ -1,17 +1,5 @@
 let anchors = [];
 
-(function(history){
-    var pushState = history.pushState;
-    history.pushState = function(state) {
-        if (typeof history.onpushstate == "function") {
-            history.onpushstate({state: state});
-        }
-        // ... whatever else you want to do
-        // maybe call onhashchange e.handler
-        return pushState.apply(history, arguments);
-    };
-})(window.history);
-
 /**
  * Retrieves the content from a page and reaplces the content of the current
  * page with it.
@@ -60,8 +48,10 @@ const loadAnchors = () => {
 	});
 
 	anchors.forEach(anchor => {
-		anchor.preventDefault();
-		anchor.addEventListener("click", (event) => { loadPage(event.target.href); })
+		anchor.addEventListener("click", (event) => {
+			event.preventDefault();
+			loadPage(event.target.href);
+		})
 	});
 };
 

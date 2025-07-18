@@ -123,6 +123,7 @@ const themes = {
 			"titleOnTop" : false,
 			"boldTitle": true,
 			"padding": "8px",
+			"isVertical": false,
 		},
 
 		"glass" : {
@@ -209,7 +210,7 @@ const themes = {
 			],
 		},
 	},
-	"molly": {
+	"isabelle": {
 		"fontNormal" : '"MS UI Gothic", "Comic Neue", cursive', // font family
 		"fontWeight" : "600",
 		"fontMono" : "monospace",   // font family
@@ -291,7 +292,7 @@ const themes = {
 			// note: on mobile, title will always be at the top
 			"titleOnTop" : true, // (optional) boolean
 			"boldTitle": true,   // (optional) boolean
-			"isVertical": true,
+			"isVertical": false,
 			"background" : "#FFD3EF",
 			"divider" : "2px dotted rgba(213, 67, 120, 1)",
 		},
@@ -476,6 +477,7 @@ const setTheme = (theme) => {
 	root.style.setProperty("--header-padding",                    "0"                          );
 	root.style.setProperty("--header-background",                 "rgba(0,0,0,0)"            );
 	root.style.setProperty("--header-divider"   ,                 "1px solid var(--color-text)");
+
 	root.style.setProperty("--header-menu-flex-direction",        "row"                        );
 	root.style.setProperty("--header-menu-gap",                   "2rem"                       );
 	root.style.setProperty("--header-menu-justify-content",       "space-between"              );
