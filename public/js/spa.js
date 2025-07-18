@@ -59,7 +59,9 @@ const loadAnchors = () => {
 };
 
 window.addEventListener("popstate", (event) => {
-	loadPage(window.location.href, false);
+	// for some reason something goes wrong if you use
+	// window.location.href
+	loadPage(window.location.pathname, false);
 })
 
 document.addEventListener("DOMContentLoaded", () => {
