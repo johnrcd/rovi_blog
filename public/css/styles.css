@@ -1,19 +1,3 @@
-.panel, .postPanel {
-	background: var(--panel-background);
-	border-radius: var(--panel-radius);
-	box-shadow: var(--panel-shadow);
-	backdrop-filter: var(--panel-filter);
-	-webkit-backdrop-filter: var(--panel-filter);
-	border: var(--panel-border);
-
-	max-width: var(--panel-width);
-	margin: auto;
-	margin-top: var(--panel-spacing);
-	margin-bottom: var(--panel-spacing);
-
-	display: var(--header-display);
-}
-
 .background {
 	position: fixed;
 	display: block;
@@ -22,60 +6,6 @@
 	top: 0;
 	left: 0;
 	z-index: -10;
-}
-
-.header {
-	padding: calc(var(--panel-padding) / 2) var(--panel-padding);
-	padding-top: var(--panel-padding);
-	border-bottom: var(--header-divider-bottom);
-	border-right: var(--header-divider-right);
-	background: var(--header-background);
-	border-radius: var(--header-border-radius-1) var(--header-border-radius-2) var(--header-border-radius-3) var(--header-border-radius-4);
-}
-
-	.header__content {
-		display: flex;
-		flex-direction: var(--header-flex-direction);
-		align-items: center;
-		justify-content: var(--header-justify-content);
-	}
-	.header__siteTitle {
-		font-size: 2rem;
-		font-weight: var(--header-title-weight);
-		text-decoration: none;
-	}
-
-	.header__siteTitle:hover::before,
-	.header__siteTitle:focus::before {
-		content: var(--header-title-hover-before-content);
-	}
-
-	.header__ul {
-		display: flex;
-		flex-direction: var(--header-menu-flex-direction);
-		align-items: center;
-		justify-content: var(--header-menu-justify-content);
-		gap: var(--header-menu-gap);
-		list-style-type: none;
-		list-style-position: outside;
-		padding: 0;
-		margin: 0.5rem 1rem;
-	}
-
-	.header__a {
-		text-decoration: none;
-	}
-
-.content {
-	padding: calc(var(--panel-padding) / 2) var(--panel-padding);
-	padding-top: calc(var(--panel-padding) / 2);
-}
-	.content > *:first-child {
-		margin-top: calc(var(--panel-padding) / 2);
-	}
-
-.postPanel {
-	display: block;
 }
 
 .posts {
@@ -146,7 +76,6 @@
 	padding: calc(var(--panel-padding) / 2) var(--panel-padding);
 	padding-top: 0;
 	margin: 0;
-	background: var(--header-background);
 	border-radius: var(--panel-radius) var(--panel-radius) 0 0;
 }
 	.postHeader::after {
@@ -202,7 +131,6 @@
 	.postContent h2 a,
 	.postContent h3 a,
 	.postContent p {
-		/* max-width: 55ch; */
 	}
 
 	.postContent h2 a {

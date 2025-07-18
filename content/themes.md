@@ -8,6 +8,10 @@ eleventyNavigation:
 
 Site themes.
 
+<noscript>
+	JavaScript is required to use the theme engine. Please enable it!
+</noscript>
+
 <ul class="themes">
 	<li class="themes__li">
 		<button class="themes__button">

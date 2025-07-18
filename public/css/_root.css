@@ -70,39 +70,6 @@
 	--selection-color: #000000;
 	--selection-background: rgb(122, 255, 252);
 
-	/* PANEL SETTINGS */
-	--panel-background: rgba(255, 255, 255, 0.2);
-	--panel-radius: 16px;
-	--panel-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-	--panel-filter: blur(5px);
-	--panel-border: 1px solid rgba(255, 255, 255, 0.3);
-	--panel-padding: 16px;
-
-	/* header */
-	--header-flex-direction: row;
-	--header-padding: 8px;
-	--header-padding-top: calc(var(--header-padding) - var(--panel-radius));
-	--header-title-weight: 700;
-	--header-divider: 1px solid var(--color-text);
-
-	--header-menu-flex-direction: row
-	--header-menu-gap: 2rem
-	--header-menu-justify-content: space-between
-	--header-justify-content: space-between
-	--header-title-hover-before-content: "> "
-
-	--header-border-radius-1: var(--panel-radius)
-	--header-border-radius-2: var(--panel-radius)
-	--header-border-radius-3: 0
-	--header-border-radius-4: 0
-
-	--header-divider-bottom: var(--header-divider)
-	--header-divider-right: none
-
-	--zoom: 100%;
-
-	/* --- */
-
 	font-size: 100%;
 
 	font-synthesis: none;
@@ -115,7 +82,7 @@
 	font-variation-settings: "wdth" 100;
 	line-height: 1.5;
 
-	zoom: var(--zoom);
+	zoom: 100%;
 }
 
 

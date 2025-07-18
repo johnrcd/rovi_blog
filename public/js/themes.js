@@ -1,4 +1,8 @@
 let initialized = false;
+let currentTheme = null;
+
+const themePrefix = "CURRENT_THEME_CSS_";
+const themeRootPath = "/css/themes/";
 
 // note: don't put ;'s at the end of the values -- it doesn't apply the css
 const themes = {
@@ -48,41 +52,6 @@ const themes = {
 		"highlightColorSecondary" : "",      // (optional) color value
 		"highlightBackgroundSecondary" : "", // (optional) color value
 
-		// see information in _root.css for more information on what the panel is
-		"panel": { // (optional)
-			"spacing" : "",    // (optional) units (px), default 64px
-			"width" : "",      // (optional) units (px, ch), default 80ch
-			"border": "",      // (optional) css border, default none
-			"background" : "", // (optional) css color, default rgba(0,0,0,0)
-			"padding" : "",    // (optional) units (px, em), default 0
-			"radius" : "",     // (optional) units (px), default 0
-		},
-
-		"header": { // (optional)
-			// note: on mobile, title will always be at the top
-			"titleOnTop" : false, // (optional) boolean, default false
-			"boldTitle": true,    // (optional) boolean, default true
-			"isVertical" : false, // (optional) boolean, default false
-			"padding": "",        // (optional) units (px), default 0
-			"background" : "",    // (optional) css color, default rgba(0,0,0,0)
-			"divider" : "",       // (optional) css border, default 1px solid var(--color-text)
-		},
-
-		// used to greate a glassmorphism effect for the panel
-		// this is separated from the rest of panel because i generate the values
-		// of these properties using https://css.glass/
-
-		// you can use this instead of panel if there's a property that panel
-		// doesn't have, but not recommended since glass has a very specific
-		// intended use case
-		"glass" : { // (optional)
-			"background" : "", // (optional) color value, overrides panel.background
-			"radius" : "",     // (optional) units (px), overrides panel.radius
-			"shadow" : "",     // (optional) css box-shadow, default 0
-			"filter": "",      // (optional) css filter, default none
-			"border" : "",     // (optional) css border, default border
-		},
-
 		// if set, allows for particles
 		// see https://github.com/marcbruederlin/particles.js for details
 		"particles" : "" // (optional) particle.js json config
@@ -112,27 +81,6 @@ const themes = {
 		"highlightBackground" : "rgba(68, 107, 106, 0.4)",
 		"highlightColorSecondary" : "inherit",
 		"highlightBackgroundSecondary" : "rgba(68, 107, 106, 0.25)",
-
-		"panel": {
-			"spacing" : "64px",
-			"width" : "60ch",
-			"padding" : "16px",
-		},
-
-		"header": {
-			"titleOnTop" : false,
-			"boldTitle": true,
-			"padding": "8px",
-			"isVertical": false,
-		},
-
-		"glass" : {
-			"background" : "rgba(255, 255, 255, 0.02)",
-			"radius" : "16px",
-			"shadow" : "0 4px 16px rgba(0, 0, 0, 0)",
-			"filter": "blur(3.3px)",
-			"border" : "1px solid rgba(255, 255, 255, 0)",
-		},
 
 		"particles" : {
 			selector: '.background',
@@ -174,26 +122,6 @@ const themes = {
 		"highlightBackground" : "#ffb647",
 		"highlightColorSecondary" : "#000000",
 		"highlightBackgroundSecondary" : "#ffaa75",
-
-		"panel": {
-			"spacing" : "64px",
-			"width" : "60ch",
-			"padding" : "16px",
-		},
-
-		"header": {
-			"titleOnTop" : false,
-			"boldTitle": true,
-			"padding": "8px",
-		},
-
-		"glass" : {
-			"background" : "rgba(70, 20, 35, 0.18)",
-			"radius" : "16px",
-			"shadow" : "0 4px 16px rgba(0, 0, 0, 0)",
-			"filter": "blur(3.3px)",
-			"border" : "1px solid rgba(255, 255, 255, 0.15)",
-		},
 
 		"particles" : {
 			selector: '.background',
@@ -277,36 +205,14 @@ const themes = {
 
 		"highlightColorSecondary" : "#ffffffff",      // (optional) color value
 		"highlightBackgroundSecondary" : "rgba(226, 99, 146, 1)", // (optional) color value
-
-		// see information in _root.css for more information on what the panel is
-		"panel": { // (optional)
-			"spacing" : "64px", // (optional) units (px)
-			"width" : "80ch",   // (optional) units (px, ch)
-			"border": "2px solid rgba(213, 67, 120, 1)",
-			"radius": "16px",
-			"background" : "#FFECF8",
-			"padding" : "16px",
-		},
-
-		"header": { // (optional)
-			// note: on mobile, title will always be at the top
-			"titleOnTop" : true, // (optional) boolean
-			"boldTitle": true,   // (optional) boolean
-			"isVertical": false,
-			"background" : "#FFD3EF",
-			"divider" : "2px dotted rgba(213, 67, 120, 1)",
-		},
 	},
 }
 
-// --non-photo-blue: #b8ebf4ff;
-// --celadon: #abd8bdff;
-// --night: #121113ff;
-// --cherry-blossom-pink: #fbb1c2ff;
-// --magnolia: #f6f2ffff;
-
 addEventListener("DOMContentLoaded", (event) => {
 	console.log("Loading theme initializer...");
+
+	// load themes
+
 	const themeOnLoad = localStorage.getItem("theme_on_load");
 
 	if (themeOnLoad in themes) {
@@ -335,10 +241,27 @@ const bindThemeButtons = () => {
 	}
 };
 
-const setTheme = (theme) => {
+const setTheme = async (theme) => {
 	if (!(theme in themes)) {
 		throw new Error(`Theme \"${theme}\" not defined in theme library.`);
 	}
+
+	// delete old theme if exists
+	if (currentTheme != null) {
+		const previousTheme = document.getElementById(themePrefix + theme);
+		previousTheme?.remove();
+	}
+
+	// create new theme
+	currentTheme = theme;
+
+	const element = document.createElement("link");
+
+	element.rel = "stylesheet"; // For a stylesheet
+	element.href = themeRootPath + theme + ".css";
+	element.type = "text/css"; // Optional, but good practice for stylesheets
+
+	document.head.appendChild(element);
 
 	console.log(`Loading theme: ${theme}`);
 
@@ -352,13 +275,6 @@ const setTheme = (theme) => {
 	if (themeData.hasOwnProperty("fontWeight")) {
 		root.style.setProperty("--font-weight", themeData.fontWeight);
 	}
-
-	root.style.setProperty(
-		"--zoom",
-		themeData.hasOwnProperty("zoom") ?
-			themeData.zoom :
-		"100%"
-	);
 
 	root.style.setProperty("--color-text",              themeData.colorText            );
 	root.style.setProperty("--color-text-accent",       themeData.colorTextAccent      );
@@ -429,148 +345,6 @@ const setTheme = (theme) => {
 			"var(--highlight-background-secondary)"
 	);
 
-	root.style.setProperty("--panel-spacing", "   64px"         );
-	root.style.setProperty("--panel-width",      "60ch"         );
-	root.style.setProperty("--panel-border",     "0"            );
-	root.style.setProperty("--panel-background", "rgba(0,0,0,0)");
-	root.style.setProperty("--panel-radius"    , "0"            );
-	root.style.setProperty("--panel-shadow"    , "0"            );
-	root.style.setProperty("--panel-filter"    , "none"         );
-	root.style.setProperty("--panel-border"    , "0"            );
-	root.style.setProperty("--panel-padding"   , "0"            );
-
-	if (themeData.hasOwnProperty("panel")) {
-		if (themeData.panel.hasOwnProperty("width")) {
-			root.style.setProperty("--panel-width"  , themeData.panel.width);
-		}
-
-		if (themeData.panel.hasOwnProperty("spacing")) {
-			root.style.setProperty("--panel-spacing", themeData.panel.spacing);
-		}
-
-		if (themeData.panel.hasOwnProperty("border")) {
-			root.style.setProperty("--panel-border", themeData.panel.border);
-		}
-
-		if (themeData.panel.hasOwnProperty("background")) {
-			root.style.setProperty("--panel-background", themeData.panel.background);
-		}
-
-		if (themeData.panel.hasOwnProperty("padding")) {
-			root.style.setProperty("--panel-padding", themeData.panel.padding);
-		}
-
-		if (themeData.panel.hasOwnProperty("radius")) {
-			root.style.setProperty("--panel-radius", themeData.panel.radius);
-		}
-	}
-
-	if (themeData.hasOwnProperty("glass")) {
-		root.style.setProperty("--panel-background", themeData.glass.background);
-		root.style.setProperty("--panel-radius"    , themeData.glass.radius    );
-		root.style.setProperty("--panel-shadow"    , themeData.glass.shadow    );
-		root.style.setProperty("--panel-filter"    , themeData.glass.filter    );
-		root.style.setProperty("--panel-border"    , themeData.glass.border    );
-	}
-
-	root.style.setProperty("--header-display",                    "block"                      );
-	root.style.setProperty("--header-padding",                    "0"                          );
-	root.style.setProperty("--header-background",                 "rgba(0,0,0,0)"            );
-	root.style.setProperty("--header-divider"   ,                 "1px solid var(--color-text)");
-
-	root.style.setProperty("--header-menu-flex-direction",        "row"                        );
-	root.style.setProperty("--header-menu-gap",                   "2rem"                       );
-	root.style.setProperty("--header-menu-justify-content",       "space-between"              );
-	root.style.setProperty("--header-justify-content",            "space-between"              );
-	root.style.setProperty("--header-title-hover-before-content", "> "                         );
-
-	root.style.setProperty("--header-border-radius-1", "var(--panel-radius)");
-	root.style.setProperty("--header-border-radius-2", "var(--panel-radius)");
-	root.style.setProperty("--header-border-radius-3", "0"                  );
-	root.style.setProperty("--header-border-radius-4", "0"                  );
-
-	root.style.setProperty("--header-divider-bottom", "var(--header-divider)");
-	root.style.setProperty("--header-divider-right" , "none"                 );
-
-	if (themeData.hasOwnProperty("header")) {
-		if (themeData.header.hasOwnProperty("titleOnTop")) {
-			const isTitleOnTop = themeData.header.titleOnTop;
-			const flexDirection = isTitleOnTop ? "column" : "row";
-
-			root.style.setProperty("--header-flex-direction", flexDirection);
-
-			const paddingTop = isTitleOnTop ?
-				"var(--header-padding)" :
-				"calc(var(--header-padding) - var(--panel-radius))";
-
-			root.style.setProperty("--header-padding-top", paddingTop);
-		}
-
-		if (themeData.header.hasOwnProperty("boldTitle")) {
-			const fontWeight = themeData.header.boldTitle ? 700 : "var(--font-weight)";
-			root.style.setProperty("--header-title-weight", fontWeight);
-		}
-
-		if (themeData.header.hasOwnProperty("isVertical")) {
-			if (themeData.header.isVertical) { // ruh roh
-				root.style.setProperty("--header-display", "flex");
-			}
-
-			// please.
-			// who convinced me to have a website that could cleanly swap between a
-			// top nav bar and a side nav bar.
-
-			// do not do this to yourself.
-
-			root.style.setProperty(
-				"--header-menu-flex-direction",
-				themeData.header.isVertical ? "column" : "row"
-			);
-
-			root.style.setProperty(
-				"--header-menu-gap",
-				themeData.header.isVertical ? "0.25rem" : "2rem"
-			);
-
-			root.style.setProperty(
-				"--header-menu-justify-content",
-				themeData.header.isVertical ? "start" : "space-between"
-			);
-
-			root.style.setProperty(
-				"--header-justify-content",
-				themeData.header.isVertical ? "start" : "space-between"
-			);
-
-			root.style.setProperty(
-				"--header-title-hover-before-content",
-				themeData.header.isVertical ? "" : "> "
-			);
-
-			/* top-left | top-right | bottom-right | bottom-left */
-			root.style.setProperty("--header-border-radius-1", themeData.header.isVertical ? "var(--panel-radius)" : "var(--panel-radius)");
-			root.style.setProperty("--header-border-radius-2", themeData.header.isVertical ? "0"                   : "var(--panel-radius)");
-			root.style.setProperty("--header-border-radius-3", themeData.header.isVertical ? "0"                   : "0"                  );
-			root.style.setProperty("--header-border-radius-4", themeData.header.isVertical ? "var(--panel-radius)" : "0"                  );
-
-			root.style.setProperty("--header-divider-bottom", themeData.header.isVertical ? "none" : "var(--header-divider)");
-			root.style.setProperty("--header-divider-right" , themeData.header.isVertical ? "var(--header-divider)" : "none");
-		}
-
-		if (themeData.header.hasOwnProperty("padding")) {
-			root.style.setProperty("--header-padding", themeData.header.padding);
-		}
-
-		if (themeData.header.hasOwnProperty("background")) {
-			root.style.setProperty("--header-background", themeData.header.background);
-		}
-
-		if (themeData.header.hasOwnProperty("divider")) {
-			root.style.setProperty("--header-divider", themeData.header.divider);
-		}
-	}
-
-	const hasParticles = themeData.hasOwnProperty("particles")
 	const particleOptions = themeData.hasOwnProperty("particles") ?
 		themeData.particles : {
 			selector: '.background',
@@ -589,7 +363,7 @@ const setTheme = (theme) => {
 
 	// reinitializing the particle system causes the particles to move superfast
 	// hotfix is to simply refresh page (spa my ass...)
-	if (hasParticles && initialized) {
+	if (initialized) {
 		window.location.reload();
 	}
 
