@@ -11,7 +11,7 @@ let anchors = [];
  * @param {Event} event The event information given from an anchor tag during
  * a click event.
  */
-const loadPage = async(url) => {
+const loadPage = async(url, updateHistory) => {
 	const response = await fetch(url);
 	const text = await response.text();
 
@@ -24,9 +24,12 @@ const loadPage = async(url) => {
 		anchor.removeEventListener("click", loadPage);
 	});
 
+	document.title = doc.title;
 	panel.innerHTML = doc.getElementById("content").innerHTML;
 
-	history.pushState({}, "", url);
+	if (updateHistory) {
+		history.pushState({}, "", url);
+	}
 
 	loadAnchors();
 }
@@ -50,13 +53,13 @@ const loadAnchors = () => {
 	anchors.forEach(anchor => {
 		anchor.addEventListener("click", (event) => {
 			event.preventDefault();
-			loadPage(event.target.href);
+			loadPage(event.target.href, true);
 		})
 	});
 };
 
 window.addEventListener("popstate", (event) => {
-	loadPage(window.location.href);
+	loadPage(window.location.href, false);
 })
 
 document.addEventListener("DOMContentLoaded", () => {
