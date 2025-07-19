@@ -1,6 +1,7 @@
 ---
 title: "hello world"
 date: 2024-02-04
+category: "console.log"
 
 description: "console.log(\"hello world\");"
 date_edited: 2024-08-08

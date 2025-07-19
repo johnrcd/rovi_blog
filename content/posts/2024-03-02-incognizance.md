@@ -2,6 +2,7 @@
 title: "incognizance"
 date: 2024-03-01
 tags: behind_the_scenes projects music
+category: "retrospective"
 
 description: "definition: &quot;the state of being unaware or informed&quot;"
 toc: true

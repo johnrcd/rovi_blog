@@ -2,6 +2,7 @@
 title: "The Taskboard"
 date: 2024-06-02
 tags: web_dev projects code
+category: "retrospective"
 
 description: "tl;dr: jira board but for me"
 # date_edited: 2024-04-13 14:35:00 -0600

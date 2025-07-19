@@ -1,5 +1,5 @@
 ---
-title: deep dive // Website Themes
+title: Website Themes
 description: a tutorial on how to unnecessarily complicate a website
 tags: ["webdev", "code", "css", "javascript"]
 is_published: true
