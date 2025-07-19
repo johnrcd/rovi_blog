@@ -109,7 +109,7 @@ const themes = {
 		"colorTextCodeSymbol" : "#ffb647",
 		"colorTextCodeComment" : "rgba(167, 102, 37, 1)",
 
-		"code" : { // (optional)
+		"code" : {
 			"colorBackground" : "rgba(1, 2, 8, 0.7)",
 			"colorTextSymbol" : "#ffb647",
 			"colorTextComment" : "rgba(167, 102, 37, 1)",
@@ -139,12 +139,12 @@ const themes = {
 		},
 	},
 	"isabelle": {
-		"fontNormal" : '"MS UI Gothic", "Comic Neue", cursive', // font family
+		"fontNormal" : '"MS UI Gothic", "Comic Neue", cursive',
 		"fontWeight" : "600",
-		"fontMono" : "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",   // font family
+		"fontMono" : "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
 
 		"colorText" : "#501b38ff",
-		"colorTextAccent" : "#7d4a6dff",   // color value
+		"colorTextAccent" : "#7d4a6dff",
 		// https://theplusaddons.com/blog/pastel-gradient-backgrounds-for-elementor/
 		// https://codepen.io/MHLut/pen/JKEjJK?editors=1100
 		// https://codepen.io/JeanQuicheLait/pen/XWdZNwG
