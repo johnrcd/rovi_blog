@@ -28,13 +28,13 @@ The main reason I started working on this project was because of [_comfortable s
 
 The last time I became intensely invested into a piece of media (_Bocchi the Rock_), I ended up releasing an EP (_Fascination_) to put all that energy somewhere, so it wasn't suprising to me that I very quickly wanted to make an album.
 
-Another reason why I started this project was a growing frustration with music at the time -- tl;dr: burnout -- and wanting to do something different. I think every creator has to choose that balance on what they want to work on, and what they think others would enjoy. I'm not any different -- a decent amount of music I've released has partially been because I thought it would be good on Spotify, but I wanted this album to be different -- making it only because I was inspired, and not because I thought others would enjoy it.\[^creative\_self\_vs\_others\]
+Another reason why I started this project was a growing frustration with music at the time — tl;dr: burnout — and wanting to do something different. I think every creator has to choose that balance on what they want to work on, and what they think others would enjoy. I'm not any different — a decent amount of music I've released has partially been because I thought it would be good on Spotify, but I wanted this album to be different — making it only because I was inspired, and not because I thought others would enjoy it.\[^creative\_self\_vs\_others\]
 
 \[^creative\_self\_vs\_others\]: Even though I said that I was making incognizance just for me, that's not fully accurate. It's not like you can turn off the part of your brain that says "I care about what others think." It's close enough though, and I don't think I know enough about my own thoughts to get this deep into the details.
 
 ## development
 
-As with most of my more-than-one instrumental releases, the songs are usually hacked together from a bunch of sources and/or ideas that I think fit compositionally(?), though _Incognizance_ had a bit more structure to it. I knew that I wanted the entire album to be something that you had to actively listen too -- a part of why I liked the song braincells is that it took me from passively listening (bored on Instagram), to actively listening. The song wasn't particularly catchy (at least, not in the way a pop song is catchy), but it made me pause to listen to it again.
+As with most of my more-than-one instrumental releases, the songs are usually hacked together from a bunch of sources and/or ideas that I think fit compositionally(?), though _Incognizance_ had a bit more structure to it. I knew that I wanted the entire album to be something that you had to actively listen too — a part of why I liked the song braincells is that it took me from passively listening (bored on Instagram), to actively listening. The song wasn't particularly catchy (at least, not in the way a pop song is catchy), but it made me pause to listen to it again.
 
 I'm not really sure how I should talk about this album, but I suppose going through the track order is good enough?
 
@@ -64,11 +64,11 @@ My favourite part of this song is the ending, where the main synths cut off. You
 
 ### 04\. moonlight
 
-Moonlight started off as a random concept song I had for a visual novel -- meeting someone outside and bonding with them, or something like that. The original song already fitted the album pretty well, but I updated the instrumentation to be a bit more interesting.
+Moonlight started off as a random concept song I had for a visual novel — meeting someone outside and bonding with them, or something like that. The original song already fitted the album pretty well, but I updated the instrumentation to be a bit more interesting.
 
 The main thing I changed between the song now and before was increasing the volume of those little droplets that you hear -- I just love the way it pops between your ears. I made sure to crank it up at the end just to get that burst of ear candy.
 
-Actually, I lied -- the droplets weren't the main change, but they were my favourite so they get special treatment(!!!). Everything else was just boring -- choosing a quieter piano, getting rid of instruments that were too loud, blah blah blah --
+Actually, I lied — the droplets weren't the main change, but they were my favourite so they get special treatment(!!!). Everything else was just boring — choosing a quieter piano, getting rid of instruments that were too loud, blah blah blah —
 
 > SIDENOTE: For some reason, when I play this song with Windows Media Player, it displays this random cover art of hangman on a newspaper. I honestly have no idea how this came about.
 
@@ -109,7 +109,7 @@ My favourite part of this song is when it goes:
 
 > Q: what does this mean
 
-> A: timestamp -- 0:42
+> A: timestamp — 0:42
 
 SIDENOTE: the rendering of this may break on mobile whoops
 
