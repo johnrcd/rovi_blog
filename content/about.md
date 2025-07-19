@@ -5,6 +5,9 @@ eleventyNavigation:
   key: About
   order: 2
 ---
+
+<h1>About</h1>
+
 Hi, I'm Rovi Decena! I'm a software developer with a lot of side projects.
 
 Probably too much.

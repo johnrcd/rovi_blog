@@ -6,7 +6,9 @@ eleventyNavigation:
   order: 6
 ---
 
-Site themes.
+<h1>Themes!</h1>
+
+Choose a site theme from one of the optinos below:
 
 <noscript>
 	JavaScript is required to use the theme engine. Please enable it!
@@ -39,3 +41,11 @@ Site themes.
 		</button>
 	</li>
 </ul>
+
+<hr>
+
+Q: Themes???
+
+A: [Yes.](/pages/whats-a-theme)
+
+

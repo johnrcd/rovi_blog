@@ -1,9 +1,19 @@
----
-pagination:
-  data: categories
-  size: 1
-  alias: category
-permalink: "category/{{ category.name | slugify }}/"
+---js
+// <script>
+const pagination = {
+	data: "categories",
+	size: 1,
+	alias: "category",
+};
+
+const eleventyExcludeFromCollections = true;
+
+const eleventyComputed = {
+	title: "Category: {{ category.name }}",
+	permalink: function(data) {
+		return `category/${this.slugify(data.category.name)}/`;
+	}
+};
 ---
 
 <h1>Category: {{ category.name }}</h1>
