@@ -1,7 +1,6 @@
 .panel, .postPanel {
 	max-width: 60ch;
 	margin: auto;
-	margin-bottom: 64px;
 	padding: 16px;
 }
 
@@ -41,16 +40,66 @@
 		text-decoration: none;
 	}
 
+.postPanel {
+	/* margin: 0; */
+	padding-top: 0;
+}
+
+.postHeader {
+	background-color: var(--color-text);
+	color: var(--color-background);
+	padding: 0.5rem;
+	position: relative;
+	text-wrap: nowrap;
+}
+
+	.postHeader__title {
+		background-color: var(--color-text);
+		color: var(--color-background);
+		font-weight: 700;
+		font-size: 2.5rem;
+		margin: 0;
+		padding: 0;
+		margin-bottom: 1rem;
+		line-height: 2.5rem;
+		text-wrap: wrap;
+	}
+
+	.postHeader__description {
+		background-color: var(--color-text);
+		color: var(--color-background);
+		font-weight: 700;
+		font-size: 1.25rem;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		text-wrap: wrap;
+		margin-bottom: 0rem;
+	}
+
+	/* pov: me breaking BEM because i'm lazy */
+	.postHeader > p,
+	.postHeader > p > time {
+		background-color: var(--color-text);
+		color: var(--color-background);
+	}
+
+	.postHeader__options > a {
+		background-color: var(--color-text);
+		color: var(--color-background);
+	}
+
 	.postContent h2 > a {
 		color: var(--color-background);
-		font-size: 2.5rem;
+		font-size: 2rem;
 		background: var(--color-text);
-		padding: 0.5rem 1rem;
+		padding: 0.5rem 0.75rem;
 		line-height: 1.0;
 		max-width: 100%;
 		display: block;
 		text-decoration: none;
 		text-wrap: wrap;
+		font-weight: 700;
 	}
 
 	.postContent h3 > a {
@@ -63,4 +112,5 @@
 		padding: 0;
 		text-decoration: none;
 		text-wrap: wrap;
+		font-weight: 700;
 	}
