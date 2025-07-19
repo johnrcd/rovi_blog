@@ -4,4 +4,5 @@ export default {
 	],
 	"layout": "layouts/post.njk",
 	"permalink": "/post/{{ title | slugify }}/",
+	"category" : "unsorted",
 };

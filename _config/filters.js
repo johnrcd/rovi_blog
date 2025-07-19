@@ -40,4 +40,14 @@ export default function(eleventyConfig) {
 	eleventyConfig.addFilter("sortAlphabetically", strings =>
 		(strings || []).sort((b, a) => b.localeCompare(a))
 	);
+
+	eleventyConfig.addFilter('categoryFilter', function(collection, category) {
+	if (
+		!category ||
+		category === undefined
+	) return collection;
+		const filtered1 = collection.filter(item => item.data.category !== undefined);
+		const filtered2 = filtered1.filter(item => item.data.category.toString().toLowerCase() == category.toString().toLowerCase())
+		return filtered2;
+});
 };

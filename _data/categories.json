@@ -1,0 +1,22 @@
+[
+	{
+		"name": "Deep Dive",
+		"description" : "Deep Dives are longer posts about a specific problem I've had to deal with in a project (or more often than not, multiple projects). They focus more on implementation than what the problem is trying to solve, and are probably the most-- and probably the least sensical because ofi t. "
+	},
+	{
+		"name" : "console.log",
+		"description" : "uhh, basically stuff that barely counts as a post."
+	},
+	{
+		"name" : "Retrospective",
+		"description" : "Retrospectives are... retrospectives? These posts are typically written and uploaded right before or soon after I release a project (or major update to one). I used to call these Behind the Scenes but I like the word flow of Retrospective, so we're sticking with that."
+	},
+	{
+		"name" : "Tutorial",
+		"description" : "How to make, implement, or create something. I don't really plan on ever doing tutorials directly, but some of my posts have tutorial-like content that benefit from being streamlined."
+	},
+	{
+		"name" : "Unsorted",
+		"description" : "I have no idea where to put these posts -- either because they represent a category of posts I don't write that much, they don't fit anywhere, or I... just haven't sorted them yet. Whoops."
+	}
+]

@@ -1,0 +1,25 @@
+---
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "category/{{ category.name | slugify }}/"
+---
+
+<h1>Category: {{ category.name }}</h1>
+
+<p>{{ category.description }}</p>
+
+<a href="/posts/">Back to Posts</a>
+
+{% set post_count = collections.post | categoryFilter(category.name) | length %}
+
+<hr />
+
+{% if post_count == 0 %}
+	<p>There's no posts here...</p>
+{% endif %}
+
+{% set posts_list = collections.post | categoryFilter(category.name) %}
+{% include "posts_list.njk" %}
+

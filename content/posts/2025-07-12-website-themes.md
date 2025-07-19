@@ -4,6 +4,7 @@ description: a tutorial on how to unnecessarily complicate a website
 tags: ["webdev", "code", "css", "javascript"]
 is_published: true
 date: 2025-07-12
+category: "deep dive"
 ---
 
 Awhile back (at the time of writing this), I switched from Namecheap to Cloudflare for domain registration and hosting. During that move, my old blog went down, and I never ended up getting it up and running again. If you attempt to access it, the only thing that’ll load is my portfolio page, except without any CSS.
