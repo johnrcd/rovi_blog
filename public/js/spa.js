@@ -18,7 +18,7 @@ const loadPage = async(url, updateHistory) => {
 	const hash = window.location.hash;
 
 	if (destination.href.replace(hash,"") === root.href.replace(hash,"")) {
-		console.log("hash link clicked");
+		document.querySelector(hash).scrollIntoView(true);
 		return;
 	}
 
