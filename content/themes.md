@@ -8,7 +8,7 @@ eleventyNavigation:
 
 <h1>Themes!</h1>
 
-Choose a site theme from one of the optinos below:
+Choose a site theme from one of the options below:
 
 <noscript>
 	JavaScript is required to use the theme engine. Please enable it!
@@ -19,6 +19,9 @@ Choose a site theme from one of the optinos below:
 		<button class="themes__button">
 			midnight
 		</button>
+		<div class="themes__bonus">
+			(default)
+		</div>
 	</li>
 	<li>
 		<button class="themes__button">
