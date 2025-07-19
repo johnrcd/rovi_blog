@@ -9,7 +9,7 @@
 
 :root{
 	/* global settings */
-	--font-normal: "Manrope: "Poppins: "Open Sans: sans-serif;
+	--font-normal: 'Manrope, Poppins, "Open Sans" sans-serif';
 	--font-mono: "monospace";
 	--font-weight: 400;
 

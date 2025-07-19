@@ -1,0 +1,42 @@
+.panel, .postPanel {
+	max-width: 79ch;
+	margin: auto;
+	margin-bottom: 64px;
+	padding: 16px;
+}
+
+.header {
+	padding: 16px 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-bottom: 1px solid var(--color-text-accent);
+}
+	.header__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.header__siteTitle {
+		font-size: 2rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.header__siteTitle:hover::before,
+	.header__siteTitle:focus::before {
+		content: "> ";
+	}
+
+	.header__ul {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		list-style-type: none;
+		list-style-position: outside;
+		padding: 0;
+	}
+
+	.header__a {
+		text-decoration: none;
+	}

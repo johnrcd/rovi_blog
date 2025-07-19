@@ -58,7 +58,7 @@ const themes = {
 	},
 	"midnight" : {
 		"fontNormal" : '"Manrope", "Poppins", "Open Sans", sans-serif',
-		"fontMono" : "monospace",
+		"fontMono" : "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
 
 		"colorText" : "#EEEEEE",
 		"colorTextAccent" : "#85A7A8",
@@ -99,7 +99,7 @@ const themes = {
 	},
 	"sunset" : {
 		"fontNormal" : '"Poppins", "Open Sans", sans-serif',
-		"fontMono" : "monospace",
+		"fontMono" : "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
 
 		"colorText" : "#EEEEEE",
 		"colorTextAccent" : "#ffaa75",
@@ -141,7 +141,7 @@ const themes = {
 	"isabelle": {
 		"fontNormal" : '"MS UI Gothic", "Comic Neue", cursive', // font family
 		"fontWeight" : "600",
-		"fontMono" : "monospace",   // font family
+		"fontMono" : "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",   // font family
 
 		"colorText" : "#501b38ff",
 		"colorTextAccent" : "#7d4a6dff",   // color value
@@ -205,6 +205,24 @@ const themes = {
 
 		"highlightColorSecondary" : "#ffffffff",      // (optional) color value
 		"highlightBackgroundSecondary" : "rgba(226, 99, 146, 1)", // (optional) color value
+	},
+	"terminal": {
+		"fontNormal" : '"IBM Plex Mono", monospace',
+		"fontMono" : '"IBM Plex Mono", monospace',
+
+		"colorText" : "#d1d6d6",
+		"colorTextAccent" : "#b9e9bf",
+		"colorBackground" : "#000000",
+
+		"code" : {
+			"colorTextComment" : "#749178ff",
+		},
+
+		"selectionColor" : "#000000",
+		"selectionBackground" : "#b9e9bf",
+
+		"highlightColor" : "#000000",
+		"highlightBackground" : "#b9e9bf",
 	},
 }
 
