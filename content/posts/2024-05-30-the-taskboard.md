@@ -25,8 +25,6 @@ I didn't hate the idea of a to do list app, but I wanted to expand upon it. I ha
 
 ## what is the taskboard?
 
-![taskboard home page]({{ site.url }}{{ site.baseurl }}/assets/images/my_websites/taskboard_home.png)
-
 To put it simply; the Taskboard is a JIRA board, except I'm the only one actually handling tickets.
 
 If you didn't get that, the Taskboard is a website where you can submit tasks for me to do. These tasks are expected to be related to stuff I do (games, music, websites). Each task is viewable on the board, displaying information as to the type of task, details of the task, and the current status of it.

@@ -12,8 +12,6 @@ date_edited: 2024-4-29
 <!-- table of contents hack -->
 <h2 style="color:transparent; font-size:1;">(top of post)</h2>
 
-![incognizance cover, background only]({{ site.url }}{{ site.baseurl }}/assets/images/my_music/incognizance_cover_noText.png)
-
 "*incognizance*" is the name of an experimental (well, for me at least) album I worked on. There's seven tracks in there, but each track is relatively short, and the entire album is under 15 minutes. You don't have to listen to it before reading this, but I mean... music?
 
 The album was released on March 14 2024. You can check it out [here](https://johnrcd.bandcamp.com/album/incognizance).
