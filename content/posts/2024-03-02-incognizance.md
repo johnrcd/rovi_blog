@@ -1,6 +1,6 @@
 ---
 title: incognizance
-description: "definition: &quot;the state of being unaware or informed&quot;"
+description: "definition: the state of being unaware or informed"
 is_published: true
 date: 2024-03-01
 ---
