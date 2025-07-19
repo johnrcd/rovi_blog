@@ -13,7 +13,6 @@
 	margin-bottom: 64px;
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 80ch) {
 	.panel, .postPanel {
 		border-radius: 0;

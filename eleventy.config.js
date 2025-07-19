@@ -5,6 +5,7 @@ import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import markdownItFootnote from "markdown-it-footnote";
 
 import pluginFilters from "./_config/filters.js";
 
@@ -123,8 +124,8 @@ export default async function(eleventyConfig) {
 
 	const markdownLib = markdownIt(markdownItOptions).use(
 		markdownItAnchor,
-		markdownItAnchorOptions
-	);
+		markdownItAnchorOptions,
+	).use(markdownItFootnote);
 
 	eleventyConfig.setLibrary("md", markdownLib);
 }

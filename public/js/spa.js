@@ -12,6 +12,16 @@ let anchors = [];
  * a click event.
  */
 const loadPage = async(url, updateHistory) => {
+	// guard clause (not really): you clicked on a hash link
+	const destination = new URL(url, document.baseURI);
+	const root = new URL(document.baseURI);
+	const hash = window.location.hash;
+
+	if (destination.href.replace(hash,"") === root.href.replace(hash,"")) {
+		console.log("hash link clicked");
+		return;
+	}
+
 	const response = await fetch(url);
 	const text = await response.text();
 
