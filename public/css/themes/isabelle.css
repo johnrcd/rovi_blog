@@ -92,3 +92,34 @@
 	border-top: 2px dotted rgba(213, 67, 120, 1);
 	padding: 16px;
 }
+
+@media only screen and (max-width: 70ch) {
+	.header {
+		margin: 0;
+		border-radius: 0;
+	}
+	.panel, .postPanel {
+		display: flex;
+		flex-direction: column;
+		min-height: 100dvh;
+		margin: auto;
+		max-width: none;
+	}
+	.content {
+		flex: 1;
+		border-radius: 0;
+	}
+	.postHeader {
+		border-radius: 0;
+	}
+	.postHeader::after {
+		display: none;
+	}
+	.postFooter {
+		border-radius: 0;
+	}
+	.postFooter::before {
+		display: none;
+	}
+}
+
