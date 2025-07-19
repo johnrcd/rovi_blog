@@ -42,6 +42,7 @@ const loadPage = async(url, updateHistory) => {
 	}
 
 	loadAnchors();
+
 }
 
 /**
