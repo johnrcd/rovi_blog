@@ -2,9 +2,9 @@
 pre[class*="language-"] {
 	background: none;
 	font-family: var(--font-mono);
-	font-size: 1em;
+	font-size: 1rem;
 	text-align: left;
-	/* text-shadow: 0 -.1em .2em black; */
+	/* text-shadow: 0 -.1rem .2em black; */
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
@@ -24,6 +24,8 @@ pre[class*="language-"] {
 pre[class*="language-"],
 :not(pre) > code[class*="language-"] {
 	background: var(--code-color-background);
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 /* Code blocks */
@@ -34,16 +36,20 @@ pre[class*="language-"] {
 	/* box-shadow: 1px 1px .5em black inset; */
 	margin: .5em 0;
 	overflow: auto;
-	padding: 1em;
+	padding: 1rem;
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	// border-radius: .3em;
 	border: .13em solid hsl(0, 0%, 33%);
-	box-shadow: 1px 1px .3em -.1em black inset;
+	box-shadow: 1px 1px .3em -.1rem black inset;
 	padding: .15em .2em .05em;
 	white-space: normal;
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 .token.comment,
@@ -51,6 +57,7 @@ pre[class*="language-"] {
 .token.doctype,
 .token.cdata {
 	color: var(--code-color-text-comment);
+	font-family: var(--font-mono);
 }
 
 .token.tag,
@@ -58,6 +65,7 @@ pre[class*="language-"] {
 .token.number,
 .token.deleted {
 	/* color: hsl(14, 58%, 55%); #CF6A4C */
+	font-size: 1rem;
 }
 
 .token.keyword,
@@ -67,6 +75,8 @@ pre[class*="language-"] {
 .token.symbol,
 .token.builtin {
 	color: var(--code-color-text-keyword);
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 .token.attr-name,
@@ -81,6 +91,8 @@ pre[class*="language-"] {
 .token.variable,
 .token.inserted {
 	color: var(--code-color-text-symbol);
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 .token.atrule {
@@ -90,10 +102,14 @@ pre[class*="language-"] {
 .token.regex,
 .token.important {
 	color: var(--code-color-text-keyword);
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 .token.entity {
 	cursor: help;
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 /* Markup */
@@ -101,12 +117,16 @@ pre[class*="language-"] {
 .language-markup .token.attr-name,
 .language-markup .token.punctuation {
 	color: var(--code-color-text-keyword);
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 /* Make the tokens sit above the line highlight so the colours don't look faded. */
 .token {
 	position: relative;
 	z-index: 1;
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 .line-highlight.line-highlight {
@@ -116,6 +136,8 @@ pre[class*="language-"] {
 	border-top: 1px dashed hsl(0, 0%, 33%); /* #545454 */
 	margin-top: 0.75em; /* Same as .prism’s padding-top */
 	z-index: 0;
+	font-family: var(--font-mono);
+	font-size: 1rem;
 }
 
 .line-highlight.line-highlight:before,

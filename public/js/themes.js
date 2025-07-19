@@ -224,6 +224,30 @@ const themes = {
 		"highlightColor" : "#000000",
 		"highlightBackground" : "#b9e9bf",
 	},
+	"ultraviolet": {
+		"fontNormal" : "'Inter Tight', Overpass, Arial, Helvetica, sans-serif",
+		"fontMono" : "monospace",
+
+		"colorText" : "rgb(240, 240, 240)",
+		"colorTextAccent" : " rgb(200, 0, 250)",
+		"colorBackground" : "rgb(7, 7, 7)",
+
+		"code" : {
+			"colorTextKeyword" : "rgba(223, 96, 255, 1)",
+			"colorTextSymbol" : "rgba(220, 82, 255, 1)",
+			"colorTextComment" : "rgba(158, 33, 216, 1)",
+			"border": "1px dashed rgba(158, 33, 216, 1)",
+			"radius": "8px",
+		},
+
+		"selectionColor" : "rgb(7, 7, 7)",
+		"selectionBackground" : "rgb(240, 240, 240)",
+
+		"highlightColor" : "rgb(7, 7, 7)",
+		"highlightBackground" : "rgb(200, 0, 250)",
+		"highlightColorSecondary" : "rgb(240, 240, 240)",
+		"highlightBackgroundSecondary" : "rgb(85, 0, 125)",
+	},
 }
 
 addEventListener("DOMContentLoaded", (event) => {
