@@ -27,13 +27,14 @@ const themes = {
 		// set these if the default values aren't good
 
 		"code" : { // (optional)
-			"colorBackground" : "",  // (optional) color value, default is "rgba(0, 0, 0, 0)"
-			"colorTextNormal" : "",  // (optional) color value, default copies colorText
-			"colorTextKeyword" : "", // (optional) color value, default copies colorTextAccent
-			"colorTextSymbol" : "",  // (optional) color value, default copies highlightBackground
-			"colorTextComment" : "", // (optional) color value, default copies highlightBackgroundSecondary
-			"border" : "",           // (optional) css border, default value 1px solid var(--color-text-accent);
-			"radius" : "",           // (optional) units (px), default 0
+			"colorBackground" : "",       // (optional) color value, default is "rgba(0, 0, 0, 0)"
+			"colorBackgroundInline" : "", // (optional) color value, default is "rgba(0, 0, 0, 0)"
+			"colorTextNormal" : "",       // (optional) color value, default copies colorText
+			"colorTextKeyword" : "",      // (optional) color value, default copies colorTextAccent
+			"colorTextSymbol" : "",       // (optional) color value, default copies highlightBackground
+			"colorTextComment" : "",      // (optional) color value, default copies highlightBackgroundSecondary
+			"border" : "",                // (optional) css border, default value 1px solid var(--color-text-accent);
+			"radius" : "",                // (optional) units (px), default 0
 		},
 
 		// used when you drag click over stuff
@@ -216,6 +217,7 @@ const themes = {
 
 		"code" : {
 			"colorTextComment" : "#749178ff",
+			"colorBackgroundInline" : "#39483bff",
 		},
 
 		"selectionColor" : "#000000",
@@ -328,17 +330,22 @@ const setTheme = async (theme) => {
 	root.style.setProperty("--highlight-color",         themeData.highlightColor       );
 	root.style.setProperty("--highlight-background",    themeData.highlightBackground  );
 
-	root.style.setProperty("--code-color-background",    "rgba(0,0,0,0)"                      );
-	root.style.setProperty("--code-color-text-normal",   "var(--color-text)"                    );
-	root.style.setProperty("--code-color-text-keyword",  "var(--color-text-accent)"             );
-	root.style.setProperty("--code-color-text-symbol",   "var(--highlight-background)"          );
-	root.style.setProperty("--code-color-text-comment",  "var(--highlight-background-secondary)");
-	root.style.setProperty("--code-border",              "1px solid var(--color-text-accent)"   );
-	root.style.setProperty("--code-radius",              "0"                                    );
+	root.style.setProperty("--code-color-background",         "rgba(0,0,0,0)"                      );
+	root.style.setProperty("--code-color-background-inline",  "rgba(0,0,0,0)"                      );
+	root.style.setProperty("--code-color-text-normal",        "var(--color-text)"                    );
+	root.style.setProperty("--code-color-text-keyword",       "var(--color-text-accent)"             );
+	root.style.setProperty("--code-color-text-symbol",        "var(--highlight-background)"          );
+	root.style.setProperty("--code-color-text-comment",       "var(--highlight-background-secondary)");
+	root.style.setProperty("--code-border",                   "1px solid var(--color-text-accent)"   );
+	root.style.setProperty("--code-radius",                   "0"                                    );
 
 	if (themeData.hasOwnProperty("code")) {
 		if (themeData.code.hasOwnProperty("colorBackground")) {
 			root.style.setProperty("--code-color-background", themeData.code.colorBackground);
+		}
+
+		if (themeData.code.hasOwnProperty("colorBackgroundInline")) {
+			root.style.setProperty("--code-color-background-inline", themeData.code.colorBackgroundInline);
 		}
 
 		if (themeData.code.hasOwnProperty("colorTextNormal")) {

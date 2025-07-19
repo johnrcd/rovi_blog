@@ -21,6 +21,7 @@
 	--color-image-monochrome-accent: rgba(200, 0, 250, 0.5);
 
 	--code-color-background: rgba(0,0,0,0);
+	--code-color-background-inline: rgba(0,0,0,0);
 	--code-color-text-normal: var(--color-text);
 	--code-color-text-keyword: var(--color-text-accent);
 	--code-color-text-symbol: var(--highlight-background);

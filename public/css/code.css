@@ -50,6 +50,13 @@ pre[class*="language-"] {
 	white-space: normal;
 	font-family: var(--font-mono);
 	font-size: 1rem;
+	background: var(--code-color-background-inline);
+}
+
+/* how does this not just run on every other code block. like HOW */
+:not(pre) > code {
+	background: var(--code-color-background-inline);
+	outline: 0.15rem solid var(--code-color-background-inline);
 }
 
 .token.comment,
