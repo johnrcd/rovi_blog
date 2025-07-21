@@ -217,7 +217,7 @@ const themes = {
 
 		"code" : {
 			"colorTextComment" : "#749178ff",
-			"colorBackgroundInline" : "#39483bff",
+			"colorBackgroundInline" : "#151b16ff",
 		},
 
 		"selectionColor" : "#000000",
