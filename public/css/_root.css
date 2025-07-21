@@ -154,3 +154,12 @@ hr {
 li > p {
 	margin: 0;
 }
+
+/* cutting edge css baby */
+/* https://caniuse.com/?search=scroll-margin-top */
+
+:target {
+	/* turns out since my website is SPA this only works if JS is disabled WHOOPS */
+	/* w/e it's nice to have */
+	scroll-margin-top: 16px;
+}

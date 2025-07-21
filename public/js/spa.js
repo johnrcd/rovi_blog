@@ -12,13 +12,22 @@ let anchors = [];
  * a click event.
  */
 const loadPage = async(url, updateHistory) => {
+	if (updateHistory) {
+		history.pushState({}, "", url);
+	}
 	// guard clause (not really): you clicked on a hash link
-	const destination = new URL(url, document.baseURI);
-	const root = new URL(document.baseURI);
 	const hash = window.location.hash;
 
-	if (destination.href.replace(hash,"") === root.href.replace(hash,"")) {
-		document.querySelector(hash).scrollIntoView(true);
+	if (hash != "") {
+		// https://stackoverflow.com/a/49860927
+		const rawPosition = document.getElementById(hash.replace("#", "")).getBoundingClientRect().top;
+		const offset = 16;
+		const position = rawPosition + window.pageYOffset - offset;
+
+		window.scrollTo({
+			top: position,
+			behavior: "smooth"
+		});
 		return;
 	}
 
@@ -37,10 +46,7 @@ const loadPage = async(url, updateHistory) => {
 	document.title = doc.title;
 	panel.innerHTML = doc.getElementById("content").innerHTML;
 
-	if (updateHistory) {
-		history.pushState({}, "", url);
-	}
-
+	window.scrollTo(0, 0);
 	loadAnchors();
 
 }
@@ -51,6 +57,7 @@ const loadPage = async(url, updateHistory) => {
  */
 const loadAnchors = () => {
 	const temp = Array.from(document.getElementsByTagName("a"));
+	window.scrollTo(0, 0);
 
 	temp.forEach(t => {
 		// do NOT try to SPA for links to different websites

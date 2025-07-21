@@ -6,6 +6,7 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItFootnote from "markdown-it-footnote";
+import pluginTOC from "eleventy-plugin-toc";
 
 import pluginFilters from "./_config/filters.js";
 
@@ -101,6 +102,10 @@ export default async function(eleventyConfig) {
 
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
+
+	// don't really use this atm cause... why
+	// MAYBE for tutorials.
+	eleventyConfig.addPlugin(pluginTOC);
 
 	eleventyConfig.addPlugin(IdAttributePlugin, {
 		// by default we use Eleventy's built-in `slugify` filter:
