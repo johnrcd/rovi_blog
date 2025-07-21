@@ -154,7 +154,8 @@
 	.postContent p {
 	}
 
-	.postContent h2 a {
+	.postContent h2 a,
+	.content h2 a {
 		text-decoration: none;
 		color: var(--highlight-color);
 		background: var(--highlight-background);
@@ -165,19 +166,38 @@
 	}
 
 	.postContent h2 a:hover::after,
-	.postContent h2 a:focus::after {
+	.postContent h2 a:focus::after,
+	.content h2 a:hover::after,
+	.content h2 a:focus::after {
 		content: " #";
 	}
 
-	.postContent h3 a {
-		text-decoration: none;
-		color: var(--highlight-color-secondary);
-		background: var(--highlight-background-secondary);
-		padding: 0 0.5rem;
+	.postContent h3 a,
+	.content h3 a {
+		text-decoration: underline;
+		text-decoration-color: var(--highlight-background);
+		text-decoration-thickness: 3px;
 	}
 
 	.postContent h3 a:hover::after,
-	.postContent h3 a:focus::after {
+	.postContent h3 a:focus::after,
+	.content h3 a:hover::after,
+	.content h3 a:focus::after {
+		content: " #";
+	}
+
+	.postContent h4 a,
+	.content h4 a {
+		text-decoration: underline;
+		font-style: oblique;
+		text-decoration-color: var(--highlight-background);
+		text-decoration-thickness: 2px;
+	}
+
+	.postContent h4 a:hover::after,
+	.postContent h4 a:focus::after,
+	.content h4 a:hover::after,
+	.content h4 a:focus::after {
 		content: " #";
 	}
 

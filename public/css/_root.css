@@ -150,3 +150,7 @@ hr {
 	margin-top: 1.25rem;
 	padding: 0;
 }
+
+li > p {
+	margin: 0;
+}
