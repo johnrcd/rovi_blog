@@ -201,6 +201,11 @@
 		content: " #";
 	}
 
+	.postContent img {
+		margin: auto;
+		display: block;
+	}
+
 	.postFooter::before {
 		content: "///////";
 		display: block;
