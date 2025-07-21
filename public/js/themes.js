@@ -250,6 +250,32 @@ const themes = {
 		"highlightColorSecondary" : "rgb(240, 240, 240)",
 		"highlightBackgroundSecondary" : "rgb(85, 0, 125)",
 	},
+	"serenity" : {
+		"fontNormal" : '"Merriweather", serif',
+		"fontMono" : "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
+
+		"colorText" : "#000000",
+		"colorTextAccent" : "#FF7A30",
+		"colorBackground" : "#E9E3DF",
+
+		"code" : {
+			"colorBackground" : "#fcdccbff",
+			"colorTextNormal" : "#000000",  // (optional) color value, default copies colorText
+			"colorTextKeyword" : "#000000", // (optional) color value, default copies colorTextAccent
+			"colorTextSymbol" : "#000000",  // (optional) color value, default copies highlightBackground
+			"colorTextComment" : "#000000", // (optional) color value, default copies highlightBackgroundSecondary
+			"border": "2px dotted #FF7A30",
+			"radius": "0px",
+		},
+
+		"selectionColor" : "#000000",
+		"selectionBackground" : "rgb(122, 255, 252)",
+
+		"highlightColor" : "#000000",
+		"highlightBackground" : "#FF7A30",
+		"highlightColorSecondary" : "#000000",
+		"highlightBackgroundSecondary" : "#e3986fff",
+	},
 }
 
 addEventListener("DOMContentLoaded", (event) => {

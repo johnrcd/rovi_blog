@@ -38,9 +38,14 @@ Choose a site theme from one of the options below:
 			terminal
 		</button>
 	</li>
-		<li>
+	<li>
 		<button class="themes__button">
 			ultraviolet
+		</button>
+	</li>
+	<li>
+		<button class="themes__button">
+			serenity
 		</button>
 	</li>
 </ul>

@@ -259,3 +259,18 @@
 		text-align: center;
 		font-size: 1.75rem;
 	}
+
+.tableOfContents {
+	display: none;
+	text-decoration: none;
+}
+
+	.tableOfContents__title {
+		font-weight: 700;
+		margin-top: 0;
+	}
+
+	.tableOfContents__link:hover::before,
+	.tableOfContents__link:focus::before {
+		content: "> ";
+	}

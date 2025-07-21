@@ -24,6 +24,14 @@ layout: layouts/_base.njk
 			</header>
 
 			<main class="postContent">
+				<aside class="tableOfContents">
+					<h2 class="tableOfContents__title">Table of Contents</h2>
+					<a href="#">(top)</a>
+					{{ content | toc | safe }}
+					<hr>
+					<a class="tableOfContents__link" href="/">go to home page</a>
+					<a class="tableOfContents__link" href="/posts/">go to posts</a>
+				</aside>
 				{{ content | safe }}
 			</main>
 
