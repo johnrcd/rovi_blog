@@ -71,6 +71,8 @@
 	--selection-color: #000000;
 	--selection-background: rgb(122, 255, 252);
 
+	--panel-padding: 16px;
+
 	font-size: 100%;
 
 	font-synthesis: none;

@@ -5,14 +5,14 @@ One of the major features of this site is the ability to customize the visual ap
 
 For the rest of this page, I will be treating it like a Q&A. (Or is it an FAQ?)
 
-## /main/
+## questions
 
 ### Why?
 
 I got the idea from the [CSS Zen Garden](https://csszengarden.com/), which wanted to show off the power of CSS by allowing visitors to dramatically change the look of the website by allowing them to update the CSS via user-submitted styles. I brought a simple version over for my [portfolio website](https://rovidecena.com/), and expanded upon it for this blog.
 
 
-### How did you implement it?
+### How does it work?
 
 Non-technical explanation: The data that stores each theme is located in a few files not immediately loaded by the website. When a theme is loaded, the necessary data is loaded.
 
@@ -20,7 +20,7 @@ Full: Themes are stored in a hybrid format in both individual stylesheets and a 
 
 There's a base stylesheet that's always loaded to ensure some elements always look similar, but themes can override appearances as needed, because they're at the bottom of the cascade (last `<link>` in the `<head>`) .
 
-## /contribute/
+## contribute
 
 ### Could I make a theme?
 
@@ -30,9 +30,11 @@ If you're familiar with programming and GitHub, you can send a PR with a theme y
 
 *   `/content/themes.md` is where the theme swapping buttons are stored. Just add a button with the name of your theme.
 
-*   `/public/js/themes.js` is where the theme logic is stored, but most important it's where the basic configuration options are. This is where you'll set primarily colour variables, but also things like fonts.
+*   `/public/js/themes.js` is where the theme logic is stored, but more important it's where the basic configuration options are. This is where you'll set colour variables, but also things like fonts.
 
-*   Each theme is expected to have a CSS file associated with it in `/public/css/`.
+*   Each theme is expected to have a CSS file associated with it in `/public/css/`. This allows you to change the layout as you wish.
+
+    *   There's not really a "style guide," but I recommend that you don't mess with anything that's already handled by `themes.js`. The point of `themes.js` (along with the website's default styling) is to provide a baseline so that you don't have to restyle the entire website.
 
 *   If you want to import a font, you can do so by updating `/_includes/_base.njk`. Just import it where all the other fonts are stored.
 

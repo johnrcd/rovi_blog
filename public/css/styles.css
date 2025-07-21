@@ -94,9 +94,8 @@
 	}
 
 .postHeader {
-	padding: calc(var(--panel-padding) / 2) var(--panel-padding);
-	padding-top: 0;
 	margin: 0;
+	padding: 0;
 	border-radius: var(--panel-radius) var(--panel-radius) 0 0;
 }
 	.postHeader::after {
@@ -106,9 +105,7 @@
 		text-align: center;
 	}
 	.postHeader__title {
-		/* line-height: 1; */
 		margin: 0;
-		padding-top: var(--panel-padding);
 		margin-bottom: 0;
 	}
 
@@ -145,8 +142,7 @@
 	}
 
 .postContent {
-	padding: calc(var(--panel-padding) / 2) var(--panel-padding);
-	padding-top: calc(var(--panel-padding) / 2);
+
 }
 
 	.postContent h2 a,
@@ -201,9 +197,16 @@
 		content: " #";
 	}
 
-	.postContent img {
+	.postContent img,
+	.content img {
 		margin: auto;
 		display: block;
+	}
+
+	.postContent > ul,
+	.content > ul {
+		list-style-position: outside;
+		padding-left: 16px;
 	}
 
 	.postFooter::before {
