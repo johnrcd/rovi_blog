@@ -14,9 +14,7 @@ which i used before i started using grunt for my microwave coding but it hard to
 
 ![](/_media/brackets.jpg)
 
-third, i just really what to express my HATE my HATRED my PURE RELENTLESS HATRED for
-
-![](/_media/brackets.jpg)
+third, i just really what to express my HATE my HATRED my PURE RELENTLESS HATRED for yellow binder:
 
 ![](/_media/yellow_binder.jpg)
 
