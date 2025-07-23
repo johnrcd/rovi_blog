@@ -65,6 +65,18 @@
 	flex-wrap: wrap;
 }
 
+@media only screen and (max-width: 70ch) {
+	.categories {
+		list-style-type: circle;
+		list-style-position: outside;
+		margin-left: 1rem;
+
+		flex-direction: column;
+		gap: 0rem;
+	}
+}
+
+
 .themes {
 }
 

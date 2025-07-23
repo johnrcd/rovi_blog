@@ -1,19 +1,17 @@
 .wall {
-	--header-width: 316px;
-	--header-padding: 16px;
-	--header-top-spacing: 32px;
-	--content-width: 55ch;
+	--max-content-width: 65ch;
 }
 
-.panel, .postPanel {
-	max-width: var(--content-width);
+.content {
+	display: block;
+	max-width: var(--max-content-width);
 	margin: auto;
 }
 
 .header__content {
 	background: var(--color-text);
 	color: var(--color-background);
-	padding: 2rem;
+	padding: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -26,6 +24,15 @@
 	padding: 0;
 	list-style-type: none;
 	list-style-position: outside;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.header {
+	min-width: 100vw;
+	max-width: 100vw;
+	width: 100vw;
+	display: block;
 }
 
 .header__a {
@@ -34,40 +41,44 @@
 	background: var(--color-text);
 	color: var(--color-background);
 }
-@media only screen and (min-width: 1400px) {
-	/* .header, .tableOfContents {
-		flex: 0;
-		flex-direction: column;
-		min-width: var(--header-width);
-		max-width: var(--header-width);
-		display: flex;
-		align-items: start;
-		justify-content: start;
+
+@media only screen and (min-width: 800px) {
+	.header {
+		margin: auto;
 		background: var(--color-text);
-		color: var(--color-background);
+	}
+	.header__content {
+		margin: auto;
+		flex-direction: row;
+		justify-content: space-between;
+		max-width: var(--max-content-width);
+	}
 
-		padding: 2rem;
+	.header__ul {
+		padding-right: 1rem;
+	}
+}
 
+@media only screen and (min-width: 1400px) {
+	.wall {
+		--header-width: 350px;
+	}
+
+	.header, .tableOfContents {
 		position: fixed;
 		left: 0;
 		top: 0;
-		min-height: 100dvh;
-	}
+		min-height: 100%;
+		min-width: var(--header-width);
+		max-width: var(--header-width);
 
-	.panel {
-		min-height: 100dvh;
-		padding: 0;
-		margin: 0;
+		background: var(--color-text);
+		color: var(--color-background);
 	}
-
 	.header__content {
-		display: flex;
-		position: sticky;
+		align-items: start;
+		margin-left: 1rem;
 		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0;
-		margin: 0;
 	}
 
 	.header__ul {
@@ -78,10 +89,6 @@
 		padding: 0;
 	}
 
-	.header__a {
-		min-width: calc(var(--header-width) - calc(var(--header-padding) * 2));
-	} */
-
 	.header__siteTitle:hover::before,
 	.header__siteTitle:focus::before {
 		content: "> ";
@@ -91,8 +98,8 @@
 	.header__a:focus::before {
 		content: "> ";
 	}
-
 }
+
 	.header__siteTitle {
 		font-size: 2rem;
 		font-weight: 700;
@@ -102,52 +109,50 @@
 	}
 
 .content, .postContent {
-	max-width: var(--content-width);
-	min-width: var(--content-width);
 	margin: auto;
 	display: block;
-	/* padding: var(--header-padding); */
+	padding: 0.5rem;
+	padding-top: 0;
 }
 
 .postPanel {
-	min-height: 100dvh;
-	padding: 0;
-	margin: 0;
+	display: block;
+	max-width: var(--max-content-width);
+	margin: auto;
 }
 
 .postHeader {
-	max-width: var(--content-width);
 	margin: auto;
-	/* margin-top: var(--header-top-spacing); */
-	padding: var(--header-padding);
 	display: block;
 	position: static;
 	padding: 1rem;
-	padding-top: 2rem;
+	background: var(--color-text);
+	color: var(--color-background);
+}
+
+.postHeader * {
+	background: var(--color-text);
+	color: var(--color-background);
 }
 
 .postFooter {
 	max-width: var(--content-width);
 	margin: auto;
-	margin-bottom: var(--header-top-spacing);
+	margin-top: 1rem;
+	padding-top: 1rem;
+	background: var(--color-text);
+	color: var(--color-background);
+}
+
+.postFooter * {
+	background: var(--color-text);
+	color: var(--color-background);
 }
 
 .tableOfContents {
-	/* flex: 0;
-	left: 0;
-	top: 0;
-	min-width: var(--header-width);
-	max-width: var(--header-width);
-	padding: 1rem 1rem;
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	justify-content: start;
-	background: black;
-	position: fixed;
-	min-height: 100dvh; */
 	background: var(--color-text);
 	color: var(--color-background);
+	display: none;
 }
 
 .tableOfContents__title {
@@ -184,3 +189,51 @@
 	text-decoration: none;
 }
 
+@media only screen and (min-width: 1400px) {
+	.postHeader {
+		background: var(--color-background);
+		color: var(--color-text);
+		padding: 0.5rem;
+		padding-top: 1rem;
+	}
+
+	.postHeader * {
+		background: var(--color-background);
+		color: var(--color-text);
+	}
+
+	.postFooter {
+		background: var(--color-background);
+		color: var(--color-text);
+	}
+
+	.postFooter * {
+		background: var(--color-background);
+		color: var(--color-text);
+	}
+
+	.tableOfContents {
+		display: block;
+		z-index: 9999;
+	}
+
+	.tableOfContents * {
+		background: var(--color-text);
+		color: var(--color-background);
+	}
+
+	.tableOfContents a {
+		display: block;
+	}
+
+	.tableOfContents a:hover,
+	.tableOfContents a:focus {
+		color: var(--color-text-accent);
+	}
+
+	.tableOfContents__content {
+		align-items: start;
+		padding: 1rem;
+		padding-left: 2rem;
+	}
+}
