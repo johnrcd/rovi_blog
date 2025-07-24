@@ -9,6 +9,6 @@ I was hoping for something where you could paste a form on to your website and y
 
 Also, there was the option to create a logo, so I just made a funny one:
 
-![](/_media/Cool-Text-486548331898309.png)
+![](/_media/cool-text-486548331898309.png)
 
 (Thank you [cooltext.com](http://cooltext.com) lol)

@@ -231,6 +231,10 @@
 		color: var(--color-text-accent);
 	}
 
+	.toc li {
+		margin-top: 0.25rem;
+	}
+
 	.tableOfContents__content {
 		align-items: start;
 		padding: 1rem;
