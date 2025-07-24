@@ -1,0 +1,40 @@
+---
+title: Themes
+permalink: /themes/
+eleventyNavigation:
+  key: Themes
+  order: 6
+---
+
+<h1>Themes!</h1>
+
+Choose a site theme from one of the options below:
+
+<noscript>
+	JavaScript is required to use the theme engine. Please enable it!
+</noscript>
+
+<section class="themes">
+	{% for group in themes %}
+		<section class="themeGroup">
+			<h2 class="themeGroup__title">{{ group.title }}</h2>
+			{# <p class="themeGroup__description">{{ group.description }}</p> #}
+			<ul class="themeGroup__list">
+				{% for theme in group.themes %}
+					<li class="themeGroup__li">
+						<button class="themeGroup__button">{{ theme.name }}</button>
+						<div class="themeGroup__bonus">{{ theme.bonus }}</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+	{% endfor %}
+</section>
+
+<hr>
+
+<p>Q: Themes???</p>
+
+<p>A: <a href="/pages/whats-a-theme/">Yes.</a></p>
+
+

@@ -1,0 +1,20 @@
+[
+	{
+		"title" : "simple",
+		"description" : "Basic panel layout.",
+		"themes" : [
+			{"name" : "midnight",    "bonus" : "(default)"},
+			{"name" : "sunset",      "bonus" : ""         },
+			{"name" : "isabelle",    "bonus" : ""         },
+			{"name" : "terminal",    "bonus" : ""         },
+			{"name" : "ultraviolet", "bonus" : ""         }
+		]
+	},
+	{
+		"title" : "detailed",
+		"description" : "Includes extra information.",
+		"themes" : [
+			{"name" : "serenity", "bonus" : ""}
+		]
+	}
+]

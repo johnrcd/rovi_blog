@@ -297,12 +297,12 @@ addEventListener("DOMContentLoaded", (event) => {
 
 const bindThemeButtons = () => {
 	// prevent events from stacking onto the same button
-	const old_buttons = document.getElementsByClassName("themes__button");
+	const old_buttons = document.getElementsByClassName("themeGroup__button");
 	for (let i = 0; i < old_buttons.length; i++) {
 		old_buttons[i].removeEventListener("click", setTheme);
 	}
 
-	const collection = document.getElementsByClassName("themes__button");
+	const collection = document.getElementsByClassName("themeGroup__button");
 
 	for (let i = 0; i < collection.length; i++) {
 		collection[i].addEventListener("click", (event) => {
