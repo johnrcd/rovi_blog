@@ -14,7 +14,8 @@
 		"title" : "detailed",
 		"description" : "Includes extra information.",
 		"themes" : [
-			{"name" : "serenity", "bonus" : ""}
+			{"name" : "serenity",  "bonus" : ""},
+			{"name" : "evergreen", "bonus" : ""}
 		]
 	}
 ]

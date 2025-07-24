@@ -279,6 +279,33 @@ const themes = {
 		"highlightColorSecondary" : "#000000",
 		"highlightBackgroundSecondary" : "#e3986fff",
 	},
+	"evergreen" : {
+		"fontNormal" : '"Merriweather", serif',
+		"fontMono" : "monospace",
+
+		"colorText" : "#192620ff",
+		"colorTextAccent" : "#588157",
+		"colorBackground" : "#E9E3DF",
+
+		"code" : {
+			"colorBackground" : "#ced4c4ff",
+			"colorBackgroundInline": "#a3b18a",
+			"colorTextNormal" : "#000000",
+			"colorTextKeyword" : "#000000",
+			"colorTextSymbol" : "#000000",
+			"colorTextComment" : "#000000",
+			"border": "2px dotted #588157",
+			"radius": "0px",
+		},
+
+		"selectionColor" : "#a3b18a",
+		"selectionBackground" : "#192620ff",
+
+		"highlightColor" : "#192620ff",
+		"highlightBackground" : "#a3b18a",
+		"highlightColorSecondary" : "#192620ff",
+		"highlightBackgroundSecondary" : "#8cae8cff",
+	},
 }
 
 addEventListener("DOMContentLoaded", (event) => {

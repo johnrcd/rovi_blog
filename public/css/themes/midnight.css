@@ -1,60 +1,10 @@
+@import url("_panel.css");
+
 .panel, .postPanel {
 	background: rgba(255, 255, 255, 0.02);
 	border-radius: 16px;
-	padding: 16px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0);
 	backdrop-filter: blur(3.3px);
 	-webkit-backdrop-filter: blur(3.3px);
 	border: 1px solid rgba(255, 255, 255, 0.15);
-
-	max-width: 65ch;
-	margin: auto;
-	margin-top: 64px;
-	margin-bottom: 64px;
 }
-
-@media only screen and (max-width: 80ch) {
-	.panel, .postPanel {
-		border-radius: 0;
-		min-height: 100dvh;
-		margin: auto;
-		max-width: none;
-	}
-}
-
-
-.header {
-	padding: 16px 0;
-	padding-top: 0;
-	padding-bottom: 0;
-	border-bottom: 1px solid var(--color-text-accent);
-}
-	.header__content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.header__siteTitle {
-		font-size: 2rem;
-		font-weight: 700;
-		text-decoration: none;
-	}
-
-	.header__siteTitle:hover::before,
-	.header__siteTitle:focus::before {
-		content: "> ";
-	}
-
-	.header__ul {
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-		list-style-type: none;
-		list-style-position: outside;
-		padding: 0;
-	}
-
-	.header__a {
-		text-decoration: none;
-	}
