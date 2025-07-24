@@ -25,10 +25,6 @@ content:
         type: date
         description: "Date the post was published. Might be some wonkiness due to timezones since I haven't... dealt with that."
 
-      - name: body
-        label: Body
-        type: rich-text
-
       - name: category
         label: Category
         type: select
@@ -45,6 +41,10 @@ content:
               label: "Tutorial"
             - value: "unsorted"
               label: "Unsorted"
+
+      - name: body
+        label: Body
+        type: rich-text
 
   # Pages that the user can edit the contents of.
   - name: pages
