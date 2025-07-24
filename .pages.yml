@@ -9,7 +9,7 @@ content:
     path: "content/posts"
     format: yaml-frontmatter
     view:
-      fields: [ title, published, date, author ]
+      fields: [ title, published, date, category ]
     fields:
       - name: title
         label: Post Title
@@ -20,12 +20,6 @@ content:
         type: string
         description: "Optional field. Technically no limit, but recommended to keep below 140 characters."
 
-      - name: is_published
-        label: Published
-        type: boolean
-        default: true
-        description: "[NOT IMPLEMENTED YET] If true, will be published on the website when the next build happens. Set to false for drafts."
-
       - name: date
         label: Date
         type: date
@@ -34,6 +28,23 @@ content:
       - name: body
         label: Body
         type: rich-text
+
+      - name: category
+        label: Category
+        type: select
+        options:
+          multiple: false
+          values:
+            - value: "deep dive"
+              label: "Deep Dive"
+            - value: "console.log"
+              label: "console.log"
+            - value: "retrospective"
+              label: "Retrospective"
+            - value: "tutorial"
+              label: "Tutorial"
+            - value: "unsorted"
+              label: "Unsorted"
 
   # Pages that the user can edit the contents of.
   - name: pages
