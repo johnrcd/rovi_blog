@@ -11,9 +11,10 @@ const themes = {
 		//       "" IS NOT UNUSED
 		//       ONLY (optional) PROPERTIES CAN BE REMOVED
 
-		"fontNormal" : "", // font family
-		"fontMono" : "",   // font family
-		"fontWeight" : "", // (optional) font weight (300, 400), default 400
+		"fontNormal" : "",          // font family
+		"fontMono" : "",            // font family
+		"fontWeight" : "",          // (optional) font weight (300, 400), default 400
+		"isNormalFontMono" : false, // (optional) boolean, default false
 
 		// DOES NOT WORK:
 		// creates permanent scroll bar
@@ -210,6 +211,7 @@ const themes = {
 	"terminal": {
 		"fontNormal" : '"IBM Plex Mono", monospace',
 		"fontMono" : '"IBM Plex Mono", monospace',
+		"isNormalFontMono" : true,
 
 		"colorText" : "#d1d6d6",
 		"colorTextAccent" : "#b9e9bf",
@@ -260,6 +262,7 @@ const themes = {
 
 		"code" : {
 			"colorBackground" : "#fcdccbff",
+			"colorBackgroundInline": "#e3c3b1ff",
 			"colorTextNormal" : "#000000",  // (optional) color value, default copies colorText
 			"colorTextKeyword" : "#000000", // (optional) color value, default copies colorTextAccent
 			"colorTextSymbol" : "#000000",  // (optional) color value, default copies highlightBackground
@@ -342,8 +345,17 @@ const setTheme = async (theme) => {
 	root.style.setProperty("--font-mono",   themeData.fontMono);
 	root.style.setProperty("--font-weight", 400);
 
+	root.style.setProperty("--code-inline-margins", "0 0.15rem");
+
 	if (themeData.hasOwnProperty("fontWeight")) {
 		root.style.setProperty("--font-weight", themeData.fontWeight);
+	}
+
+	if (themeData.hasOwnProperty("isNormalFontMono")) {
+		root.style.setProperty(
+			"--code-inline-margins",
+			themeData.isNormalFontMono ? "0" : "0 0.15rem"
+		);
 	}
 
 	root.style.setProperty("--color-text",              themeData.colorText            );
