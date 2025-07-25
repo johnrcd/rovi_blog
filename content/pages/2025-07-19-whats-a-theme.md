@@ -11,79 +11,50 @@ For the rest of this page, I will be treating it like a Q&A. (Or is it an FAQ?)
 
 I got the idea from the [CSS Zen Garden](https://csszengarden.com/), which wanted to show off the power of CSS by allowing visitors to dramatically change the look of the website by allowing them to update the CSS via user-submitted styles. I brought a simple version over for my [portfolio website](https://rovidecena.com/), and expanded upon it for this blog.
 
-
 ### How does it work?
 
-Non-technical explanation: The data that stores each theme is located in a few files not immediately loaded by the website. When a theme is loaded, the necessary data is loaded.
+Non-technical explanation: The data that stores each theme is located in a few files not immediately loaded by the website. When a theme is loaded, the necessary data
 
 Full: Themes are stored in a hybrid format in both individual stylesheets and a JavaScript object that stores basic CSS property information, with stylesheets being intended for layouts and bigger changes. A function called `setTheme` handles all of this logic whenever a theme button is pressed.
 
-There's a base stylesheet that's always loaded to ensure some elements always look similar, but themes can override appearances as needed, because they're at the bottom of the cascade (last `<link>` in the `<head>`) .
+There's a base stylesheet that's always loaded to ensure some elements always look similar, but themes can override appearances as needed, because they're at the bottom of the cascade (last `<link>` in the `<head>`).
+
+### Give me the full technical breakdown.
+
+Oh. Okay.
+
+You can divide the theme system into two three major "systems"— the theme loader, the theme swapper, and the theme data:
+
+*   The theme loader is simply the `setTheme` function.
+    
+*   The theme swapper refers to the code that initialize the theme changing buttons when you're on the theme page. It also includes the saving and loading of the current theme.
+    
+*   The theme data is where theme information is stored. As mentioned before, each theme has properties defined within a config file meant for setting basic CSS properties and variables (colours, fonts, etc.), and an individual CSS file to deal with anything more complex, such as changing layouts, or overriding the default styles.
+    
+
+`setTheme` is the core of the entire theme system, working as follows:
+
+*   If there is an existing CSS theme file, it is removed.
+    
+*   The CSS file for the requested theme is loaded, attached to the `<head>`.
+    
+*   The theme's basic properties are all initialized. This is done by setting a bunch of CSS variables in `:root`.
+    
+*   The name of the theme is stored in `localStorage`.
+    
+
+The theme swapper simply runs every time a new page is loaded, and overrides every button that inherits from a specific class (originally it was `theme__button`) to load in the theme of that name.
+
+The theme page itself is built from a `JSON` file storing the themes into groups, mostly to keep the HTML clean (thank you Nunjucks)
 
 ## contribute
 
-### Could I make a theme?
+### Can I make a theme?
 
-Um— Maybe. At the very least, I'd check it out to see what it looks like!
+Uh— probably not.
 
-If you're familiar with programming and GitHub, you can send a PR with a theme you'd like to add. I don't have a step-by-step tutorial or anything, but:
+Part of the fun of making this website is coming up with cool themes, along with building/optimizing the theme system itself. Plus, this is _my_ website, and it feels a bit strange to allow other people to edit it, y'know?
 
-*   `/content/themes.md` is where the theme swapping buttons are stored. Just add a button with the name of your theme.
+Despite all that, I'm not completely against the idea of others giving me theme ideas on the rare occasion, as long as they understand that I'm probably not going to implement it.
 
-*   `/public/js/themes.js` is where the theme logic is stored, but more important it's where the basic configuration options are. This is where you'll set colour variables, but also things like fonts.
-
-*   Each theme is expected to have a CSS file associated with it in `/public/css/`. This allows you to change the layout as you wish.
-
-    *   There's not really a "style guide," but I recommend that you don't mess with anything that's already handled by `themes.js`. The point of `themes.js` (along with the website's default styling) is to provide a baseline so that you don't have to restyle the entire website.
-
-*   If you want to import a font, you can do so by updating `/_includes/_base.njk`. Just import it where all the other fonts are stored.
-
-    *   There may or may not be a font there imported via an HTML `<link>` tag. I was lazy at the time. If it hasn't been removed yet, I'm still lazy.
-
-
-Also, important:
-
-*   `/content/themes.md` , `/public/js/themes.js` , and `/public/css/[theme_name].css` all need to have the exact same name, or else they won't connect to each other.
-
-    *   Mobile support is required. It doesn't need to look perfect or anything, but I usually test all my themes on a 360 by 360 viewport during testing.
-`
-
-### I don't know anything about programming. I have no idea what you just said.
-
-Okay, uh— that's fine. I think.
-
-If you'd like to send me a theme idea, I suppose you could just... message me somewhere? With the necessary information???
-
-At the very least, I need to know what CSS properties you'd like (colour and stuff). You can use a format like this:
-
-```
-name of theme:
-
-fontNormal:
-fontMono:
-fontWeight: (if you're unsure, just put 400)
-
-colorText:
-colorTextAccent:
-colorBackground:
-
-(pair should have high contrast)
-selectionColor:
-selectionBackground:
-
-(pair should have high contrast)
-highlightColor:
-highlightBackground:
-
-(pair should have same or less contrast as pair above)
-(this is optional so you can leave blank if you want)
-highlightColorSecondary:
-highlightBackgroundSecondary:
-
-particles: (just put yes or no here)
-```
-
-For layout, just mention which of the existing themes you like.
-
-
-
+If you'd like to send me a theme idea, I suppose you could just... message me somewhere? With the necessary information??? I'm not sure.
