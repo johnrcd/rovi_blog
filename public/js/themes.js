@@ -289,7 +289,7 @@ const themes = {
 
 		"code" : {
 			"colorBackground" : "#ced4c4ff",
-			"colorBackgroundInline": "#a3b18a",
+			"colorBackgroundInline": "#b9c5a4ff",
 			"colorTextNormal" : "#000000",
 			"colorTextKeyword" : "#000000",
 			"colorTextSymbol" : "#000000",
@@ -305,6 +305,33 @@ const themes = {
 		"highlightBackground" : "#a3b18a",
 		"highlightColorSecondary" : "#192620ff",
 		"highlightBackgroundSecondary" : "#8cae8cff",
+	},
+	"cool" : {
+		"fontNormal" : '"Manrope", "Poppins", "Open Sans", sans-serif',
+		"fontMono" : "monospace",
+
+		"colorText" : "#f5fdffff",
+		"colorTextAccent" : "#99e1d9",
+		"colorBackground" : "#101010ff",
+
+		"code" : {
+			"colorBackground" : "#101010ff",
+			"colorBackgroundInline": "#2c3e3dff",
+			"colorTextNormal" : "#f5fdffff",
+			"colorTextKeyword" : "#99e1d9",
+			"colorTextSymbol" : "rgba(163, 165, 237, 1)",
+			"colorTextComment" : "#6784b8ff",
+			"border": "1px dashed #76aba5ff",
+			"radius": "0px",
+		},
+
+		"selectionColor" : "#99e1d9",
+		"selectionBackground" : "#2e2724ff",
+
+		"highlightColor" : "#000000ff",
+		"highlightBackground" : "#a0dfd8ff",
+		"highlightColorSecondary" : "#2a2321ff",
+		"highlightBackgroundSecondary" : "#76abbfff",
 	},
 }
 

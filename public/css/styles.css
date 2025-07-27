@@ -194,6 +194,13 @@
 		box-sizing: border-box;
 	}
 
+	.postContent h2 a:hover,
+	.postContent h2 a:focus,
+	.content h2 a:hover,
+	.content h2 a:focus {
+		text-decoration: underline;
+	}
+
 	.postContent h2 a:hover::after,
 	.postContent h2 a:focus::after,
 	.content h2 a:hover::after,
@@ -242,6 +249,10 @@
 		padding-left: 16px;
 	}
 
+	.footnotes-list {
+		padding-left: 1.25rem;
+	}
+
 	.postFooter::before {
 		content: "///////";
 		display: block;
@@ -269,7 +280,7 @@
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		padding: var(--panel-padding);
+		padding: var(--panel-padding) 0;
 		display: flex;
 		flex-direction: row;
 		/* align-items: space-between; */
@@ -283,10 +294,6 @@
 	.postFooter__next {
 		text-align: right;
 	}
-
-.content {
-
-}
 
 	.content h1 {
 		text-align: center;

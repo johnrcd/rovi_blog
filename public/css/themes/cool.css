@@ -1,0 +1,99 @@
+@import url("_side.css");
+
+.header__content {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.header__a {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+@media only screen and (min-width: 800px) {
+	.header {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	.header, .tableOfContents {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+}
+
+	.header__siteTitle {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+.postHeader {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.postHeader * {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.postFooter {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.postFooter * {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.tableOfContents {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.tableOfContents a {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+.tableOfContents > * {
+	color: var(--color-text);
+	background: var(--color-background);
+}
+
+@media only screen and (min-width: 1400px) {
+	.postHeader {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+	.postHeader * {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+	.postFooter {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+	.postFooter * {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+	.tableOfContents * {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+	.tableOfContents a:hover,
+	.tableOfContents a:focus {
+		color: var(--color-text);
+		background: var(--color-background);
+	}
+
+}

@@ -7,13 +7,9 @@ date: 2025-07-12
 category: "deep dive"
 ---
 
-Q: What's a deep dive?
-
-A: [This.](/category/deep-dive/)
-
 In most websites, the most that you'll be able to do in terms of visual customization is toggling dark/light mode. Websites aren't really made with this functionality in mind, which makes sense— typically you want your website to have a certain look and aesthetic (brand identity?), and allowing users to change that, well— changes it.
 
-Unfortunately, because I am one of the [Developers] of all time, I wondered if I could change that, and made a core part of my portfolio the ability to change how it looks dramatically from a selection of themes. My main inspiration was [daisyUI's website](https://daisyui.com/), which gives you a selection of colour palettes to choose between. They probably did it to show the functionality of the library (you can add your own themes and see how it looks with their components), but still— it's a neat feature.
+Unfortunately, because I am one of the [Developers] of all time, I wondered if I could change that, and made a core part of [my portfolio website](https://rovidecena.com/) the ability to change how it looks dramatically from a selection of themes. My main inspiration was [daisyUI's website](https://daisyui.com/), which gives you a selection of colour palettes to choose between. They probably did it to show the functionality of the library (you can add your own themes and see how it looks with their components), but still— it's a neat feature.
 
 ![](/_media/daisyui_themelist.png)
 
@@ -38,11 +34,11 @@ If you want an absolute barebones way of modifying the colour palette of a websi
 }
 ```
 
-This solution is okay (and is a good fallback if a user doesn't support scripts), but it prevents users from manually changing the color palette directly in the website, forcing them to go through their operating system settings. Sites that support dark and light mode typically have a button to toggle between them.
+This code is okay, but it prevents users from manually changing the color palette directly in the website, forcing them to go through their operating system settings. Sites that support dark and light mode typically have a button to toggle between them.
 
-(Also, I wanted more than two palettes to choose from so I didn't never actually implemented this— *although* you'd probably want to implement this regardless to support users who don't allow scripts.)
+Because I wanted more than a dark/light theme toggle, I went with a JavaScript solution that would both support multiple colour schemes, and allow users to toggle between palettes.
 
-I went for a solution where themes are stored in an list of objects each object having properties corresponding to a CSS variable, with a `setTheme` function that does all the theme applying logic.
+NOTE: For reference, all my theme logic is handled in a singluar JavaScript file, if you're wondering where all the code is stored.
 
 ```jsx
 const themes = {
@@ -59,25 +55,32 @@ const themes = {
 const setTheme = (theme) => {
 	const themeData = themes[theme];
 
+	const root = document.querySelector(':root');
 	root.style.setProperty(
 		"--color-text",
 		themeData.colorText
-		);
+	);
 	root.style.setProperty(
 		"--color-bg",
 		themeData.colorBg
-		);
+	);
 };
 ```
 
-I realized it would be nice to store the theme somewhere so the user would always see the last palette they picked, so I just kept it in local storage:
+Basically, `themes` is a variable storing all the themes, and `setTheme` is a function that sets the `:root` CSS properties to change the look of the website.
+
+I realized it would be nice to store the theme somewhere so the user would always see the last palette they picked, so I just kept it in local storage, and tried to load it if the user:
 
 ```jsx
 addEventListener("DOMContentLoaded", (event) => {
 	const themeOnLoad = localStorage.getItem("theme_on_load");
 
-	if (themeOnLoad in themes) {
-	setTheme(themeOnLoad);
+	if(!!themeOnLoad) {
+		setTheme(themeOnLoad);
+	}
+	// no theme stored: load default theme
+	else {
+		setTheme("light");
 	}
 });
 
@@ -88,68 +91,72 @@ const setTheme = (theme) => {
 };
 ```
 
-If you want to be really fancy, you can choose between two themes based on the user's preferences.
+If you want to be really fancy, you can choose between two default themes based on the user's preferences.
 
 ```jsx
-// this code probably doesn't work i didn't actually test it
-
-let isDarkMode;
-
 addEventListener("DOMContentLoaded", (event) => {
-	const themeOnLoad =
-		localStorage.getItem("theme_on_load");
+	const themeOnLoad = localStorage.getItem("theme_on_load");
 
-	const darkModePreferences =
-		window
-			.matchMedia
-			.("(prefers-color-scheme:dark)")
-			.matches;
+	if(!!themeOnLoad) {
+		setTheme(themeOnLoad);
+	}
+	// no theme stored: load default theme
+	else {
+		const isDarkMode =
+			window
+				.matchMedia
+				.("(prefers-color-scheme:dark)")
+				.matches;
 
-	setTheme(
-		themeOnLoad ||
-		isDarkMode ? "dark" : "light"
-	);
+		const themeToLoad =
+			isDarkMode ? "dark" : "light";
+
+		setTheme(themeToLoad);
+	}
 });
+
 ```
 
-I didn't do this as I wanted a specific theme to act as the default, but it wouldn't be a bad thing to add if you're not concerned about that.
+I didn't do this as I wanted a specific theme to act as the default, but I think it's worth it if that isn't a concern.
 
 ### fonts, filters, and other features
 
 The initial themes I had for my website were basic, only using solid colours. I thought it was fine at the time until one of my coding friends looked at it and roasted it.
 
-Anyways, my solution (other than making better designs) was to add additional options for themes. Any CSS property could be changed with variables, so why not? Fonts, filters, and gradients could all be supported because they were apart of CSS. I even realized that I could add stuff that couldn't be done purely through CSS, and slapped a particle system on a few themes to add some interest in the background.
+Anyways, my solution (other than making better designs) was to add additional options for themes. Any CSS property could be changed with variables, so why not? Fonts, filters, and gradients could all be easily supported. I even realized that I could add options that weren't in CSS, and slapped a particle system on a few themes to add some interest in the background.
 
-For reference, here's the information for one theme on my portfolio:
+By this point, the information for an individual theme was getting a bit out there, but that was fine. There's a lot of information when styling a website anyways, and I only had four themes which made it managable.
+
+For reference, here's the information for the default theme (with some information truncated):
 
 ```jsx
 const themes = {
 	"midnight": {
-	"fontFamily"		 : '"Manrope", "Poppins", sans-serif',
-	"colorTextTitle"	 : "#EEEEEE",
-	"colorTextHeader"	: "#B9E7E9",
-	"colorTextSupport" : "#85A7A8",
-	"colorText"		: "#C2C7C7",
-	"svgFilter"		: "invert(97%) sepia(3%)...",
-	"colorBg"			: "linear-gradient(233deg, rgba(1,2,8,1)...",
-	"colorBgHeader"	: "rgba(0, 0, 0, 0)",
-	"glassBg"			: "rgba(255, 255, 255, 0.02)",
-	"selectionText"	: "#000000",
-	"selectionBg"		: "rgb(122, 255, 252)",
-	"particleOptions"	: {
-		selector: '.background',
-		color: "#1d3243",
-		connectParticles: true,
-		speed: 0.1,
-		maxParticles: 100,
-		minDistance: 120,
-		responsive: [
-		{ breakpoint: 1440, options: { maxParticles: 100, }, },
-		{ breakpoint: 1200, options: { maxParticles: 75,	}, },
-		{ breakpoint: 768,	options: { maxParticles: 50,	}, },
-		{ breakpoint: 576,	options: { maxParticles: 0,	 }, },
-		],
-	}
+		"fontFamily"       : '"Manrope", "Poppins", sans-serif',
+		"colorTextTitle"   : "#EEEEEE",
+		"colorTextHeader"  : "#B9E7E9",
+		"colorTextSupport" : "#85A7A8",
+		"colorText"        : "#C2C7C7",
+		"svgFilter"        : "invert(97%) sepia(3%)...",
+		"colorBg"          : "linear-gradient(...)",
+		"colorBgHeader"    : "rgba(0, 0, 0, 0)",
+		"glassBg"          : "rgba(255, 255, 255, 0.02)",
+		"selectionText"    : "#000000",
+		"selectionBg"      : "rgb(122, 255, 252)",
+		"particleOptions"  : {
+			selector: '.background',
+			color: "#1d3243",
+			connectParticles: true,
+			speed: 0.1,
+			maxParticles: 100,
+			minDistance: 120,
+			responsive: [
+				{ breakpoint: 1440, options: { maxParticles: 100,} },
+				{ breakpoint: 1200, options: { maxParticles: 75, } },
+				{ breakpoint: 768,  options: { maxParticles: 50, } },
+				{ breakpoint: 576,  options: { maxParticles: 0,  } },
+			],
+		}
 	},
 	/* ... omitted ... */
 }
@@ -157,23 +164,25 @@ const themes = {
 
 ## single page application
 
-Porting the theme system to version 2.0 of my blog went relatively smooth, except for one major flaw:
+For version 2.0 of my blog (the current one at the time of writing), I wanted to expand on the palette system, and make it a fully fledged theme system. I originally built it because I wanted something to make my portfolio stand out, but I liked it enough to want to put it in my other websites.
+
+I first ported the existing system to the blog as it was, and while that went smooth, it exposed a glaring flaw that I'd have to fix:
 
 Changing pages.
 
-There was this hitch that occurred every time you loaded a new page, where the default styling would be shown momentarily before the current theme would load. This happened on my portfolio as well, but it was also literally a single page website, so you'd only ever see it once, if you even noticed it at all.
+There was this hitch that occurred every time you loaded a new page, where the default styling would be shown momentarily before the current theme would load. This happened on my portfolio as well, but since it's literally just a single page, you wouldn't see it for very long (if you noticed it at all).
 
-(Also, the particles would reset on every page change, which was definitely a bigger issue.)
+Also, because a theme would be initialized on every page load, it meant that any theme that used particles would have them reset on every page, which was jarring. This was especially bad because the themes that use the particle systems use them in a "floating background" style, where the website looks as if it's held on a panel floating on an unmoving background.
 
-The most obvious (and probably only real) solution was to turn my website into an SPA (Single Page Application), where instead of loading a different page/file in its entirety, it simply swaps the contents of the current page (normally only what's changed). This fix both prevents the jitter from a theme being loaded in and the particle system being reinitialized, because neither of them need to happen at all— the only thing that changes is the actual content of the page.
+The most obvious (and probably only real) solution was to turn my website into an SPA (Single Page Application), where instead of loading a different page/file in its entirety, it simply updates the parts of the page that needs to be changed. That means that both the styles and particles can remain untouched (and consequently, don't need to load) because they aren't changed when a new page is loaded.
 
-The problem for me was how I was going to do that at all.
+The problem was doing that in the first place.
 
 Eleventy is a static site generator, and has [zero support for an SPA](https://www.11ty.dev/docs/single-page-applications/#:~:text=If%20you%E2%80%99d%20like%20to%20build%20a%20single%20page%20application%20(SPA)%2C%20Eleventy%20probably%20isn%E2%80%99t%20the%20right%20tool.), so I'd have to make it myself, but at the time that wasn't even a concept for me. An SPA in my mind was something done by whatever framework you were using. If the framework didn't do it, how could you?
 
-I was close to giving up and rewriting the site in Next.js or something, but I stumbled on [this repository](https://github.com/learosema/eleventy-mini-spa) by [learosema](https://github.com/learosema/) demonstrating an Eleventy website with SPA functionality. Rather than simply traversing to the page you want to go to, it *fetches* its content and overrides the existing page content. It honestly blew my mind a bit thinking about it because it effectively allowed you to have an SPA that could still function as a traditional static site if JavaScript couldn't be enabled for some reason.
+I was close to giving up and rewriting the site in Next.js or something, but I stumbled on [this repository](https://github.com/learosema/eleventy-mini-spa) by [learosema](https://github.com/learosema/) demonstrating an Eleventy website with SPA functionality. Rather than simply traversing to the page you want to go to, it *fetches* its content and overrides the existing page content. It honestly blew my mind a bit thinking about it because it effectively allowed you to turn a traditional static site (MPA). It was especially cool considering that it was just powered by a script less than 100 lines long.
 
-My solution deviates a bit from hers— I subscribe to anchor tags directly rather than processing each click in the browser, and I had to deal with a bunch of issues that may or may not have existed in hers— getting hash links to work, making sure I didn't try to load the contents of page from a *different* website. It took a while to get it to work without hiccups, but eventually I came up with something like this:
+My solution deviates a bit from hers— I subscribe to anchor tags directly rather than processing each click in the browser, and I had to deal with a bunch of issues that may or may not have existed in hers— getting hash links to work, making sure I didn't try to load the contents of page from a *different* website, and some other stuff I forgot about. It took a while to get it to work without hiccups, but eventually I came up with something like this:
 
 ```jsx
 let anchors = [];
@@ -256,24 +265,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ```
 
-Q: TL;DR?
+I think it's a little messy, but it's been working well enough for me so far. I'm pretty sure you can slap a `content` id on your body tag, add the script to your website, and have it work out-of-the-box (assuming that every single page you have has the exact same content in the `<head>` tag except for the `<title>`),
+
+There's also probably some issues that come with website performance, but fixing the theme jitter took priority over anything else. I also didn't see a noticable difference during development.[^_performance]
+
+[^_performance]: I don't see how there can be a noticable difference between loading in a page normally, and the SPA method where I use fetch and update the DOM. A fetch and normal page load are getting the same information, and updating the DOM isn't that slow. I know React has their virtual DOM to reduce operations but there's only ever one operation being performed— swapping the contents of `#content`. Then again, I haven't performance tested any of this (apart from using the throttling feature on Chrome DevTools), so I'm probably wrong to some degree.
+
+Q: this is too technical i can't code/bro i don't want to read all of that just summerize it
 
 A: um
 
 - `loadPage`: Loads in the contents of a page.
 - `loadAnchors`: Overrides links to do SPA page loading.
 - the thing that says: `"popstate"`: Allows the forward and back buttons to work on your browser.
-- the thing that says: `"DOMContentLoaded"`: Calls the link overriding logic when the website is first visited (or after being refreshed).
+- the thing that says: `"DOMContentLoaded"`: Calls the link overriding logic when the website is first visited (or after refreshing your browser).
 
 ## bug fixing
+
+There ended up being issues with transitioning the website to an SPA, along with other problems with the theme system that needed to be addressed.
 
 ### theme buttons
 
 Because pages aren't actually being loaded, my theme swapper breaks because it only initializes the theme swap buttons on `DOMContentLoaded`. I assumed I could just suscribe to the `popstate` event instead, but I learned that it isn't fired when `history.pushState()` is invoked. It's meant for other events like when you press the back/forward buttons on your browser, which makes sense, but unfortunately means I can't use it.
 
-I tried doing something similar to C# events but JavaScript doesn't really have that so I'd have to shoehorn it in, and this entire deep dive is me shoehorning in features in the first place, and I didn't want to add another one to the list so I just scrapped it.
-
-I eventually settled on listening to changes directly within the `panel` id element, which led me to one of the strangest (though accurate) class names of all time: [`MutatorObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+I tried doing something similar to C# events but JavaScript doesn't have (Let me make my events please!!!). I eventually settled on listening to changes directly within the `panel` id element, which led me to one of the strangest (though accurate) class names of all time: [`MutatorObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 
 ```jsx
 const bindThemeButtons = () => {
@@ -301,9 +316,9 @@ observer.observe(
 
 ### super fast particles
 
-A long standing bug that came from the original theme system was that changing the themes would make the particles in the background move at a much faster speed than what was defined in the theme. This would only be fixed by manually refreshing the paged.
+A long standing bug that came from the original theme system was that changing the themes would make the particles in the background move at a much faster speed than what was defined in the theme. This would only be fixed by manually refreshing the page.
 
-I tried deleting the `<canvas>` element that it uses when selecting a new theme, and remaking it to force a reset of sorts. It didn't work so I just decided to force refresh the browser if you were attempting to load a theme that had particles.
+There wasn't a clean solution I could find (although I didn't look very long), so I just decided to refresh the browser if you were attempting to load a theme. I had to add an `initialized` variable which reminded me of the game code I'd need to write sometimes:
 
 ```jsx
 let initialized = false;
@@ -311,7 +326,7 @@ let initialized = false;
 const setTheme = (theme) => {
 	// ... omitted ...
 
-	if (hasParticles && initialized) {
+	if (initialized) {
 		window.location.reload();
 	}
 	Particles.init(particleOptions);
@@ -319,41 +334,15 @@ const setTheme = (theme) => {
 };
 ```
 
-Definitely one of the solutions of all time (don't like global variables), but it works, and I severely doubt the JavaScript of my blog is going to get so complex that I will be significantly burdened by this decision (knock on wood lol).
-
 ### code block styling
 
-At the time of writing the previous section, I figured I would upload a draft of the post to get a feel of how the website looked, and I realized that there was no code styling (code blocks just had mono text).
+At some point during development, I imported a post with a code block and realized that I had no styling for them.
 
-Eleventy's blog template uses Prism for syntax highlight, but I think practically all of Prisma's default styles look terrible. Besides, I needed to have the highlighting match the style of the current theme, or else it would make everything look weird.
+Eleventy's blog template (the closest thing to an official tutorial repository) uses Prism for syntax highlighting, but I think all of Prism's styles look terrible, so I wanted to make something myself. Plus, I also needed the blocks to fit the theme they were in.
 
-I spend (rounded down) zero effort to figure out exactly what prism was doing for syntax highlighting, and simply just copied the CSS from a style that I liked, replacing the colours with CSS variables from the themes so they matched. I initially tried borrowing colours from other properties in the themes, but had some issues with some themes using certain variables in a different way that would make some parts of code unreadable.
+I opted to extend the theme system to have code style properties, mainly colours but also borders and background color since it would be nice for some themes. There seems to be some process in Markdown regarding how code blocks are converted in HTML where based on the coding language, classes are assigned to the necessary keywords and what not.
 
-I ended up taking a solution from one of the other optional theme properties and having a default value that could be overridden.
-
-```jsx
-const setTheme = (theme) => {
-	/* ... omitted ... */
-
-	root.style.setProperty(
-		"--color-background-code",
-		themeData.hasOwnProperty("colorBackgroundCode") ?
-			themeData.colorBackgroundCode :
-			"rgba(0,0,0,0)"
-	);
-
-	root.style.setProperty(
-		"--color-text-code-normal",
-		themeData.hasOwnProperty("colorTextCodeNormal") ?
-			themeData.colorTextCodeNormal :
-			themeData.colorText
-	);
-
-	/* ... omitted ... */
-};
-```
-
-Having default values for optional properties ended up becoming a lot more valuable as I expanded the theme customization because every CSS property that a theme *could* set also *had* to be set to prevent styles from bleeding in to other themes that didn't support them. It also made it so existing themes could be left untouched and look the same.
+Unfortunately, I did not want to figure that out at all, so I simply copied the CSS code from the Prism style I tolerated the most, replaced a few (mostly color) CSS properties with ones that were set by the themes, and removed code that I didn't understand or that didn't seem to be doing anything.
 
 ## making themes
 
@@ -451,7 +440,7 @@ Dark mode support is good to have on any website, and you should probably add it
 
 The main issue with supporting themes is that it adds a new overhead to manage when updating a site. Full-blown layout changes need to have support for every type of page you want to have, and even colour palettes need some care if you ever decide to update your `--variables`.
 
-I can get away with it since this website is barebones, but if (when?) it grows in complexity, I'll have to ensure that nothing looks weird on *every* theme available.
+I can get away with it since this website is barebones, but if (when?) it grows in complexity, I'll have to ensure that nothing looks wrong on *every* theme available.
 
 TL:DR; Add dark mode support to your websites. Anything else isn't worth the effort, unless it's fun, then it is!
 
