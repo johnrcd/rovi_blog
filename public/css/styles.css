@@ -67,7 +67,7 @@
 }
 
 @media only screen and (max-width: 70ch) {
-	.categories {
+	.categories.categories {
 		list-style-type: circle;
 		list-style-position: outside;
 		margin-left: 1rem;
@@ -248,6 +248,18 @@
 	.content > ul {
 		list-style-position: outside;
 		padding-left: 16px;
+	}
+
+	/* treat non-paragraph links as blocks */
+	.postContent > a,
+	.content > a {
+		display: block;
+		margin: 1rem 0;
+	}
+
+	.postContent > *:last-child,
+	.content > *:last-child {
+		margin-bottom: 0;
 	}
 
 	.footnotes-list {

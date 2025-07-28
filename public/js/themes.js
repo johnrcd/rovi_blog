@@ -330,8 +330,8 @@ const themes = {
 
 		"highlightColor" : "#000000ff",
 		"highlightBackground" : "#a0dfd8ff",
-		"highlightColorSecondary" : "#2a2321ff",
-		"highlightBackgroundSecondary" : "#76abbfff",
+		"highlightColorSecondary" : "#000000ff",
+		"highlightBackgroundSecondary" : "#94bbcaff",
 	},
 }
 
