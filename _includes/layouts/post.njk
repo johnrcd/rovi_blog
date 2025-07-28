@@ -38,7 +38,7 @@ layout: layouts/_base.njk
 			</main>
 
 			<footer class="postFooter">
-				<button class="postFooter__centerLink" onclick="topFunction()">scroll to top</button>
+				<a class="postFooter__centerLink" href=".">scroll to top</a>
 				<a class="postFooter__centerLink" href="/">back to home page</a>
 				{# getPreviousCollectionItem and getNextCollectionItem are prebuilt filters #}
 				{# to get the next/previous items in an collection. By default, this passes #}
@@ -76,14 +76,4 @@ layout: layouts/_base.njk
 		</div>
 	</div>
 </div>
-
-<script>
-function topFunction() {
-	window.scrollTo({
-		top: 0,
-		left: 0,
-		behavior: "smooth",
-	});
-}
-</script>
 
