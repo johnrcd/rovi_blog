@@ -63,7 +63,11 @@ const loadAnchors = () => {
 		// do NOT try to SPA for links to different websites
 		const destination = new URL(t.href, document.baseURI);
 		const root = new URL(document.baseURI);
+
 		if (destination.origin != root.origin) return;
+
+		// for rss feeds
+		if (destination.origin.substring(".xml") != 0) return;
 
 		anchors.push(t);
 	});
@@ -74,6 +78,8 @@ const loadAnchors = () => {
 			loadPage(event.target.href, true);
 		})
 	});
+
+	console.log(anchors);
 };
 
 window.addEventListener("popstate", (event) => {

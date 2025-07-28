@@ -23,7 +23,16 @@ eleventyNavigation:
 	{%- endfor %}
 </ul>
 
+<h2>RSS Feed</h2>
+
+<a href="/feed.xml">/feed.xml</a>
+
+(Categories have their own RSS feeds)
+
+<a href="/pages/whats-rss/">What's RSS?</a>
+
 <h2>Full Archive</h2>
+
 
 {% set posts_list = collections.post %}
 {% include "posts_list.njk" %}
