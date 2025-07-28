@@ -54,6 +54,9 @@ navigationOptions:
 				</div>
 			</header>
 			<main class="content">
+				{% if title %}
+						<h1>{{ title }}</h1>
+				{% endif %}
 				{{ content | safe }}
 			</main>
 		</div>

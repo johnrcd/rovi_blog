@@ -67,7 +67,7 @@ const loadAnchors = () => {
 		if (destination.origin != root.origin) return;
 
 		// for rss feeds
-		if (destination.origin.substring(".xml") != 0) return;
+		if (destination.origin.includes(".xml")) return;
 
 		anchors.push(t);
 	});
