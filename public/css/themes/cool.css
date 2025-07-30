@@ -1,5 +1,14 @@
 @import url("_side.css");
 
+.content, .postContent {
+	padding-top: 0;
+}
+
+.content > *:first-child,
+.postContent > *:first-child{
+	margin-top: 0;
+}
+
 .header__content {
 	color: var(--color-text);
 	background: var(--color-background);
@@ -18,6 +27,10 @@
 }
 
 @media only screen and (min-width: 1400px) {
+	.content, .postContent {
+		padding-top: 1rem;
+	}
+
 	.header, .tableOfContents {
 		color: var(--color-text);
 		background: var(--color-background);
@@ -59,6 +72,11 @@
 	background: var(--color-background);
 }
 
+.tableOfContents a:hover,
+.tableOfContents a:focus {
+	color: var(--color-text-accent);
+}
+
 .tableOfContents > * {
 	color: var(--color-text);
 	background: var(--color-background);
@@ -89,11 +107,4 @@
 		color: var(--color-text);
 		background: var(--color-background);
 	}
-
-	.tableOfContents a:hover,
-	.tableOfContents a:focus {
-		color: var(--color-text);
-		background: var(--color-background);
-	}
-
 }
