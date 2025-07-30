@@ -101,12 +101,13 @@ export default async function(eleventyConfig) {
 	});
 
 
+
+
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
 
 	// don't really use this atm cause... why
 	// MAYBE for tutorials.
-	eleventyConfig.addPlugin(pluginTOC);
 	eleventyConfig.addPlugin(pluginRss);
 
 	eleventyConfig.addPlugin(IdAttributePlugin, {
@@ -129,12 +130,24 @@ export default async function(eleventyConfig) {
 		permalink: markdownItAnchor.permalink.headerLink()
 	};
 
-	const markdownLib = markdownIt(markdownItOptions).use(
-		markdownItAnchor,
-		markdownItAnchorOptions,
-	).use(markdownItFootnote);
+	const markdownLib = markdownIt(markdownItOptions)
+		.use(markdownItFootnote)
+		.use(markdownItAnchor, markdownItAnchorOptions);
+
+	markdownLib.renderer.rules.footnote_block_open = (tokens, idx, options) => (
+		"<h2 tabindex=\"-1\">" +
+		"  <a class=\"header-anchor\" href=\"#footnotes\">footnotes</a>" +
+		"</h2>" +
+
+		// taken directly from the source code
+		// https://github.com/markdown-it/markdown-it-footnote/blob/master/index.mjs
+		'<section class="footnotes">\n' +
+		'<ol class="footnotes-list">\n'
+	);
 
 	eleventyConfig.setLibrary("md", markdownLib);
+
+	eleventyConfig.addPlugin(pluginTOC);
 }
 
 export const config = {
