@@ -66,14 +66,16 @@ const loadAnchors = () => {
 
 		if (destination.origin != root.origin) return;
 
-		// for rss feeds
-		if (destination.origin.includes(".xml")) return;
-
 		anchors.push(t);
 	});
 
 	anchors.forEach(anchor => {
 		anchor.addEventListener("click", (event) => {
+			// EXCEPTION: rss feeds
+			if (event.target.href.includes(".xml")) {
+				return;
+			}
+
 			event.preventDefault();
 			loadPage(event.target.href, true);
 		})
