@@ -175,8 +175,10 @@
 		content: "> ";
 	}
 
-.postContent {
 
+
+.content, .postContent {
+	text-wrap: wrap;
 }
 
 	.postContent h2 a,
@@ -255,6 +257,19 @@
 	.content > a {
 		display: block;
 		margin: 1rem 0;
+	}
+
+	/* force long links to wrap */
+	.postContent a,
+	.content a {
+		text-wrap: wrap;
+		word-wrap: break-word;
+	}
+
+	.footnotes-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 
 	.postContent > *:last-child,
