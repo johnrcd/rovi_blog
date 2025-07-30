@@ -51,11 +51,6 @@ I'll get around to them at some point (probably). At the time of writing, I'm sw
 
 [^arcfest]: Arcfest <https://johnrcd.itch.io/arcfest> is a game I made a few years ago. The game was a one-versus-one brawler where you win rounds by knocking your opponent into an everclosing zone to do damage.
 
-<hr />
-
-## footnotes
-
-
 
 
 

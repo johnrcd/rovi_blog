@@ -6,8 +6,6 @@ eleventyNavigation:
   order: 4
 ---
 
-<h1>Contact</h1>
-
 ## main/socials
 
 - Email: [johnrcd.ar@gmail.com](mailto:johnrcd.ar@gmail.com)

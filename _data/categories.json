@@ -1,22 +1,27 @@
 [
 	{
 		"name": "Deep Dive",
-		"description" : "Deep Dives are longer posts about a specific problem I've had to deal with in a project (or more often than not, multiple projects). They focus more on implementation than what the problem is trying to solve, and are probably the most-- and probably the least sensical because ofi t. "
+		"description" : "Deep Dives are longer posts about a specific problem I've had to deal with in a project (or more often than not, multiple projects). They're a bit more rambly, a little less cohesive, but you get to see me suffer so maybe that's worth something.",
+		"rssUrl": "/deep-dive.xml"
 	},
 	{
 		"name" : "console.log",
-		"description" : "uhh, basically stuff that barely counts as a post."
+		"description" : "uhh, basically stuff that barely counts as a post.",
+		"rssUrl": "/console-dot-log.xml"
 	},
 	{
 		"name" : "Retrospective",
-		"description" : "Retrospectives are... retrospectives? These posts are typically written and uploaded right before or soon after I release a project (or major update to one). I used to call these Behind the Scenes but I like the word flow of Retrospective, so we're sticking with that."
+		"description" : "Retrospectives are posts talking about a project I've recently released or updated. They'll go over any inspirations I had, my decision making process, and some behind the scenes trivia.",
+		"rssUrl": "/console-dot-log.xml"
 	},
 	{
 		"name" : "Tutorial",
-		"description" : "How to make, implement, or create something. I don't really plan on ever doing tutorials directly, but some of my posts have tutorial-like content that benefit from being streamlined."
+		"description" : "How to make, implement, or create something. This blog wasn't intended for tutorials, but I figured I'd leave a spot for them when I find out about something useful.",
+		"rssUrl": "/tutorial.xml"
 	},
 	{
 		"name" : "Unsorted",
-		"description" : "I have no idea where to put these posts -- either because they represent a category of posts I don't write that much, they don't fit anywhere, or I... just haven't sorted them yet. Whoops."
+		"description" : "I have no idea where to put these posts -- either because they represent a category of posts I don't write that much, they don't fit anywhere, or I... just haven't sorted them yet. Whoops.",
+		"rssUrl": "/unsorted.xml"
 	}
 ]

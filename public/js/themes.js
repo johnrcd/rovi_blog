@@ -184,29 +184,18 @@ const themes = {
 
 		"code" : {
 			"colorBackground" : "#fddaf1ff",
-			"colorTextNormal" : "",  // (optional) color value, default copies colorText
-			"colorTextKeyword" : "", // (optional) color value, default copies colorTextAccent
-			"colorTextSymbol" : "",  // (optional) color value, default copies highlightBackground
-			"colorTextComment" : "", // (optional) color value, default copies highlightBackgroundSecondary
 			"border": "2px dotted rgba(213, 67, 120, 1)",
 			"radius": "16px",
 		},
 
-		// used when you drag click over stuff
-		// should be very high contrast
-		"selectionColor" : "#ffffffff",      // color value
-		"selectionBackground" : "rgba(202, 50, 106, 1)", // color value
+		"selectionColor" : "#ffffffff",
+		"selectionBackground" : "rgba(202, 50, 106, 1)",
 
-		// used for hoverable elements that change background and color
-		"highlightColor" : "#ffffffff",      // color value
-		"highlightBackground" : "rgba(226, 134, 168, 1)", // color value
+		"highlightColor" : "#ffffffff",
+		"highlightBackground" : "rgba(226, 134, 168, 1)",
 
-		// niche colors used for lists with "two parts" -- a primary and secondary
-		// e.g. lists of posts will include the title (primary)
-		//      and date the(secondary)
-
-		"highlightColorSecondary" : "#ffffffff",      // (optional) color value
-		"highlightBackgroundSecondary" : "rgba(226, 99, 146, 1)", // (optional) color value
+		"highlightColorSecondary" : "#ffffffff",
+		"highlightBackgroundSecondary" : "rgba(226, 99, 146, 1)",
 	},
 	"terminal": {
 		"fontNormal" : '"IBM Plex Mono", monospace',
@@ -330,8 +319,8 @@ const themes = {
 
 		"highlightColor" : "#000000ff",
 		"highlightBackground" : "#a0dfd8ff",
-		"highlightColorSecondary" : "#2a2321ff",
-		"highlightBackgroundSecondary" : "#76abbfff",
+		"highlightColorSecondary" : "#000000ff",
+		"highlightBackgroundSecondary" : "#94bbcaff",
 	},
 }
 

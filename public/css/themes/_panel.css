@@ -52,6 +52,15 @@
 		text-decoration: none;
 	}
 
+.content {
+
+}
+	.content h1 {
+		text-align: center;
+		font-size: 1.75rem;
+		margin-bottom: 1rem;
+	}
+
 .postFooter__pageSwapper {
 	padding-bottom: 0;
 }

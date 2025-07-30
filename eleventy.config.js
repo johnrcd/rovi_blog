@@ -7,6 +7,7 @@ import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItFootnote from "markdown-it-footnote";
 import pluginTOC from "eleventy-plugin-toc";
+import pluginRss from "@11ty/eleventy-plugin-rss";
 
 import pluginFilters from "./_config/filters.js";
 
@@ -55,26 +56,6 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(HtmlBasePlugin);
 	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 
-	eleventyConfig.addPlugin(feedPlugin, {
-		type: "atom", // or "rss", "json"
-		outputPath: "/feed.xml",
-		collection: {
-			name: "post",
-			limit: 1000,
-		},
-		metadata: {
-			language: "en",
-			title: "rovi_blog",
-			subtitle: "Rovi Decena's blog about stuff he's working on -- normally games, music, or sites.",
-			base: "https://blog.rovidecena.com/",
-			author: {
-				name: "Rovi Decena",
-				email: "johnrcd.ar@gmail.com",
-				url: "https://rovidecena.com/"
-			}
-		}
-	});
-
 	// Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
 
 	// this stupid shit is messing with my image urls
@@ -100,12 +81,34 @@ export default async function(eleventyConfig) {
 	// 	},
 	// });
 
+	eleventyConfig.addPlugin(feedPlugin, {
+		type: "atom", // or "rss", "json"
+		outputPath: "/feed.xml",
+		collection: {
+			name: "post", // iterate over `collections.posts`
+			limit: 10,     // 0 means no limit
+		},
+		metadata: {
+			language: "en",
+			title: "Blog Title",
+			subtitle: "This is a longer description about your blog.",
+			base: "https://example.com/",
+			author: {
+				name: "Your Name",
+				email: "", // Optional
+			}
+		}
+	});
+
+
+
+
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
 
 	// don't really use this atm cause... why
 	// MAYBE for tutorials.
-	eleventyConfig.addPlugin(pluginTOC);
+	eleventyConfig.addPlugin(pluginRss);
 
 	eleventyConfig.addPlugin(IdAttributePlugin, {
 		// by default we use Eleventy's built-in `slugify` filter:
@@ -127,12 +130,24 @@ export default async function(eleventyConfig) {
 		permalink: markdownItAnchor.permalink.headerLink()
 	};
 
-	const markdownLib = markdownIt(markdownItOptions).use(
-		markdownItAnchor,
-		markdownItAnchorOptions,
-	).use(markdownItFootnote);
+	const markdownLib = markdownIt(markdownItOptions)
+		.use(markdownItFootnote)
+		.use(markdownItAnchor, markdownItAnchorOptions);
+
+	markdownLib.renderer.rules.footnote_block_open = (tokens, idx, options) => (
+		"<h2 tabindex=\"-1\">" +
+		"  <a class=\"header-anchor\" href=\"#footnotes\">footnotes</a>" +
+		"</h2>" +
+
+		// taken directly from the source code
+		// https://github.com/markdown-it/markdown-it-footnote/blob/master/index.mjs
+		'<section class="footnotes">\n' +
+		'<ol class="footnotes-list">\n'
+	);
 
 	eleventyConfig.setLibrary("md", markdownLib);
+
+	eleventyConfig.addPlugin(pluginTOC);
 }
 
 export const config = {

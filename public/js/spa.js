@@ -18,7 +18,7 @@ const loadPage = async(url, updateHistory) => {
 	// guard clause (not really): you clicked on a hash link
 	const hash = window.location.hash;
 
-	if (hash != "") {
+	if (hash != "" && updateHistory) {
 		// https://stackoverflow.com/a/49860927
 		const rawPosition = document.getElementById(hash.replace("#", "")).getBoundingClientRect().top;
 		const offset = 16;
@@ -33,9 +33,7 @@ const loadPage = async(url, updateHistory) => {
 
 	const response = await fetch(url);
 	const text = await response.text();
-
 	const doc = new DOMParser().parseFromString(text, "text/html");
-
 	const panel = document.getElementById("content");
 
 	// manually detach events to avoid memory error
@@ -48,7 +46,6 @@ const loadPage = async(url, updateHistory) => {
 
 	window.scrollTo(0, 0);
 	loadAnchors();
-
 }
 
 /**
@@ -63,6 +60,7 @@ const loadAnchors = () => {
 		// do NOT try to SPA for links to different websites
 		const destination = new URL(t.href, document.baseURI);
 		const root = new URL(document.baseURI);
+
 		if (destination.origin != root.origin) return;
 
 		anchors.push(t);
@@ -70,6 +68,11 @@ const loadAnchors = () => {
 
 	anchors.forEach(anchor => {
 		anchor.addEventListener("click", (event) => {
+			// EXCEPTION: rss feeds
+			if (event.target.href.includes(".xml")) {
+				return;
+			}
+
 			event.preventDefault();
 			loadPage(event.target.href, true);
 		})
