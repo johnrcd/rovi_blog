@@ -13,29 +13,28 @@ import pluginFilters from "./_config/filters.js";
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
-	// Drafts, see also _data/eleventyDataSchema.js
-	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
-			return false;
-		}
-	});
+	// NOTE: the way public files are moved to public (moving all the files into
+	// root output folder) doesn't really make sense for me, but whatever the
+	// 11ty blog example uses it so it's probably good for some reason.
 
-	// Copy the contents of the `public` folder to the output folder
-	// For example, `./public/css/` ends up in `_site/css/`
+	// e.g. `./public/css/` ends up in `_site/css/`
+	// why not just have /_site/public/css/
 	eleventyConfig
 		.addPassthroughCopy({
 			"./public/": "/"
 		})
-		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
 
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
-	// Update build if public directory is updated in any way
+	// Update build if site content is updated
+	// This is basically just the top-level directories directly changed in dev
+	// (we don't want to look through node_modules/ or _site/)
+	eleventyConfig.addWatchTarget("_config/");
+	eleventyConfig.addWatchTarget("_data/");
+	eleventyConfig.addWatchTarget("_includes/");
+	eleventyConfig.addWatchTarget("content/");
 	eleventyConfig.addWatchTarget("public/");
-
-	// Watch images for the image pipeline.
-	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpg,jpeg,gif}");
 
 	// Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
 	// Bundle <style> content and adds a {% css %} paired shortcode
@@ -55,53 +54,6 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(pluginNavigation);
 	eleventyConfig.addPlugin(HtmlBasePlugin);
 	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
-
-	// Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
-
-	// this stupid shit is messing with my image urls
-	// CAN YOU STAY ABSOLUTE FOR FIVE SECONDS
-
-	// eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-	// 	// Output formats for each image.
-	// 	formats: ["avif", "webp", "auto"],
-
-	// 	// widths: ["auto"],
-
-	// 	failOnError: false,
-	// 	htmlOptions: {
-	// 		imgAttributes: {
-	// 			// e.g. <img loading decoding> assigned on the HTML tag will override these values.
-	// 			loading: "lazy",
-	// 			decoding: "async",
-	// 		}
-	// 	},
-
-	// 	sharpOptions: {
-	// 		animated: true,
-	// 	},
-	// });
-
-	eleventyConfig.addPlugin(feedPlugin, {
-		type: "atom", // or "rss", "json"
-		outputPath: "/feed.xml",
-		collection: {
-			name: "post", // iterate over `collections.posts`
-			limit: 10,     // 0 means no limit
-		},
-		metadata: {
-			language: "en",
-			title: "Blog Title",
-			subtitle: "This is a longer description about your blog.",
-			base: "https://example.com/",
-			author: {
-				name: "Your Name",
-				email: "", // Optional
-			}
-		}
-	});
-
-
-
 
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
