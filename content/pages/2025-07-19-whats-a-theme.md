@@ -26,22 +26,22 @@ Oh. Okay.
 You can divide the theme system into two three major "systems"— the theme loader, the theme swapper, and the theme data:
 
 *   The theme loader is simply the `setTheme` function.
-    
-*   The theme swapper refers to the code that initialize the theme changing buttons when you're on the theme page. It also includes the saving and loading of the current theme.
-    
-*   The theme data is where theme information is stored. As mentioned before, each theme has properties defined within a config file meant for setting basic CSS properties and variables (colours, fonts, etc.), and an individual CSS file to deal with anything more complex, such as changing layouts, or overriding the default styles.
-    
 
-`setTheme` is the core of the entire theme system, working as follows:
+*   The theme swapper refers to the code that initialize the theme changing buttons when you're on the theme page. It also includes the saving and loading of the current theme.
+
+*   The theme data is where theme information is stored. As mentioned before, each theme has properties defined within a config file meant for setting basic CSS properties and variables (colours, fonts, etc.), and an individual CSS file to deal with anything more complex, such as changing layouts, or overriding the default styles.
+
+
+`setTheme` is the core of the theme system, working as follows:
 
 *   If there is an existing CSS theme file, it is removed.
-    
+
 *   The CSS file for the requested theme is loaded, attached to the `<head>`.
-    
+
 *   The theme's basic properties are all initialized. This is done by setting a bunch of CSS variables in `:root`.
-    
+
 *   The name of the theme is stored in `localStorage`.
-    
+
 
 The theme swapper simply runs every time a new page is loaded, and overrides every button that inherits from a specific class (originally it was `theme__button`) to load in the theme of that name.
 
