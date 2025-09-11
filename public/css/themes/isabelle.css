@@ -45,6 +45,7 @@
 		text-decoration: none;
 	}
 
+
 .content {
 	border-radius: 0 0 16px 16px;
 	border: 2px solid rgba(213, 67, 120, 1);
@@ -54,6 +55,15 @@
 
 	.content > :first-child {
 		margin-top: 0;
+	}
+
+	.postContent li a:hover,
+	.postContent li a:focus,
+	.content li a:hover,
+	.content li a:focus {
+		color: var(--highlight-color);
+		background: var(--highlight-background);
+		outline: 2px solid var(--highlight-background);
 	}
 
 .postPanel {

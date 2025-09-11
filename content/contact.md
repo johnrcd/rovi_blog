@@ -22,3 +22,11 @@ eleventyNavigation:
 If something's missing or is incorrect, there's a chance that it'll be there on my [LinkTree](https://linktr.ee/johnrcd), as I try and update that first when I can.
 
 If something's wrong on my LinkTree... I should probably fix that.
+
+## bonus
+
+[I have a Guestbook](https://rovi.atabook.org/), if you both know what that is and you want to check it out.
+
+### i don't know what a Guestbook is
+
+

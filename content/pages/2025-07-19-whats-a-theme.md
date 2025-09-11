@@ -13,11 +13,13 @@ I got the idea from the [CSS Zen Garden](https://csszengarden.com/), which wante
 
 ### How does it work?
 
-Non-technical explanation: The data that stores each theme is located in a few files not immediately loaded by the website. When a theme is loaded, the necessary data
+Non-technical explanation: The information for a theme (the colours the website will use, and how parts of the website will be placed on the page) are stored in a few files that the website selectively loads in based on the currently active theme.
 
-Full: Themes are stored in a hybrid format in both individual stylesheets and a JavaScript object that stores basic CSS property information, with stylesheets being intended for layouts and bigger changes. A function called `setTheme` handles all of this logic whenever a theme button is pressed.
+Full: Themes are stored in a hybrid format: a root stylesheet, and a custom stylesheet that each theme has which is loaded alongside the root.
 
-There's a base stylesheet that's always loaded to ensure some elements always look similar, but themes can override appearances as needed, because they're at the bottom of the cascade (last `<link>` in the `<head>`).
+The root stylesheet has a list of CSS properties that are updated when a new theme is loaded in. This is meant for "simple" things— mostly colours, but also fonts.
+
+Each theme also comes with a stylesheet that adds onto the existing base. This is intended for determining the layout of the website. Most themes typically share their layout with another, but change it in some way.
 
 ### Give me the full technical breakdown.
 
@@ -25,27 +27,25 @@ Oh. Okay.
 
 You can divide the theme system into two three major "systems"— the theme loader, the theme swapper, and the theme data:
 
-*   The theme loader is simply the `setTheme` function.
-
-*   The theme swapper refers to the code that initialize the theme changing buttons when you're on the theme page. It also includes the saving and loading of the current theme.
-
-*   The theme data is where theme information is stored. As mentioned before, each theme has properties defined within a config file meant for setting basic CSS properties and variables (colours, fonts, etc.), and an individual CSS file to deal with anything more complex, such as changing layouts, or overriding the default styles.
-
+- The theme loader is the `setTheme` function, and all the logic within it. It does the actual heavy-lifting.
+- The theme swapper refers to the theme page, which handle the logic to call `setTheme`.
+- The theme data is where the actual pieces of theme information are stored.
+	- Theme data is split between a theme's CSS file and a list of CSS properties.
 
 `setTheme` is the core of the theme system, working as follows:
 
-*   If there is an existing CSS theme file, it is removed.
-
-*   The CSS file for the requested theme is loaded, attached to the `<head>`.
-
-*   The theme's basic properties are all initialized. This is done by setting a bunch of CSS variables in `:root`.
-
-*   The name of the theme is stored in `localStorage`.
-
+- A theme's CSS file is loaded, and attached.
+- 	If there is an existing CSS theme file, it is removed beforehand.
+- The theme's basic properties are all initialized. This is done by setting a bunch of CSS variables in `:root`.
+- The name of the theme is stored in `localStorage`.
 
 The theme swapper simply runs every time a new page is loaded, and overrides every button that inherits from a specific class (originally it was `theme__button`) to load in the theme of that name.
 
 The theme page itself is built from a `JSON` file storing the themes into groups, mostly to keep the HTML clean (thank you Nunjucks)
+
+### How did you figure this out?
+
+See [this blog post](/post/website-themes/).
 
 ## contribute
 
