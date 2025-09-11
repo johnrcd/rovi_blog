@@ -29,4 +29,10 @@ If something's wrong on my LinkTree... I should probably fix that.
 
 ### i don't know what a Guestbook is
 
+It's a page on a website where you (a visitor) can leave a message. I assume they were a big deal on the old internet, because I learned about them through Neocities.
 
+They're pretty cool, I think.
+
+### i don't want to check it out
+
+Awh.
