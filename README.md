@@ -4,7 +4,7 @@ My personal blog, where I talk about projects I'm working on, which tend to be r
 
 ![picture of blog post on rovi_blog](/public/img/readme_website.png)
 
-You can check it out at: <blog.rovidecena.com>
+You can check it out at [blog.rovidecena.com](blog.rovidecena.com)
 
 ## Details
 
@@ -12,7 +12,7 @@ The website is built using:
 
 - Eleventy — static site generator (SSG)
 - Cloudflare — domain/hosting
-- Pages CMS — git-based content mangement system
+- Pages CMS — git-based content management system (CMS)
 
 Despite Eleventy being an SSG, `rovi_blog` runs as an single page application (SPA) that can fallback to being a multi page app if JavaScript does not work. This is primarily to support the website's theme system, which allows you to dramatically change the look of the website from a selection of styles.
 
