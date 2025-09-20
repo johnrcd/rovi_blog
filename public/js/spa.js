@@ -68,13 +68,16 @@ const loadAnchors = () => {
 
 	anchors.forEach(anchor => {
 		anchor.addEventListener("click", (event) => {
+			// currentTarget allows <a> tags to have elements
+			// inside of them without breaking this logic
+			const url = event.currentTarget.href;
+
 			// EXCEPTION: rss feeds
-			if (event.target.href.includes(".xml")) {
+			if (url.includes(".xml")) {
 				return;
 			}
-
 			event.preventDefault();
-			loadPage(event.target.href, true);
+			loadPage(url, true);
 		})
 	});
 };

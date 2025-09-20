@@ -445,3 +445,50 @@ I can get away with it since this website is barebones, but if (when?) it grows 
 TL:DR; Add dark mode support to your websites. Anything else isn't worth the effort, unless it's fun, then it is!
 
 (But if isn't, then it's not.)
+
+## addenedums
+
+A few months after I made this post, I tried to use the SPA code I had written earlier on another page. After all, I was under the assumption it was well tested and would simply work by importing the JavaScript file into the base template I was using.
+
+...well, it *almost* worked.
+
+The part that broke was this area of code:
+
+```js
+anchors.forEach(anchor => {
+	anchor.addEventListener("click", (event) => {
+		// EXCEPTION: rss feeds
+		if (event.target.href.includes(".xml")) {
+			return;
+		}
+
+		event.preventDefault();
+		loadPage(event.target.href, true);
+	})
+});
+```
+
+Long story short, `<a>` tags could break if there were other tags inside of them. This is because `event.target` refers to the "highest level element" (is that the proper phrase?) that was clicked on, which isn't guaranteed to be the element that you want to handle.
+
+In my situation, I had a card that you could click on to read a blog post, with the card itself having the title and date— `<p>` and `<datetime>` tags. If you clicked on a portion of the card that contained those tags, `event.target` would equal something along the lines of `<p>foo</p>`, which will cause an exception because `<p>` doesn't have an `href`.
+
+Anyways, easy fix.
+
+```js
+anchor.addEventListener("click", (event) => {
+	// currentTarget allows <a> tags to have elements
+	// inside of them without breaking this logic
+	const url = event.currentTarget.href;
+
+	// EXCEPTION: rss feeds
+	if (url.includes(".xml")) {
+		return;
+	}
+	event.preventDefault();
+	loadPage(url, true);
+})
+```
+
+I've updated this website to have the fix, so hopefully now my `spa.js` file can just work without any hassle.
+
+Hopefully.
