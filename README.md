@@ -4,7 +4,7 @@ My personal blog, where I talk about projects I'm working on, which tend to be r
 
 ![picture of blog post on rovi_blog](/public/img/readme_website.png)
 
-You can check it out at [blog.rovidecena.com](blog.rovidecena.com)
+You can check it out at [blog.rovidecena.com](https://blog.rovidecena.com)
 
 ## Details
 
